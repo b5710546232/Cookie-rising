@@ -36,5 +36,10 @@ public class CompositeGameObjectDrawable implements IGameObjectDrawable{
     public void remove(IGameObjectDrawable child){
         children.remove(child);
     }
+
+    public IGameObjectDrawable get(CompositeGameObjectDrawable child){
+        int index = children.indexOf(child);
+        return children.get(index);
+    }
 }
 

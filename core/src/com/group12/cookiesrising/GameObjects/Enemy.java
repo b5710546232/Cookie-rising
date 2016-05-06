@@ -25,6 +25,10 @@ public class Enemy implements IGameObjectDrawable{
     public void takeDamage(double dmg){
         healthPoint-=dmg;
         Gdx.app.log(TAG,"current hp = "+healthPoint);
+        if(healthPoint<=0){
+            isAlive = false;
+            Gdx.app.log(TAG,"monster die");
+        }
     }
 
     @Override

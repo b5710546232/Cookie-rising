@@ -19,6 +19,10 @@ public class GameWorld {
     private Player player;
     private Enemy currentEnemy;
     private Hero hero;
+    private Timer.Task nextEnemyTimerTask;
+    private float waitTime = 1f;
+    private Timer.Task dpsTimer;
+    private Timer.Task dpsTimerA;
 
     public GameWorld(){
         init();
@@ -30,35 +34,63 @@ public class GameWorld {
 
 
         gameObjectContainer = new CompositeGameObjectDrawable();
-        Enemy m = new Enemy();
+        currentEnemy  = new Enemy();
         hero = new Hero();
         BG bg = new BG();
         gameObjectContainer.add(bg);
-        gameObjectContainer.add(m);
+        gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
         // for testing.
-        currentEnemy = m;
 
+
+        nextEnemyTimerTask = new Timer.Task() {
+            @Override
+            public void run() {
+                nextEnemy();
+                Gdx.app.log(TAG," next enemy");
+            }
+        };
         // test auto attack.
-        Timer.schedule(new Timer.Task(){
+        this.dpsTimer = new Timer.Task(){
 
             @Override
             public void run() {
-                hero.attack(currentEnemy);
+
+                autoAttack();
             }
-        },0,1);
+        };
+
+
+        Timer.schedule(this.dpsTimer,0,1);
+    }
+
+    private void autoAttack() {
+        if(currentEnemy != null &&currentEnemy.isAlive) {
+            hero.attack(currentEnemy);
+        }
     }
 
     public void playerAttack(){
         Gdx.app.error(TAG,"call");
-        if(currentEnemy.isAlive) {
+        if(currentEnemy != null &&currentEnemy.isAlive) {
             this.player.attack(currentEnemy);
             Gdx.app.log(TAG," player attack to monster");
         }
     }
 
-    public void update(float detaTime){
+    public void nextEnemy(){
+        currentEnemy = new Enemy();
+        gameObjectContainer.add(currentEnemy);
 
+    }
+
+    public void update(float detaTime){
+        if(currentEnemy != null &&!currentEnemy.isAlive){
+            gameObjectContainer.remove(currentEnemy);
+            currentEnemy = null;
+            Timer.schedule(nextEnemyTimerTask, waitTime, 0 ,0);
+            Gdx.app.error(TAG,"call death");
+        }
     }
     public CompositeGameObjectDrawable getGameObjectContainer() {
         return gameObjectContainer;

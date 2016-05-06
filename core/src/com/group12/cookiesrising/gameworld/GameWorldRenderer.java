@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
 
 /**
@@ -19,7 +19,7 @@ public class GameWorldRenderer  implements Disposable{
     private CompositeGameObjectDrawable gameObjectContainer;
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private FitViewport viewport;
+    private StretchViewport viewport;
 
 
     public GameWorldRenderer(CompositeGameObjectDrawable gameObjectContainer) {
@@ -59,7 +59,7 @@ public class GameWorldRenderer  implements Disposable{
      * */
     public void init() {
         camera = new OrthographicCamera();
-        viewport = new FitViewport(640
+        viewport = new StretchViewport(640
                 , 360,camera);
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
