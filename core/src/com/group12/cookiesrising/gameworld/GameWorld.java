@@ -2,11 +2,11 @@ package com.group12.cookiesrising.gameworld;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
-import com.group12.cookiesrising.entities.Player;
+import com.group12.cookiesrising.Entities.Player;
 import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
 import com.group12.cookiesrising.gameobjects.BG;
-import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Enemy;
+import com.group12.cookiesrising.gameobjects.Hero;
 
 /**
  * Created by nattapat on 5/6/2016 AD.

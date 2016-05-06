@@ -1,4 +1,4 @@
-package com.group12.cookiesrising.screen;
+package com.group12.cookiesrising.Screen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
