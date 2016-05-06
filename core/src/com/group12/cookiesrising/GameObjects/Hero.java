@@ -16,13 +16,15 @@ public class Hero implements IGameObjectDrawable{
 
     public Hero() {
         init();
+        attackPoint = 1;
     }
 
     private void init() {
         positon = new Vector2(100,100);
     }
 
-    public void attack(Monster m){
+    public void attack(Enemy m){
+        if(m.isAlive)
         m.takeDamage(attackPoint);
     }
 

@@ -14,12 +14,13 @@ import com.group12.cookiesrising.util.Assets;
 public class GamePlayScreen extends ScreenAdapter {
 
     public static final String TAG = GamePlayScreen.class.getName();
-    private  Game game;
+    private Game game;
     private GameWorld world;
     private GameWorldRenderer renderer;
 
 
     public GamePlayScreen(Game game) {
+        super();
         this.game = game;
         world = new GameWorld();
         renderer = new GameWorldRenderer(world.getGameObjectContainer());
@@ -28,6 +29,7 @@ public class GamePlayScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        super.render(delta);
         testInput();
         // update world
         world.update(delta);
@@ -43,12 +45,13 @@ public class GamePlayScreen extends ScreenAdapter {
             Vector3 inputs = new Vector3(x, y, 0);
             renderer.getCamera().unproject(inputs);
             //Log the postion x and y when touch.
-            Gdx.app.log(TAG,"touch x = "+inputs.x+"  ||  "+"touch y = "+inputs.y);
+//            Gdx.app.log(TAG,"touch x = "+inputs.x+"  ||  "+"touch y = "+inputs.y);
             if(inputs.x <= 640/2){
-                Gdx.app.error(TAG,"touch left side");
+//                Gdx.app.error(TAG,"touch left side");
             }
             else{
-                Gdx.app.error(TAG,"touch right side");
+//                Gdx.app.error(TAG,"touch right side");
+                world.playerAttack();
             }
 
         }
@@ -59,7 +62,6 @@ public class GamePlayScreen extends ScreenAdapter {
         // this method will be called when this screen becomes the current screen for a Game.
         super.show();
         Assets.instance.init();
-
         renderer.init();
 
     }
@@ -67,12 +69,14 @@ public class GamePlayScreen extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         // update the viewport
+        super.resize(width,height);
         renderer.resize(width,height);
     }
 
     @Override
     public void dispose() {
         //dispose
+        super.dispose();
         Assets.instance.dispose();
         renderer.dispose();
     }
