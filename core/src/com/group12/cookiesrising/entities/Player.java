@@ -1,4 +1,4 @@
-package com.group12.cookiesrising.Entities;
+package com.group12.cookiesrising.entities;
 
 import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Enemy;
@@ -22,12 +22,5 @@ public class Player {
         m.takeDamage(dmg);
     }
 
-    public void addHero(Hero h){
-        heros.add(h);
-    }
-
-    public List<Hero> getHeros(){
-        return heros;
-    }
 
 }
