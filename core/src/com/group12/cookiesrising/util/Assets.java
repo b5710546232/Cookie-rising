@@ -20,6 +20,7 @@ public class Assets implements Disposable{
     public static final Assets instance = new Assets();
     public static  Texture mon;
     public static Texture bg;
+    public static Texture hero;
 
     private Assets() {}
 
@@ -32,8 +33,12 @@ public class Assets implements Disposable{
         load();
     }
 
-    private void load() {
 
+    /**
+     * load all assets.
+     * */
+    private void load() {
+        hero = new Texture(Gdx.files.internal("hero.png"));
         mon = new Texture(Gdx.files.internal("mon.png"));
         bg = new Texture(Gdx.files.internal("bg.png"));
     }
