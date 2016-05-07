@@ -16,14 +16,14 @@ import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
  */
 public class GameWorldRenderer  implements Disposable{
 
-    private CompositeGameObjectDrawable gameObjectContainer;
+    private CompositeGameObjectDrawable worldContainer;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private StretchViewport viewport;
 
 
-    public GameWorldRenderer(CompositeGameObjectDrawable gameObjectContainer) {
-        this.gameObjectContainer = gameObjectContainer;
+    public GameWorldRenderer(CompositeGameObjectDrawable worldContainer) {
+        this.worldContainer = worldContainer;
 
     }
 
@@ -46,7 +46,7 @@ public class GameWorldRenderer  implements Disposable{
 
         batch.begin();
 
-        gameObjectContainer.draw(batch);
+        worldContainer.draw(batch);
 
         batch.end();
     }

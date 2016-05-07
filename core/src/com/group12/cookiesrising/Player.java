@@ -1,4 +1,4 @@
-package com.group12.cookiesrising.Entities;
+package com.group12.cookiesrising;
 
 import com.group12.cookiesrising.gameobjects.Enemy;
 
@@ -6,6 +6,7 @@ import com.group12.cookiesrising.gameobjects.Enemy;
  * Created by nattapat on 5/6/2016 AD.
  */
 public class Player {
+
     private double dmg;
     private double money;
     public Player(){
@@ -17,4 +18,7 @@ public class Player {
     }
 
 
+    public String getDamageText() {
+        return dmg+"";
+    }
 }

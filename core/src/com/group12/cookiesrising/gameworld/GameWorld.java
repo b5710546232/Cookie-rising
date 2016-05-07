@@ -2,9 +2,10 @@ package com.group12.cookiesrising.gameworld;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
-import com.group12.cookiesrising.Entities.Player;
+import com.group12.cookiesrising.Player;
 import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
 import com.group12.cookiesrising.gameobjects.BG;
+import com.group12.cookiesrising.gameobjects.DamageText;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
 
@@ -14,8 +15,9 @@ import com.group12.cookiesrising.gameobjects.Hero;
 public class GameWorld {
     private static final String TAG = GameWorld.class.getName();
 
-
+    CompositeGameObjectDrawable worldContainer;
     CompositeGameObjectDrawable gameObjectContainer;
+    CompositeGameObjectDrawable textDmgContainer;
     private Player player;
     private Enemy currentEnemy;
     private Hero hero;
@@ -32,17 +34,22 @@ public class GameWorld {
 
         player = new Player();
 
-
+        worldContainer = new CompositeGameObjectDrawable();
         gameObjectContainer = new CompositeGameObjectDrawable();
+        textDmgContainer = new CompositeGameObjectDrawable();
         currentEnemy  = new Enemy();
         hero = new Hero();
         BG bg = new BG();
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
+
+        worldContainer.add(gameObjectContainer);
+        worldContainer.add(textDmgContainer);
+
         // for testing.
 
-
+        Timer.instance().clear();
         nextEnemyTimerTask = new Timer.Task() {
             @Override
             public void run() {
@@ -62,6 +69,7 @@ public class GameWorld {
 
 
         Timer.schedule(this.dpsTimer,0,1);
+        Timer.instance().start();
     }
 
     private void autoAttack() {
@@ -74,6 +82,9 @@ public class GameWorld {
         Gdx.app.error(TAG,"call");
         if(currentEnemy != null &&currentEnemy.isAlive) {
             this.player.attack(currentEnemy);
+            DamageText t = new DamageText(this.player.getDamageText());
+            t.init();
+            textDmgContainer.add(t);
             Gdx.app.log(TAG," player attack to monster");
         }
     }
@@ -92,7 +103,7 @@ public class GameWorld {
             Gdx.app.error(TAG,"call death");
         }
     }
-    public CompositeGameObjectDrawable getGameObjectContainer() {
-        return gameObjectContainer;
+    public CompositeGameObjectDrawable worldContainer() {
+        return worldContainer;
     }
 }
