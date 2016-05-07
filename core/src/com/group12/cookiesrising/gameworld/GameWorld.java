@@ -43,7 +43,7 @@ public class GameWorld {
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
 
-        dmgTextPool = new DamageTextPool(10);
+        dmgTextPool = new DamageTextPool(1);
 
         worldContainer.add(gameObjectContainer);
         worldContainer.add(dmgTextPool);

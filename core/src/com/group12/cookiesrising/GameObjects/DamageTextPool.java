@@ -1,5 +1,6 @@
 package com.group12.cookiesrising.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
@@ -22,16 +23,16 @@ public class DamageTextPool implements IGameObjectDrawable{
     public DamageText getDamageText(String text,int x, int y){
         for(DamageText dmgText : pool){
             if(!dmgText.isActive){
+                Gdx.app.error("pool","out");
                 dmgText.init(text,x,y);
                 return dmgText;
-            } else{
-                DamageText dmgtxt = new DamageText();
-                dmgtxt.init(text,x,y);
-                pool.add(dmgtxt);
-                return dmgtxt;
             }
         }
-        return null;
+        DamageText dmgtxt = new DamageText();
+        dmgtxt.init(text,x,y);
+        pool.add(dmgtxt);
+        Gdx.app.log("pool","total = "+pool.size);
+        return dmgtxt;
     }
     @Override
     public void draw(SpriteBatch batch) {
