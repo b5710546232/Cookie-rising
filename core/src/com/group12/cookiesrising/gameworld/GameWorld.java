@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.group12.cookiesrising.Player;
 import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
 import com.group12.cookiesrising.gameobjects.BG;
-import com.group12.cookiesrising.gameobjects.DamageText;
+import com.group12.cookiesrising.gameobjects.DamageTextPool;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
 
@@ -17,7 +17,6 @@ public class GameWorld {
 
     CompositeGameObjectDrawable worldContainer;
     CompositeGameObjectDrawable gameObjectContainer;
-    CompositeGameObjectDrawable textDmgContainer;
     private Player player;
     private Enemy currentEnemy;
     private Hero hero;
@@ -25,6 +24,7 @@ public class GameWorld {
     private float waitTime = 1f;
     private Timer.Task dpsTimer;
     private Timer.Task dpsTimerA;
+    private DamageTextPool dmgTextPool;
 
     public GameWorld(){
         init();
@@ -36,16 +36,17 @@ public class GameWorld {
 
         worldContainer = new CompositeGameObjectDrawable();
         gameObjectContainer = new CompositeGameObjectDrawable();
-        textDmgContainer = new CompositeGameObjectDrawable();
         currentEnemy  = new Enemy();
-        hero = new Hero();
+        hero = new Hero(200,300);
         BG bg = new BG();
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
 
+        dmgTextPool = new DamageTextPool(10);
+
         worldContainer.add(gameObjectContainer);
-        worldContainer.add(textDmgContainer);
+        worldContainer.add(dmgTextPool);
 
         // for testing.
 
@@ -82,9 +83,7 @@ public class GameWorld {
         Gdx.app.error(TAG,"call");
         if(currentEnemy != null &&currentEnemy.isAlive) {
             this.player.attack(currentEnemy);
-            DamageText t = new DamageText(this.player.getDamageText());
-            t.init();
-            textDmgContainer.add(t);
+            dmgTextPool.getDamageText(this.player.getDamageText(),450,200);
             Gdx.app.log(TAG," player attack to monster");
         }
     }

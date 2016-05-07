@@ -19,7 +19,7 @@ public class Enemy implements IGameObjectDrawable{
 
     public void init(){
         isAlive = true;
-        healthPoint = 10;
+        healthPoint = 100;
     }
 
     public void takeDamage(double dmg){

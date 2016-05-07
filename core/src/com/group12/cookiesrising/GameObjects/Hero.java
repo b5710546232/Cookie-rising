@@ -1,26 +1,24 @@
 package com.group12.cookiesrising.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.group12.cookiesrising.util.Assets;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class Hero implements IGameObjectDrawable{
+public class Hero extends AbstractGameObject {
 
     private double attackPoint;
     private double speed;
     private double criticalRate;
-    private Vector2 positon;
 
-    public Hero() {
-        init();
+    public Hero(int x,int y) {
+        super(x,y);
         attackPoint = 1;
     }
 
     private void init() {
-        positon = new Vector2(100,100);
+
     }
 
     public void attack(Enemy m){
@@ -30,6 +28,6 @@ public class Hero implements IGameObjectDrawable{
 
     @Override
     public void draw(SpriteBatch batch) {
-        batch.draw(Assets.hero,positon.x,positon.y);
+        batch.draw(Assets.hero,position.x,position.y);
     }
 }

@@ -15,31 +15,39 @@ public class DamageText extends Actor implements  IGameObjectDrawable , Disposab
     private BitmapFont font;
     private Vector2 position;
     private String text;
-    private boolean isAlive = false;
+    public boolean isActive = false;
     private float limit = 0;
 
-    public DamageText(String s){
-        text = s;
-        position = new Vector2(400,100);
+    public DamageText(){
+        text = "";
+        position = new Vector2(0,0);
         font = new BitmapFont();
     }
 
-    public void init(){
-        isAlive = true;
+    public void init(String text,int x , int y){
+        this.text = text;
+        isActive = true;
         limit = 0;
+        position.x = x;
+        position.y = y;
+    }
+
+    public void reset(){
+        position.x = 0;
+        position.y = 0;
+        isActive = false;
     }
 
     @Override
     public void draw(SpriteBatch batch) {
         update();
-        if(isAlive)
-        font.draw(batch,text,position.x,position.y);
+        if(isActive)font.draw(batch,text,position.x,position.y);
     }
 
     private void update() {
         limit += Gdx.graphics.getDeltaTime();
         if(limit>=1){
-            isAlive = false;
+            reset();
         }
         position.y += 100*Gdx.graphics.getDeltaTime();
     }
