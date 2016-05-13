@@ -29,6 +29,7 @@ public class GameWorld {
     private Timer.Task dpsTimer;
     private Timer.Task dpsTimerA;
     private DamageTextPool dmgTextPool;
+    private boolean lock = false;
 
     public GameWorld(){
         init();
@@ -87,7 +88,8 @@ public class GameWorld {
 
     public void playerAttack(){
         Gdx.app.error(TAG,"call");
-        if(currentEnemy != null &&currentEnemy.isAlive) {
+        if(currentEnemy != null &&currentEnemy.isAlive && !lock) {
+            lock = true;
             this.player.attack(currentEnemy);
             dmgTextPool.getDamageText(this.player.getDamageText(),450,200);
             Gdx.app.log(TAG," player attack to monster");
@@ -101,6 +103,7 @@ public class GameWorld {
     }
 
     public void update(float detaTime){
+        lock = false;
         if(currentEnemy != null &&!currentEnemy.isAlive){
             gameObjectContainer.remove(currentEnemy);
             currentEnemy = null;
