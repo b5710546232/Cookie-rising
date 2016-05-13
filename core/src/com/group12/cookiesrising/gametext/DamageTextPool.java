@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.Array;
 /**
  * Created by nattapat on 5/7/2016 AD.
  */
-public class DamageTextPool implements ITextDrawable {
+public class DamageTextPool extends AbstractGameText {
 
     private Array<DamageText> pool;
 
@@ -29,12 +29,20 @@ public class DamageTextPool implements ITextDrawable {
                 return dmgText;
             }
         }
-        DamageText dmgtxt = new DamageText();
-        dmgtxt.init(text,x,y);
-        pool.add(dmgtxt);
+        DamageText newDmgText = new DamageText();
+        newDmgText.init(text,x,y);
+        pool.add(newDmgText);
         Gdx.app.log("pool","total = "+pool.size);
-        return dmgtxt;
+        return newDmgText;
     }
+
+    @Override
+    public void update(float delta) {
+        for(DamageText dmgText : pool){
+            dmgText.update(delta);
+        }
+    }
+
     @Override
     public void draw(BitmapFont font, SpriteBatch batch) {
         for(DamageText dmgText : pool){

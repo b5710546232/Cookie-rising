@@ -100,7 +100,8 @@ public class GameWorld {
 
     }
 
-    public void update(float detaTime){
+    public void update(float delta){
+        worldTextContainer.update(delta);
         if(currentEnemy != null &&!currentEnemy.isAlive){
             gameObjectContainer.remove(currentEnemy);
             currentEnemy = null;

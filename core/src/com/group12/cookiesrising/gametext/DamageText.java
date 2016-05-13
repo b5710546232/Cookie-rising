@@ -1,6 +1,5 @@
 package com.group12.cookiesrising.gametext;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -8,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by nattapat on 5/7/2016 AD.
  */
-public class DamageText implements ITextDrawable {
+public class DamageText extends AbstractGameText {
     public static final String TAG = DamageText.class.getName();
     private Vector2 position;
     private String text;
@@ -34,17 +33,18 @@ public class DamageText implements ITextDrawable {
         isActive = false;
     }
 
-    private void update() {
-        limit += Gdx.graphics.getDeltaTime();
+
+    @Override
+    public void update(float delta) {
+        limit += delta;
         if(limit>=1){
             reset();
         }
-        position.y += 100*Gdx.graphics.getDeltaTime();
+        position.y += 100*delta;
     }
 
     @Override
     public void draw(BitmapFont font, SpriteBatch batch) {
-        update();
         if(isActive)font.draw(batch,text,position.x,position.y);
     }
 }
