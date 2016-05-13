@@ -10,6 +10,7 @@ import com.group12.cookiesrising.util.Assets;
 public class Enemy implements IGameObjectDrawable{
     public static final String TAG = Enemy.class.getName();
     private double healthPoint;
+    private double attackPoint;
     public boolean isAlive;
 
 
@@ -20,6 +21,8 @@ public class Enemy implements IGameObjectDrawable{
     public void init(){
         isAlive = true;
         healthPoint = 100;
+        attackPoint = 1;
+
     }
 
     public void takeDamage(double dmg){
@@ -29,6 +32,10 @@ public class Enemy implements IGameObjectDrawable{
             isAlive = false;
             Gdx.app.log(TAG,"monster die");
         }
+    }
+
+    public void attack(Hero h){
+        h.takeDamge(attackPoint);
     }
 
     @Override

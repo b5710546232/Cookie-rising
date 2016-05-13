@@ -23,7 +23,7 @@ public class GamePlayScreen extends ScreenAdapter {
         super();
         this.game = game;
         world = new GameWorld();
-        renderer = new GameWorldRenderer(world.worldContainer());
+        renderer = new GameWorldRenderer(world.getWorldContainer(),world.getWorldTextContainer());
 
     }
 

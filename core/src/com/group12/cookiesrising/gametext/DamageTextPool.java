@@ -1,13 +1,14 @@
-package com.group12.cookiesrising.gameobjects;
+package com.group12.cookiesrising.gametext;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by nattapat on 5/7/2016 AD.
  */
-public class DamageTextPool implements IGameObjectDrawable{
+public class DamageTextPool implements ITextDrawable {
 
     private Array<DamageText> pool;
 
@@ -20,7 +21,7 @@ public class DamageTextPool implements IGameObjectDrawable{
         }
     }
 
-    public DamageText getDamageText(String text,int x, int y){
+    public DamageText getDamageText(String text, int x, int y){
         for(DamageText dmgText : pool){
             if(!dmgText.isActive){
                 Gdx.app.error("pool","out");
@@ -35,11 +36,10 @@ public class DamageTextPool implements IGameObjectDrawable{
         return dmgtxt;
     }
     @Override
-    public void draw(SpriteBatch batch) {
+    public void draw(BitmapFont font, SpriteBatch batch) {
         for(DamageText dmgText : pool){
             if(dmgText.isActive)
-                dmgText.draw(batch);
+                dmgText.draw(font,batch);
         }
     }
-
 }

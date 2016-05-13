@@ -9,22 +9,31 @@ import com.group12.cookiesrising.util.Assets;
 public class Hero extends AbstractGameObject {
 
     private double attackPoint;
+    private double healthPoint;
     private double speed;
     private double criticalRate;
+    private boolean isAlive;
 
     public Hero(int x,int y) {
         super(x,y);
-        attackPoint = 1;
+      init();
     }
 
     private void init() {
-
+        attackPoint = 1;
+        healthPoint = 10;
     }
 
     public void attack(Enemy m){
         if(m.isAlive)
         m.takeDamage(attackPoint);
     }
+
+    public void takeDamge(double dmg){
+        if(isActive)healthPoint -= dmg;
+    }
+
+
 
     @Override
     public void draw(SpriteBatch batch) {

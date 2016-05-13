@@ -4,8 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
 import com.group12.cookiesrising.Player;
 import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
+import com.group12.cookiesrising.composite.CompositeTextObjectDrawble;
 import com.group12.cookiesrising.gameobjects.BG;
-import com.group12.cookiesrising.gameobjects.DamageTextPool;
+import com.group12.cookiesrising.gametext.DamageTextPool;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
 
@@ -17,6 +18,9 @@ public class GameWorld {
 
     CompositeGameObjectDrawable worldContainer;
     CompositeGameObjectDrawable gameObjectContainer;
+
+    CompositeTextObjectDrawble worldTextContainer;
+
     private Player player;
     private Enemy currentEnemy;
     private Hero hero;
@@ -36,6 +40,7 @@ public class GameWorld {
 
         worldContainer = new CompositeGameObjectDrawable();
         gameObjectContainer = new CompositeGameObjectDrawable();
+        worldTextContainer = new CompositeTextObjectDrawble();
         currentEnemy  = new Enemy();
         hero = new Hero(200,300);
         BG bg = new BG();
@@ -43,10 +48,11 @@ public class GameWorld {
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
 
-        dmgTextPool = new DamageTextPool(1);
+        dmgTextPool = new DamageTextPool(10);
 
         worldContainer.add(gameObjectContainer);
-        worldContainer.add(dmgTextPool);
+
+        worldTextContainer.add(dmgTextPool);
 
         // for testing.
 
@@ -102,7 +108,11 @@ public class GameWorld {
             Gdx.app.error(TAG,"call death");
         }
     }
-    public CompositeGameObjectDrawable worldContainer() {
+    public CompositeGameObjectDrawable getWorldContainer() {
         return worldContainer;
+    }
+
+    public CompositeTextObjectDrawble getWorldTextContainer() {
+        return worldTextContainer;
     }
 }

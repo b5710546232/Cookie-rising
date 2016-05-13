@@ -1,18 +1,15 @@
-package com.group12.cookiesrising.gameobjects;
+package com.group12.cookiesrising.gametext;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.utils.Disposable;
 
 /**
  * Created by nattapat on 5/7/2016 AD.
  */
-public class DamageText extends Actor implements  IGameObjectDrawable , Disposable{
+public class DamageText implements ITextDrawable {
     public static final String TAG = DamageText.class.getName();
-    private BitmapFont font;
     private Vector2 position;
     private String text;
     public boolean isActive = false;
@@ -21,7 +18,6 @@ public class DamageText extends Actor implements  IGameObjectDrawable , Disposab
     public DamageText(){
         text = "";
         position = new Vector2(0,0);
-        font = new BitmapFont();
     }
 
     public void init(String text,int x , int y){
@@ -38,12 +34,6 @@ public class DamageText extends Actor implements  IGameObjectDrawable , Disposab
         isActive = false;
     }
 
-    @Override
-    public void draw(SpriteBatch batch) {
-        update();
-        if(isActive)font.draw(batch,text,position.x,position.y);
-    }
-
     private void update() {
         limit += Gdx.graphics.getDeltaTime();
         if(limit>=1){
@@ -53,7 +43,8 @@ public class DamageText extends Actor implements  IGameObjectDrawable , Disposab
     }
 
     @Override
-    public void dispose() {
-        font.dispose();
+    public void draw(BitmapFont font, SpriteBatch batch) {
+        update();
+        if(isActive)font.draw(batch,text,position.x,position.y);
     }
 }

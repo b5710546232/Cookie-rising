@@ -15,11 +15,11 @@ import java.util.List;
  * and can add and remove child of IGameObjectDrawble.
  */
 public class CompositeGameObjectDrawable implements IGameObjectDrawable{
-    private List<IGameObjectDrawable> children;
-
     public CompositeGameObjectDrawable() {
         this.children = new ArrayList<IGameObjectDrawable>();
     }
+
+    private List<IGameObjectDrawable> children;
 
 
     @Override
