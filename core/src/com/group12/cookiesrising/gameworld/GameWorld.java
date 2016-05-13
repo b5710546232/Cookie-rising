@@ -105,8 +105,12 @@ public class GameWorld {
     public void update(float detaTime){
         lock = false;
         if(currentEnemy != null &&!currentEnemy.isAlive){
+            player.takeMoney(currentEnemy.getMoney());
+            Gdx.app.log(TAG, "player money: " + player.getMoney());
             gameObjectContainer.remove(currentEnemy);
             currentEnemy = null;
+            waitTime = (float)(Math.random()*5 +1 );
+            Gdx.app.log(TAG, "spawn delay: " + waitTime);
             Timer.schedule(nextEnemyTimerTask, waitTime, 0 ,0);
             Gdx.app.error(TAG,"call death");
         }

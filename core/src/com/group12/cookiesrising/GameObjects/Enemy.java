@@ -12,6 +12,7 @@ public class Enemy implements IGameObjectDrawable{
     private double healthPoint;
     private double attackPoint;
     public boolean isAlive;
+    private double money;
 
 
     public Enemy() {
@@ -20,9 +21,13 @@ public class Enemy implements IGameObjectDrawable{
 
     public void init(){
         isAlive = true;
-        healthPoint = 100;
+        healthPoint = 10;
         attackPoint = 1;
+        money = 100;
+    }
 
+    public double getMoney(){
+        return money;
     }
 
     public void takeDamage(double dmg){
