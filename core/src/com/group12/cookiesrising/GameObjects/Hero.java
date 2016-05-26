@@ -1,12 +1,13 @@
 package com.group12.cookiesrising.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.util.Assets;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class Hero extends AbstractGameObject {
+public class Hero extends AbstractGameObject implements Hittable {
 
     private double attackPoint;
     private double healthPoint;
@@ -29,8 +30,12 @@ public class Hero extends AbstractGameObject {
         m.takeDamage(attackPoint);
     }
 
-    public void takeDamge(double dmg){
+    public void takeDamage(double dmg){
         if(isActive)healthPoint -= dmg;
+        if(healthPoint <=0){
+            isActive = false;
+            healthPoint = 0;
+        }
     }
 
 

@@ -43,6 +43,7 @@ public class GameWorld {
         worldTextContainer = new CompositeTextObjectDrawble();
         currentEnemy  = new Enemy();
         hero = new Hero(200,300);
+//        player.party.addHero(hero);
         BG bg = new BG();
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);

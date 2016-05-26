@@ -40,7 +40,7 @@ public class Enemy implements IGameObjectDrawable{
     }
 
     public void attack(Hero h){
-        h.takeDamge(attackPoint);
+        h.takeDamage(attackPoint);
     }
 
     @Override
