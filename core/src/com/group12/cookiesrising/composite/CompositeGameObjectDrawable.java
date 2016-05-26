@@ -33,6 +33,7 @@ public class CompositeGameObjectDrawable implements IGameObjectDrawable{
         children.add(child);
     }
 
+
     public void remove(IGameObjectDrawable child){
         children.remove(child);
     }

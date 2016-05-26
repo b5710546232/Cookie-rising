@@ -22,6 +22,7 @@ public class DamageTextPool extends AbstractGameText {
     }
 
     public DamageText getDamageText(String text, int x, int y){
+
         for(DamageText dmgText : pool){
             if(!dmgText.isActive){
                 Gdx.app.error("pool","out");
