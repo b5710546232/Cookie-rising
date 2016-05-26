@@ -27,8 +27,8 @@ public class GameWorld {
     private Timer.Task nextEnemyTimerTask;
     private float waitTime = 1f;
     private Timer.Task dpsTimer;
-    private Timer.Task dpsTimerA;
     private DamageTextPool dmgTextPool;
+    private boolean lock = false;
 
     public GameWorld(){
         init();
@@ -87,7 +87,8 @@ public class GameWorld {
 
     public void playerAttack(){
         Gdx.app.error(TAG,"call");
-        if(currentEnemy != null &&currentEnemy.isAlive) {
+        if(currentEnemy != null &&currentEnemy.isAlive && !lock) {
+            lock = true;
             this.player.attack(currentEnemy);
             dmgTextPool.getDamageText(this.player.getDamageText(),450,200);
             Gdx.app.log(TAG," player attack to monster");
@@ -102,9 +103,14 @@ public class GameWorld {
 
     public void update(float delta){
         worldTextContainer.update(delta);
+        lock = false;
         if(currentEnemy != null &&!currentEnemy.isAlive){
+            player.takeMoney(currentEnemy.getMoney());
+            Gdx.app.log(TAG, "player money: " + player.getMoney());
             gameObjectContainer.remove(currentEnemy);
             currentEnemy = null;
+            waitTime = (float)(Math.random()*5 +1 );
+            Gdx.app.log(TAG, "spawn delay: " + waitTime);
             Timer.schedule(nextEnemyTimerTask, waitTime, 0 ,0);
             Gdx.app.error(TAG,"call death");
         }

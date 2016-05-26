@@ -11,12 +11,21 @@ public class Player {
     private double money;
     public Player(){
         dmg = 1;
+        //will load later;
+        money = 0;
     }
 
     public void attack(Enemy m){
         m.takeDamage(dmg);
     }
 
+    public void takeMoney(double money){
+        this.money += money;
+    }
+
+    public double getMoney(){
+        return this.money;
+    }
 
     public String getDamageText() {
         return dmg+"";
