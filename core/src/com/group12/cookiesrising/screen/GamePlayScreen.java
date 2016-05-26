@@ -3,10 +3,18 @@ package com.group12.cookiesrising.Screen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.group12.cookiesrising.gameworld.GameWorld;
 import com.group12.cookiesrising.gameworld.GameWorldRenderer;
 import com.group12.cookiesrising.util.Assets;
+import com.group12.cookiesrising.util.Constants;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -17,7 +25,6 @@ public class GamePlayScreen extends ScreenAdapter {
     private Game game;
     private GameWorld world;
     private GameWorldRenderer renderer;
-
 
     public GamePlayScreen(Game game) {
         super();
@@ -34,8 +41,6 @@ public class GamePlayScreen extends ScreenAdapter {
         // update world
         world.update(delta);
         renderer.render();
-
-
     }
 
     private void testInput() {
