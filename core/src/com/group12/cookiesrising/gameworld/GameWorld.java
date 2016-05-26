@@ -81,14 +81,14 @@ public class GameWorld {
     }
 
     private void autoAttack() {
-        if(currentEnemy != null &&currentEnemy.isAlive) {
+        if(currentEnemy != null &&currentEnemy.isAlive()) {
             hero.attack(currentEnemy);
         }
     }
 
     public void playerAttack(){
         Gdx.app.error(TAG,"call");
-        if(currentEnemy != null &&currentEnemy.isAlive && !lock) {
+        if(currentEnemy != null &&currentEnemy.isAlive() && !lock) {
             lock = true;
             this.player.attack(currentEnemy);
             dmgTextPool.getDamageText(this.player.getDamageText(),450,200);
@@ -97,19 +97,20 @@ public class GameWorld {
     }
 
     public void nextEnemy(){
-        currentEnemy = new Enemy();
-        gameObjectContainer.add(currentEnemy);
+//        currentEnemy = new Enemy();
+//        gameObjectContainer.add(currentEnemy);
+        currentEnemy.respawn();
 
     }
 
     public void update(float delta){
         worldTextContainer.update(delta);
         lock = false;
-        if(currentEnemy != null &&!currentEnemy.isAlive){
+        if(!currentEnemy.isAlive()&&currentEnemy.waitForSpawn()){
             player.takeMoney(currentEnemy.getMoney());
             Gdx.app.log(TAG, "player money: " + player.getMoney());
-            gameObjectContainer.remove(currentEnemy);
-            currentEnemy = null;
+//            gameObjectContainer.remove(currentEnemy);
+//            currentEnemy = null;
             waitTime = (float)(Math.random()*5 +1 );
             Gdx.app.log(TAG, "spawn delay: " + waitTime);
             Timer.schedule(nextEnemyTimerTask, waitTime, 0 ,0);

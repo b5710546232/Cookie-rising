@@ -26,7 +26,7 @@ public class Hero extends AbstractGameObject implements Hittable {
     }
 
     public void attack(Enemy m){
-        if(m.isAlive)
+        if(m.isAlive())
         m.takeDamage(attackPoint);
     }
 

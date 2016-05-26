@@ -1,7 +1,9 @@
 package com.group12.cookiesrising.gameobjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.group12.cookiesrising.State.AliveState;
+import com.group12.cookiesrising.State.DeathState;
+import com.group12.cookiesrising.State.State;
 import com.group12.cookiesrising.util.Assets;
 
 /**
@@ -9,21 +11,41 @@ import com.group12.cookiesrising.util.Assets;
  */
 public class Enemy implements IGameObjectDrawable{
     public static final String TAG = Enemy.class.getName();
-    private double healthPoint;
-    private double attackPoint;
-    public boolean isAlive;
-    private double money;
+    public double healthPoint;
+    public boolean waitForSpawn;
+    public double getAttackPoint() {
+        return attackPoint;
+    }
 
+    public double attackPoint;
+    public double money;
+    private State currentState,deathState,aliveState;
+
+    public void setCurrentState(State currentState) {
+        this.currentState = currentState;
+    }
+
+    public State getDeathState() {
+        return deathState;
+    }
+
+    public State getAliveState() {
+        return aliveState;
+    }
 
     public Enemy() {
+        deathState = new DeathState(this);
+        aliveState = new AliveState(this);
+        currentState = aliveState;
         init();
     }
 
     public void init(){
-        isAlive = true;
+        waitForSpawn = true;
         healthPoint = 10;
         attackPoint = 1;
         money = 100;
+        currentState = aliveState;
     }
 
     public double getMoney(){
@@ -31,20 +53,36 @@ public class Enemy implements IGameObjectDrawable{
     }
 
     public void takeDamage(double dmg){
-        healthPoint-=dmg;
-        Gdx.app.log(TAG,"current hp = "+healthPoint);
-        if(healthPoint<=0){
-            isAlive = false;
-            Gdx.app.log(TAG,"monster die");
-        }
+        currentState.takeDamage(dmg);
+    }
+
+    public void changeState(){
+        currentState.changeState();
     }
 
     public void attack(Hero h){
-        h.takeDamage(attackPoint);
+        currentState.attack(h);
+    }
+
+    public void respawn(){
+        currentState.respawn();
+    }
+
+    public boolean isAlive(){
+        return currentState.isAlive();
+    }
+
+    public boolean waitForSpawn(){
+        if(waitForSpawn){
+            waitForSpawn = false;
+            return true;
+        }
+        return waitForSpawn;
     }
 
     @Override
     public void draw(SpriteBatch batch) {
+        if(isAlive())
         batch.draw(Assets.mon,570,100);
     }
 }
