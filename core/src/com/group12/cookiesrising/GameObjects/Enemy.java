@@ -83,6 +83,6 @@ public class Enemy implements IGameObjectDrawable{
     @Override
     public void draw(SpriteBatch batch) {
         if(isAlive())
-        batch.draw(Assets.mon,570,100);
+        batch.draw(Assets.mon,400,100);
     }
 }
