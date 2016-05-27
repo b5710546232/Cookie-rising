@@ -2,6 +2,7 @@ package com.group12.cookiesrising.util;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
@@ -21,7 +22,7 @@ public class Assets implements Disposable{
     public static  Texture mon;
     public static Texture bg;
     public static Texture hero;
-
+    public static TextureRegion atk;
     private Assets() {}
 
     /**
@@ -41,6 +42,7 @@ public class Assets implements Disposable{
         hero = new Texture(Gdx.files.internal("hero.png"));
         mon = new Texture(Gdx.files.internal("mon.png"));
         bg = new Texture(Gdx.files.internal("bg.png"));
+        atk = new TextureRegion(new Texture(Gdx.files.internal("button.png")));
     }
 
 

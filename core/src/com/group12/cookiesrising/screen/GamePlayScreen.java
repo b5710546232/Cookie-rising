@@ -3,18 +3,21 @@ package com.group12.cookiesrising.Screen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.group12.cookiesrising.gameworld.GameWorld;
 import com.group12.cookiesrising.gameworld.GameWorldRenderer;
 import com.group12.cookiesrising.util.Assets;
 import com.group12.cookiesrising.util.Constants;
+
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -25,7 +28,8 @@ public class GamePlayScreen extends ScreenAdapter {
     private Game game;
     private GameWorld world;
     private GameWorldRenderer renderer;
-
+    private Stage stage;
+    private ProgressBar progressBar;
     public GamePlayScreen(Game game) {
         super();
         this.game = game;
@@ -41,6 +45,8 @@ public class GamePlayScreen extends ScreenAdapter {
         // update world
         world.update(delta);
         renderer.render();
+        stage.act(delta);
+        stage.draw();
     }
 
     private void testInput() {
@@ -57,6 +63,8 @@ public class GamePlayScreen extends ScreenAdapter {
             else{
 //                Gdx.app.error(TAG,"touch right side");
                 world.playerAttack();
+                Gdx.app.log("Progress",progressBar.getValue()+"");
+                progressBar.setValue(progressBar.getValue()-10);
             }
 
         }
@@ -65,12 +73,41 @@ public class GamePlayScreen extends ScreenAdapter {
     @Override
     public void show() {
         // this method will be called when this screen becomes the current screen for a Game.
+        stage = new Stage(new StretchViewport(Constants.VIEWPORT_WIDTH,
+                Constants.VIEWPORT_HEIGHT));
+        Gdx.input.setInputProcessor(stage);
         super.show();
         Assets.instance.init();
         renderer.init();
-
+        progressBar = new ProgressBar(0,100,0.7f,false,new ProgressBar.ProgressBarStyle(new TextureRegionDrawable(Assets.atk),new TextureRegionDrawable(Assets.atk)));
+        progressBar.setPosition(200,200);
+        progressBar.setValue(100);
+        stage.addActor(progressBar);
+        initButton();
     }
-
+    private void initButton(){
+        ImageButton hero3Button = new ImageButton(new TextureRegionDrawable(Assets.atk));
+        hero3Button.setPosition(10,10);
+        stage.addActor(hero3Button);
+        ImageButton hero2Button = new ImageButton(new TextureRegionDrawable(Assets.atk));
+        hero2Button.setPosition(100,10);
+        stage.addActor(hero2Button);
+        ImageButton hero1Button = new ImageButton(new TextureRegionDrawable(Assets.atk));
+        hero1Button.setPosition(190,10);
+        stage.addActor(hero1Button);
+        ImageButton playerButton = new ImageButton(new TextureRegionDrawable(Assets.atk));
+        playerButton.setPosition(280,10);
+        stage.addActor(playerButton);
+        ImageButton atkButton = new ImageButton(new TextureRegionDrawable(Assets.atk));
+        atkButton.setPosition(370,10);
+        stage.addActor(atkButton);
+        ImageButton healButton = new ImageButton(new TextureRegionDrawable(Assets.atk));
+        healButton.setPosition(460,10);
+        stage.addActor(healButton);
+        ImageButton criButton = new ImageButton(new TextureRegionDrawable(Assets.atk));
+        criButton.setPosition(550,10);
+        stage.addActor(criButton);
+    }
     @Override
     public void resize(int width, int height) {
         // update the viewport
