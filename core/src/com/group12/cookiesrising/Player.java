@@ -7,7 +7,7 @@ import com.group12.cookiesrising.gameobjects.Party;
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class Player {
+public class Player implements Upgradable{
 
     private double attackPoint;
     private double money;

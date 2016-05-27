@@ -2,12 +2,13 @@ package com.group12.cookiesrising.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.Hittable;
+import com.group12.cookiesrising.Upgradable;
 import com.group12.cookiesrising.util.Assets;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class Hero extends AbstractGameObject implements Hittable {
+public class Hero extends AbstractGameObject implements Hittable,Upgradable {
 
     private double attackPoint;
     private double healthPoint;
