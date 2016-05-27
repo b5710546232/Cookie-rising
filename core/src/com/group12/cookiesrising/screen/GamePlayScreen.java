@@ -29,7 +29,6 @@ public class GamePlayScreen extends ScreenAdapter {
     private GameWorld world;
     private GameWorldRenderer renderer;
     private Stage stage;
-    private ProgressBar progressBar;
     public GamePlayScreen(Game game) {
         super();
         this.game = game;
@@ -63,8 +62,6 @@ public class GamePlayScreen extends ScreenAdapter {
             else{
 //                Gdx.app.error(TAG,"touch right side");
                 world.playerAttack();
-                Gdx.app.log("Progress",progressBar.getValue()+"");
-                progressBar.setValue(progressBar.getValue()-10);
             }
 
         }
@@ -79,10 +76,6 @@ public class GamePlayScreen extends ScreenAdapter {
         super.show();
         Assets.instance.init();
         renderer.init();
-        progressBar = new ProgressBar(0,100,0.7f,false,new ProgressBar.ProgressBarStyle(new TextureRegionDrawable(Assets.atk),new TextureRegionDrawable(Assets.atk)));
-        progressBar.setPosition(200,200);
-        progressBar.setValue(100);
-        stage.addActor(progressBar);
         initButton();
     }
     private void initButton(){

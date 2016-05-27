@@ -11,7 +11,7 @@ public class Hero extends AbstractGameObject implements Hittable {
 
     private double attackPoint;
     private double healthPoint;
-    private double speed;
+    private double healPoint;
     private double criticalRate;
     private boolean isAlive;
 
@@ -23,6 +23,8 @@ public class Hero extends AbstractGameObject implements Hittable {
     private void init() {
         attackPoint = 1;
         healthPoint = 10;
+        healPoint = 1;
+        criticalRate = 1;
     }
 
     public void attack(Enemy m){
@@ -38,6 +40,9 @@ public class Hero extends AbstractGameObject implements Hittable {
         }
     }
 
+    public void upgradeAtk(){ attackPoint++; }
+    public void upgradeHeal(){ healPoint++; }
+    public void upgradeCrt(){ criticalRate++; }
 
 
     @Override
