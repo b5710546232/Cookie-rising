@@ -14,6 +14,7 @@ public class Hero extends AbstractGameObject implements Hittable,Upgradable {
     private double healthPoint;
     private double healPoint;
     private double criticalRate;
+    private int level;
     private boolean isAlive;
 
     public Hero(int x,int y) {
@@ -26,6 +27,7 @@ public class Hero extends AbstractGameObject implements Hittable,Upgradable {
         healthPoint = 10;
         healPoint = 1;
         criticalRate = 1;
+        level = 1;
     }
 
     public void attack(Enemy m){

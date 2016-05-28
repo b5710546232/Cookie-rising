@@ -1,13 +1,18 @@
 package com.group12.cookiesrising;
 
+import com.group12.cookiesrising.Listener.AttackButtonListener;
+import com.group12.cookiesrising.Listener.HealButtonListener;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Party;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class Player implements Upgradable{
+public class Player extends Observable implements Upgradable,Observer{
 
     private double attackPoint;
     private double money;
@@ -45,5 +50,16 @@ public class Player implements Upgradable{
 
     public String getDamageText() {
         return attackPoint+"";
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o instanceof AttackButtonListener){
+            upgradeAtk();
+        }else if (o instanceof HealButtonListener){
+            upgradeHeal();
+        }else if (o instanceof HealButtonListener){
+            upgradeCrt();
+        }
     }
 }

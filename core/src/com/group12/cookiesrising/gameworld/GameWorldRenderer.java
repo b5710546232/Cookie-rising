@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
-import com.group12.cookiesrising.composite.CompositeTextObjectDrawble;
+import com.group12.cookiesrising.composite.CompositeTextObjectDrawable;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -19,7 +19,7 @@ import com.group12.cookiesrising.composite.CompositeTextObjectDrawble;
 public class GameWorldRenderer  implements Disposable{
 
     private CompositeGameObjectDrawable worldContainer;
-    private CompositeTextObjectDrawble worldTextContainer;
+    private CompositeTextObjectDrawable worldTextContainer;
     private SpriteBatch batch;
     private BitmapFont font;
     private OrthographicCamera camera;
@@ -29,7 +29,7 @@ public class GameWorldRenderer  implements Disposable{
      * @param worldContainer - CompositeGameObjectDrawable of world that contain every gameobject world.
      * */
 
-    public GameWorldRenderer(CompositeGameObjectDrawable worldContainer, CompositeTextObjectDrawble worldTextContainer) {
+    public GameWorldRenderer(CompositeGameObjectDrawable worldContainer, CompositeTextObjectDrawable worldTextContainer) {
         this.worldContainer = worldContainer;
         this.worldTextContainer = worldTextContainer;
 
