@@ -30,6 +30,7 @@ public class Party implements Hittable{
     }
 
     public void addHero(Hero h){
+        Gdx.app.error("paryt","add hero");
         heroList.add(h);
     }
 }

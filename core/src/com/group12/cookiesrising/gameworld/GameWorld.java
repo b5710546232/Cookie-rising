@@ -43,7 +43,7 @@ public class GameWorld {
         worldTextContainer = new CompositeTextObjectDrawble();
         currentEnemy  = new Enemy();
         hero = new Hero(200,300);
-//        player.party.addHero(hero);
+        player.party.addHero(hero);
         BG bg = new BG();
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
@@ -74,6 +74,7 @@ public class GameWorld {
                 autoAttack();
             }
         };
+
 
 
         Timer.schedule(this.dpsTimer,0,1);
