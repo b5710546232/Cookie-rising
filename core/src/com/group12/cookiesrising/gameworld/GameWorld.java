@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
 import com.group12.cookiesrising.Player;
 import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
-import com.group12.cookiesrising.composite.CompositeTextObjectDrawble;
+import com.group12.cookiesrising.composite.CompositeTextObjectDrawable;
 import com.group12.cookiesrising.gameobjects.BG;
 import com.group12.cookiesrising.gametext.DamageTextPool;
 import com.group12.cookiesrising.gameobjects.Enemy;
@@ -19,7 +19,7 @@ public class GameWorld {
     CompositeGameObjectDrawable worldContainer;
     CompositeGameObjectDrawable gameObjectContainer;
 
-    CompositeTextObjectDrawble worldTextContainer;
+    CompositeTextObjectDrawable worldTextContainer;
 
     private Player player;
     private Enemy currentEnemy;
@@ -40,9 +40,9 @@ public class GameWorld {
 
         worldContainer = new CompositeGameObjectDrawable();
         gameObjectContainer = new CompositeGameObjectDrawable();
-        worldTextContainer = new CompositeTextObjectDrawble();
+        worldTextContainer = new CompositeTextObjectDrawable();
         currentEnemy  = new Enemy();
-        hero = new Hero(200,300);
+        hero = new Hero(200,100);
 //        player.party.addHero(hero);
         BG bg = new BG();
         gameObjectContainer.add(bg);
@@ -83,6 +83,7 @@ public class GameWorld {
     private void autoAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()) {
             hero.attack(currentEnemy);
+            dmgTextPool.getDamageText(this.player.getDamageText(),450,200);
         }
     }
 
@@ -117,11 +118,16 @@ public class GameWorld {
             Gdx.app.error(TAG,"call death");
         }
     }
+
+    public Player getPlayer() {
+        return player;
+    }
+
     public CompositeGameObjectDrawable getWorldContainer() {
         return worldContainer;
     }
 
-    public CompositeTextObjectDrawble getWorldTextContainer() {
+    public CompositeTextObjectDrawable getWorldTextContainer() {
         return worldTextContainer;
     }
 }
