@@ -6,6 +6,7 @@ import com.group12.cookiesrising.Player;
 import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
 import com.group12.cookiesrising.composite.CompositeTextObjectDrawable;
 import com.group12.cookiesrising.gameobjects.BG;
+import com.group12.cookiesrising.gameobjects.Coin;
 import com.group12.cookiesrising.gametext.DamageTextPool;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
@@ -42,14 +43,15 @@ public class GameWorld {
         gameObjectContainer = new CompositeGameObjectDrawable();
         worldTextContainer = new CompositeTextObjectDrawable();
         currentEnemy  = new Enemy();
-        hero = new Hero(200,100);
+        hero = new Hero(200,136);
 //        player.party.addHero(hero);
         player.party.addHero(hero);
         BG bg = new BG();
+        Coin coin = new Coin();
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
-
+        gameObjectContainer.add(coin);
         dmgTextPool = new DamageTextPool(10);
 
         worldContainer.add(gameObjectContainer);

@@ -5,10 +5,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
 import com.group12.cookiesrising.composite.CompositeTextObjectDrawable;
+import com.group12.cookiesrising.util.Assets;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -32,7 +36,6 @@ public class GameWorldRenderer  implements Disposable{
     public GameWorldRenderer(CompositeGameObjectDrawable worldContainer, CompositeTextObjectDrawable worldTextContainer) {
         this.worldContainer = worldContainer;
         this.worldTextContainer = worldTextContainer;
-
     }
 
     /**
@@ -56,8 +59,6 @@ public class GameWorldRenderer  implements Disposable{
 
         worldContainer.draw(batch);
         worldTextContainer.draw(font,batch);
-
-
         batch.end();
     }
 
@@ -74,6 +75,7 @@ public class GameWorldRenderer  implements Disposable{
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
         font = new BitmapFont();
+
     }
 
     /**

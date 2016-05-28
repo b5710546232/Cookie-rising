@@ -3,18 +3,11 @@ package com.group12.cookiesrising.Screen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.group12.cookiesrising.Listener.AttackButtonListener;
 import com.group12.cookiesrising.Listener.CriticalButtonListener;
@@ -24,9 +17,6 @@ import com.group12.cookiesrising.gameworld.GameWorld;
 import com.group12.cookiesrising.gameworld.GameWorldRenderer;
 import com.group12.cookiesrising.util.Assets;
 import com.group12.cookiesrising.util.Constants;
-
-import java.util.TimerTask;
-
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -86,7 +76,6 @@ public class GamePlayScreen extends ScreenAdapter {
         Assets.instance.init();
         renderer.init();
         initButton();
-
     }
     private void initButton(){
         ObserverListener atkLis = new AttackButtonListener();
@@ -95,29 +84,27 @@ public class GamePlayScreen extends ScreenAdapter {
         atkLis.addObserver(world.getPlayer());
         healLis.addObserver(world.getPlayer());
         criLis.addObserver(world.getPlayer());
-        ImageButton hero3Button = new ImageButton(new TextureRegionDrawable(Assets.atk));
-        hero3Button.setPosition(10,10);
+        ImageButton hero3Button = new ImageButton(new TextureRegionDrawable(Assets.h3b));
+        hero3Button.setPosition(40,10);
         stage.addActor(hero3Button);
-        ImageButton hero2Button = new ImageButton(new TextureRegionDrawable(Assets.atk));
-        hero2Button.setPosition(100,10);
+        ImageButton hero2Button = new ImageButton(new TextureRegionDrawable(Assets.h2b));
+        hero2Button.setPosition(130,10);
         stage.addActor(hero2Button);
-        ImageButton hero1Button = new ImageButton(new TextureRegionDrawable(Assets.atk));
-        hero1Button.setPosition(190,10);
+        ImageButton hero1Button = new ImageButton(new TextureRegionDrawable(Assets.h1b));
+        hero1Button.setPosition(220,10);
         stage.addActor(hero1Button);
-        ImageButton playerButton = new ImageButton(new TextureRegionDrawable(Assets.atk));
-        playerButton.setPosition(280,10);
-        stage.addActor(playerButton);
+
         ImageButton atkButton = new ImageButton(new TextureRegionDrawable(Assets.atk));
         atkButton.addListener(atkLis.getListener());
-        atkButton.setPosition(370,10);
+        atkButton.setPosition(340,10);
         stage.addActor(atkButton);
-        ImageButton healButton = new ImageButton(new TextureRegionDrawable(Assets.atk));
+        ImageButton healButton = new ImageButton(new TextureRegionDrawable(Assets.heal));
         healButton.addListener(healLis.getListener());
-        healButton.setPosition(460,10);
+        healButton.setPosition(430,10);
         stage.addActor(healButton);
-        ImageButton criButton = new ImageButton(new TextureRegionDrawable(Assets.atk));
+        ImageButton criButton = new ImageButton(new TextureRegionDrawable(Assets.cri));
         criButton.addListener(criLis.getListener());
-        criButton.setPosition(550,10);
+        criButton.setPosition(520,10);
         stage.addActor(criButton);
     }
     @Override
@@ -133,5 +120,6 @@ public class GamePlayScreen extends ScreenAdapter {
         super.dispose();
         Assets.instance.dispose();
         renderer.dispose();
+        stage.dispose();
     }
 }
