@@ -42,9 +42,10 @@ public class GamePlayScreen extends ScreenAdapter {
         testInput();
         // update world
         world.update(delta);
-        renderer.render();
+        renderer.renderObject();
         stage.act(delta);
         stage.draw();
+        renderer.renderText();
     }
 
     private void testInput() {

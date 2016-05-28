@@ -11,6 +11,7 @@ import com.group12.cookiesrising.gametext.CoinText;
 import com.group12.cookiesrising.gametext.DamageTextPool;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
+import com.group12.cookiesrising.gametext.StatusText;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -30,6 +31,7 @@ public class GameWorld {
     private float waitTime = 1f;
     private Timer.Task dpsTimer;
     private DamageTextPool dmgTextPool;
+    private StatusText statusText;
     private CoinText coinText;
     private boolean lock = false;
 
@@ -50,7 +52,8 @@ public class GameWorld {
         player.party.addHero(hero);
         BG bg = new BG();
         Coin coin = new Coin();
-        coinText = new CoinText(player.getMoney());
+        coinText = new CoinText(player);
+        statusText = new StatusText(player);
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
@@ -61,6 +64,7 @@ public class GameWorld {
 
         worldTextContainer.add(dmgTextPool);
         worldTextContainer.add(coinText);
+        worldTextContainer.add(statusText);
         // for testing.
 
         Timer.instance().clear();
@@ -116,7 +120,6 @@ public class GameWorld {
         lock = false;
         if(!currentEnemy.isAlive()&&currentEnemy.waitForSpawn()){
             player.takeMoney(currentEnemy.getMoney());
-            coinText.setValue(player.getMoney());
             Gdx.app.log(TAG, "player money: " + player.getMoney());
 //            gameObjectContainer.remove(currentEnemy);
 //            currentEnemy = null;

@@ -41,7 +41,7 @@ public class GameWorldRenderer  implements Disposable{
     /**
      * draw all texture in world.
      * */
-    public void render(){
+    public void renderObject(){
 
         //Draw a black bg.prevents flickering.
         Gdx.gl.glClearColor(1, 0, 0, 1);
@@ -58,10 +58,25 @@ public class GameWorldRenderer  implements Disposable{
         batch.begin();
 
         worldContainer.draw(batch);
+        batch.end();
+    }
+    public void renderText(){
+
+        //Draw a black bg.prevents flickering.
+//        Gdx.gl.glClearColor(1, 0, 0, 1);
+        //// Clears the screen
+//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+
+        //Apply viewport
+//        viewport.apply();
+
+
+//        batch.setProjectionMatrix(camera.combined);
+//        batch.enableBlending();
+        batch.begin();
         worldTextContainer.draw(font,batch);
         batch.end();
     }
-
     public OrthographicCamera getCamera() {
         return camera;
     }

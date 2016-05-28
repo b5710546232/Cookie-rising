@@ -1,6 +1,7 @@
 package com.group12.cookiesrising;
 
 import com.group12.cookiesrising.Listener.AttackButtonListener;
+import com.group12.cookiesrising.Listener.CriticalButtonListener;
 import com.group12.cookiesrising.Listener.HealButtonListener;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
@@ -14,10 +15,10 @@ import java.util.Observer;
  */
 public class Player extends Observable implements Upgradable,Observer{
 
-    private double attackPoint;
+    private int attackPoint;
     private double money;
-    private double healPoint;
-    private double criticalRate;
+    private int healPoint;
+    private int criticalRate;
     public Party party;
 
     public Player(){
@@ -31,6 +32,18 @@ public class Player extends Observable implements Upgradable,Observer{
     public void upgradeAtk(){ attackPoint++; }
     public void upgradeHeal(){ healPoint++; }
     public void upgradeCrt(){ criticalRate++; }
+
+    public int getAttackPoint() {
+        return attackPoint;
+    }
+
+    public int getCriticalRate() {
+        return criticalRate;
+    }
+
+    public int getHealPoint() {
+        return healPoint;
+    }
 
     public void addHero(Hero h){
         party.addHero(h);
@@ -58,7 +71,7 @@ public class Player extends Observable implements Upgradable,Observer{
             upgradeAtk();
         }else if (o instanceof HealButtonListener){
             upgradeHeal();
-        }else if (o instanceof HealButtonListener){
+        }else if (o instanceof CriticalButtonListener){
             upgradeCrt();
         }
     }
