@@ -9,6 +9,7 @@ import com.group12.cookiesrising.gameobjects.BG;
 import com.group12.cookiesrising.gameobjects.Coin;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Gunner;
+import com.group12.cookiesrising.gameobjects.HealthBar;
 import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Mage;
 import com.group12.cookiesrising.gameobjects.Warrior;
@@ -57,14 +58,16 @@ public class GameWorld {
         gunner = new Gunner(90,136);
         BG bg = new BG();
         Coin coin = new Coin();
-        coinText = new CoinText(player);
-        statusText = new StatusText(player);
+        CoinText coinText = new CoinText(player);
+        StatusText statusText = new StatusText(player);
+        HealthBar hpEnemy = new HealthBar(currentEnemy);
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
         gameObjectContainer.add(gunner);
         gameObjectContainer.add(coin);
         gameObjectContainer.add(mage);
+        gameObjectContainer.add(hpEnemy);
         dmgTextPool = new DamageTextPool(10);
 
         worldContainer.add(gameObjectContainer);

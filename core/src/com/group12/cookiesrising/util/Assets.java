@@ -26,6 +26,7 @@ public class Assets implements Disposable{
     public static Texture hero;
     public static Texture coin;
     public static Texture hero_sheet;
+    public static Texture hp_bg,hp_knob;
     public static TextureRegion atk,cri,heal,h1b,h2b,h3b;
     public static Array<TextureRegion> hero_sheet_textureRegions;
 
@@ -57,6 +58,8 @@ public class Assets implements Disposable{
         mon = new Texture(Gdx.files.internal("mon.png"));
         bg = new Texture(Gdx.files.internal("bg.png"));
         coin = new Texture(Gdx.files.internal("coin.png"));
+        hp_bg = new Texture(Gdx.files.internal("hp_status_bar.png"));
+        hp_knob = new Texture(Gdx.files.internal("hp_green_bar.png"));
         atk = new TextureRegion(new Texture(Gdx.files.internal("atk_button.png")));
         heal = new TextureRegion(new Texture(Gdx.files.internal("heal_button.png")));
         cri = new TextureRegion(new Texture(Gdx.files.internal("cri_button.png")));
