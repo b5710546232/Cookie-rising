@@ -17,7 +17,7 @@ public class Enemy extends AbstractGameObject implements Health{
     public double getAttackPoint() {
         return attackPoint;
     }
-
+    private String name;
     public double attackPoint;
     public double money;
     private State currentState,deathState,aliveState;
@@ -48,6 +48,11 @@ public class Enemy extends AbstractGameObject implements Health{
         attackPoint = 1;
         money = 100;
         currentState = aliveState;
+        name = "Cookie Ung";
+    }
+
+    public String getName() {
+        return name;
     }
 
     public double getMoney(){
