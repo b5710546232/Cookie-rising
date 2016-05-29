@@ -2,6 +2,7 @@ package com.group12.cookiesrising.State;
 
 import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.gameobjects.Enemy;
+import com.group12.cookiesrising.util.Assets;
 
 /**
  * Created by nattapat on 5/26/2016 AD.
@@ -21,7 +22,6 @@ public class DeathState implements State {
 
     @Override
     public void takeDamage(double dmg) {
-
     }
 
     @Override
