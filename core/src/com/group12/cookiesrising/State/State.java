@@ -12,4 +12,5 @@ public interface State {
     public void changeState();
     public void respawn();
     public boolean isAlive();
+    public void update(float delta);
 }
