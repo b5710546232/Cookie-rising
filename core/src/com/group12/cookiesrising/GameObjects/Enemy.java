@@ -20,7 +20,7 @@ public class Enemy extends AbstractGameObject implements Health{
     private String name;
     public double attackPoint;
     public double money;
-    private State currentState,deathState,aliveState;
+    protected State currentState,deathState,aliveState;
 
     public void setCurrentState(State currentState) {
         this.currentState = currentState;

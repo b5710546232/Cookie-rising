@@ -49,4 +49,9 @@ public class AliveState implements State {
     public boolean isAlive() {
         return true;
     }
+
+    @Override
+    public void update(float delta) {
+
+    }
 }

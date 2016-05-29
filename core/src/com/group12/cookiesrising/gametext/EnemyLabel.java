@@ -19,6 +19,6 @@ public class EnemyLabel extends AbstractGameText {
 
     @Override
     public void draw(BitmapFont font, SpriteBatch batch) {
-        font.draw(batch,enemy.getName(),320f-enemy.getName().length()/2f*7.5f,318f);
+        font.draw(batch,enemy.getName(),320f-enemy.getName().length()/2f*7.5f,336f);
     }
 }

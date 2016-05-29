@@ -16,6 +16,7 @@ public class Hero extends AbstractGameObject implements Hittable,Health {
     protected double speed;
     protected double criticalRate;
     protected boolean isAlive;
+    private int level;
 
     public Hero(int x, int y) {
         super(x, y);
@@ -31,6 +32,7 @@ public class Hero extends AbstractGameObject implements Hittable,Health {
         this.attackPoint = 1.0D;
         this.healthPoint = 10.0D;
         this.maxhealthPoint = 10D;
+        level = 1;
     }
 
     public void attack(Enemy m) {

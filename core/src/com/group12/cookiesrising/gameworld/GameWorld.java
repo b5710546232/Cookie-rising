@@ -7,6 +7,7 @@ import com.group12.cookiesrising.composite.CompositeGameObject;
 import com.group12.cookiesrising.composite.CompositeTextObject;
 import com.group12.cookiesrising.gameobjects.BG;
 import com.group12.cookiesrising.gameobjects.Coin;
+import com.group12.cookiesrising.gameobjects.CookieEnemy;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Gunner;
 import com.group12.cookiesrising.gameobjects.HealthBar;
@@ -53,7 +54,7 @@ public class GameWorld {
         worldContainer = new CompositeGameObject();
         gameObjectContainer = new CompositeGameObject();
         worldTextContainer = new CompositeTextObject();
-        currentEnemy  = new Enemy();
+        currentEnemy  = new CookieEnemy();
         hero = new Warrior(250,136);
         mage = new Mage(170,136);
         gunner = new Gunner(90,136);
@@ -104,8 +105,9 @@ public class GameWorld {
         };
 
 
-
-        Timer.schedule(this.dpsTimer,0,3);
+        int delay = 3;
+        int interval = 3;
+        Timer.schedule(this.dpsTimer,delay,interval);
         Timer.instance().start();
     }
 

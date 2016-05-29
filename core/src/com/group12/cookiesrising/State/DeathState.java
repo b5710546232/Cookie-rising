@@ -44,4 +44,9 @@ public class DeathState implements State {
     public boolean isAlive() {
         return false;
     }
+
+    @Override
+    public void update(float delta) {
+
+    }
 }

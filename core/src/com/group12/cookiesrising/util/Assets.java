@@ -27,8 +27,10 @@ public class Assets implements Disposable{
     public static Texture coin;
     public static Texture hero_sheet;
     public static Texture hp_bg,hp_knob;
+    public static Texture enemy01_sheet;
     public static TextureRegion atk,cri,heal,h1b,h2b,h3b;
     public static Array<TextureRegion> hero_sheet_textureRegions;
+    public static Array<TextureRegion> enemy01_sheet_textureRegions;
 
     public static Animation anim_warrior_idle;
     public static Animation anim_warrior_atk;
@@ -36,6 +38,11 @@ public class Assets implements Disposable{
     public static Animation anim_mage_idle;
     public static Animation anim_gunner_idle;
     public static Animation anim_gunner_atk;
+
+    public static Animation anim_enemy01_idle;
+    public static Animation anim_enemy01_atk;
+    public static Animation anim_enemy01_hitted;
+    public static Animation anim_enemy01_die;
 
     private Assets() {}
 
@@ -54,6 +61,7 @@ public class Assets implements Disposable{
      * */
     private void load() {
         loadHero();
+        loadEnemy();
         hero = new Texture(Gdx.files.internal("hero.png"));
         mon = new Texture(Gdx.files.internal("mon.png"));
         bg = new Texture(Gdx.files.internal("bg.png"));
@@ -66,6 +74,53 @@ public class Assets implements Disposable{
         h1b = new TextureRegion(new Texture(Gdx.files.internal("hero01_button.png")));
         h2b = new TextureRegion(new Texture(Gdx.files.internal("hero02_button.png")));
         h3b = new TextureRegion(new Texture(Gdx.files.internal("hero03_button.png")));
+    }
+
+    private void loadEnemy() {
+        splitEnemy01SheetToArray();
+        setEnemy01Animate();
+
+    }
+
+    private void setEnemy01Animate() {
+        TextureRegion[] enemy01_reg_idle = new TextureRegion[4];
+        enemy01_reg_idle[0] = enemy01_sheet_textureRegions.get(0);
+        enemy01_reg_idle[1] = enemy01_sheet_textureRegions.get(1);
+        enemy01_reg_idle[2] = enemy01_sheet_textureRegions.get(2);
+        enemy01_reg_idle[3] = enemy01_sheet_textureRegions.get(1);
+        TextureRegion[] enemy01_reg_atk= new TextureRegion[1];
+        enemy01_reg_atk[0] = enemy01_sheet_textureRegions.get(3);
+
+        TextureRegion[] enemy01_reg_hitted = new TextureRegion[2];
+        enemy01_reg_hitted[0] = enemy01_sheet_textureRegions.get(4);
+        enemy01_reg_hitted[1] = enemy01_sheet_textureRegions.get(5);
+
+        TextureRegion[] enemy01_reg_die = new TextureRegion[3];
+        enemy01_reg_die[0] = enemy01_sheet_textureRegions.get(4);
+        enemy01_reg_die[1] = enemy01_sheet_textureRegions.get(6);
+        enemy01_reg_die[2] = enemy01_sheet_textureRegions.get(7);
+
+        anim_enemy01_idle = new Animation(0.2f,enemy01_reg_idle);
+        anim_enemy01_idle.setPlayMode(Animation.PlayMode.LOOP);
+
+        anim_enemy01_atk = new Animation(0.25f,enemy01_reg_atk);
+        anim_enemy01_atk.setPlayMode(Animation.PlayMode.NORMAL);
+
+        anim_enemy01_hitted = new Animation(0.1f,enemy01_reg_hitted);
+        anim_enemy01_hitted.setPlayMode(Animation.PlayMode.NORMAL);
+
+        anim_enemy01_die = new Animation(0.25f,enemy01_reg_die);
+        anim_enemy01_die.setPlayMode(Animation.PlayMode.NORMAL);
+
+    }
+
+    private void splitEnemy01SheetToArray() {
+        int row = 4;
+        int col = 2;
+        int size = 128;
+        int number = 8;
+        enemy01_sheet = new Texture(Gdx.files.internal("mon01_sheet.png"));
+        enemy01_sheet_textureRegions = createTextureRegionsArray(size,row,col,number,enemy01_sheet);
     }
 
     private void loadHero() {
@@ -123,22 +178,47 @@ public class Assets implements Disposable{
     }
 
     private void splitHeroSheetToArray() {
+//        hero_sheet = new Texture(Gdx.files.internal("hero_sprite_sheet.png"));
+//        hero_sheet_textureRegions = new Array<TextureRegion>();
+//        int x = 64;
+//        int y = 64;
+//        int count = 0;
+//        for (int i = 0; i < 3; i++) {
+//            for (int j = 0; j < 4; j++) {
+//                hero_sheet_textureRegions.add(new TextureRegion(hero_sheet, x*j, y*i, 64, 64));
+//                Gdx.app.log("counter"," "+count++);
+//            }
+//        }
         hero_sheet = new Texture(Gdx.files.internal("hero_sprite_sheet.png"));
-        hero_sheet_textureRegions = new Array<TextureRegion>();
-        int x = 64;
-        int y = 64;
+        int row = 4;
+        int size = 64;
+        int col = 3;
+        int number = 12;
+        hero_sheet_textureRegions = createTextureRegionsArray(size,row,col,number,hero_sheet);
+    }
+
+
+    private Array<TextureRegion> createTextureRegionsArray(int size,int row,int col,int numberOfSprite,Texture texture){
+        Array<TextureRegion> sheet = new Array<TextureRegion>();
         int count = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 4; j++) {
-                hero_sheet_textureRegions.add(new TextureRegion(hero_sheet, x*j, y*i, 64, 64));
-                Gdx.app.log("counter"," "+count++);
+        for(int i = 0 ; i<col ;i++){
+            for(int j = 0 ;j<row ; j++){
+                if(count>=numberOfSprite) break;
+                sheet.add(new TextureRegion(texture,j*size,i*size,size,size));
+                count++;
             }
         }
+        return sheet;
+
     }
 
 
     @Override
     public void dispose() {
-
+//        hero_sheet.dispose();
+//        enemy01_sheet.dispose();
+//        bg.dispose();
+//        coin.dispose();
+//        hero.dispose();
     }
 }
