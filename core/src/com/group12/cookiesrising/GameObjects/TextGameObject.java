@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.group12.cookiesrising.gametext.ITextDrawable;
+import com.group12.cookiesrising.gametext.AbstractGameText;
 
 /**
  * Created by nattapat on 5/10/2016 AD.
  */
-public class TextGameObject  implements ITextDrawable {
+public class TextGameObject  extends AbstractGameText {
     private BitmapFont font;
     private Vector2 position;
     private String text;
@@ -37,16 +37,19 @@ public class TextGameObject  implements ITextDrawable {
     }
 
 
-
     @Override
-    public void draw(BitmapFont font, SpriteBatch batch) {
-        if(isActive)font.draw(batch,text,position.x,position.y);
-    }
-    private void update() {
+    public void update(float delta) {
         limit += Gdx.graphics.getDeltaTime();
         if(limit>=1){
             reset();
         }
         position.y += 100*Gdx.graphics.getDeltaTime();
+
     }
+
+    @Override
+    public void draw(BitmapFont font, SpriteBatch batch) {
+        if(isActive)font.draw(batch,text,position.x,position.y);
+    }
+
 }

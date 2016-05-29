@@ -5,14 +5,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
-import com.group12.cookiesrising.composite.CompositeTextObjectDrawable;
-import com.group12.cookiesrising.util.Assets;
+import com.group12.cookiesrising.composite.CompositeGameObject;
+import com.group12.cookiesrising.composite.CompositeTextObject;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -22,18 +18,18 @@ import com.group12.cookiesrising.util.Assets;
  */
 public class GameWorldRenderer  implements Disposable{
 
-    private CompositeGameObjectDrawable worldContainer;
-    private CompositeTextObjectDrawable worldTextContainer;
+    private CompositeGameObject worldContainer;
+    private CompositeTextObject worldTextContainer;
     private SpriteBatch batch;
     private BitmapFont font;
     private OrthographicCamera camera;
     private StretchViewport viewport;
     /**
      * Constructor
-     * @param worldContainer - CompositeGameObjectDrawable of world that contain every gameobject world.
+     * @param worldContainer - CompositeGameObject of world that contain every gameobject world.
      * */
 
-    public GameWorldRenderer(CompositeGameObjectDrawable worldContainer, CompositeTextObjectDrawable worldTextContainer) {
+    public GameWorldRenderer(CompositeGameObject worldContainer, CompositeTextObject worldTextContainer) {
         this.worldContainer = worldContainer;
         this.worldTextContainer = worldTextContainer;
     }

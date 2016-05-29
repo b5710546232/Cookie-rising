@@ -9,7 +9,7 @@ import com.group12.cookiesrising.util.Assets;
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class Enemy implements IGameObjectDrawable{
+public class Enemy extends AbstractGameObject{
     public static final String TAG = Enemy.class.getName();
     public double healthPoint;
     public boolean waitForSpawn;
@@ -78,6 +78,11 @@ public class Enemy implements IGameObjectDrawable{
             return true;
         }
         return waitForSpawn;
+    }
+
+    @Override
+    public void update(float delta) {
+
     }
 
     @Override

@@ -10,9 +10,9 @@ import java.util.List;
 /**
  * Created by nattapat on 5/10/2016 AD.
  */
-public class CompositeTextObjectDrawable extends AbstractGameText {
+public class CompositeTextObject extends AbstractGameText {
     private List<AbstractGameText> children;
-    public CompositeTextObjectDrawable() {
+    public CompositeTextObject() {
         this.children = new ArrayList<AbstractGameText>();
     }
 

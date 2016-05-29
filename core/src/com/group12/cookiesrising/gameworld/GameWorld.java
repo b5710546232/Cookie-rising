@@ -3,14 +3,17 @@ package com.group12.cookiesrising.gameworld;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
 import com.group12.cookiesrising.Player;
-import com.group12.cookiesrising.composite.CompositeGameObjectDrawable;
-import com.group12.cookiesrising.composite.CompositeTextObjectDrawable;
+import com.group12.cookiesrising.composite.CompositeGameObject;
+import com.group12.cookiesrising.composite.CompositeTextObject;
 import com.group12.cookiesrising.gameobjects.BG;
 import com.group12.cookiesrising.gameobjects.Coin;
+import com.group12.cookiesrising.gameobjects.Enemy;
+import com.group12.cookiesrising.gameobjects.Gunner;
+import com.group12.cookiesrising.gameobjects.Hero;
+import com.group12.cookiesrising.gameobjects.Mage;
+import com.group12.cookiesrising.gameobjects.Warrior;
 import com.group12.cookiesrising.gametext.CoinText;
 import com.group12.cookiesrising.gametext.DamageTextPool;
-import com.group12.cookiesrising.gameobjects.Enemy;
-import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gametext.StatusText;
 
 /**
@@ -19,14 +22,16 @@ import com.group12.cookiesrising.gametext.StatusText;
 public class GameWorld {
     private static final String TAG = GameWorld.class.getName();
 
-    CompositeGameObjectDrawable worldContainer;
-    CompositeGameObjectDrawable gameObjectContainer;
+    CompositeGameObject worldContainer;
+    CompositeGameObject gameObjectContainer;
 
-    CompositeTextObjectDrawable worldTextContainer;
+    CompositeTextObject worldTextContainer;
 
     private Player player;
     private Enemy currentEnemy;
     private Hero hero;
+    private Hero mage;
+    private Hero gunner;
     private Timer.Task nextEnemyTimerTask;
     private float waitTime = 1f;
     private Timer.Task dpsTimer;
@@ -43,13 +48,13 @@ public class GameWorld {
 
         player = new Player();
 
-        worldContainer = new CompositeGameObjectDrawable();
-        gameObjectContainer = new CompositeGameObjectDrawable();
-        worldTextContainer = new CompositeTextObjectDrawable();
+        worldContainer = new CompositeGameObject();
+        gameObjectContainer = new CompositeGameObject();
+        worldTextContainer = new CompositeTextObject();
         currentEnemy  = new Enemy();
-        hero = new Hero(200,136);
-//        player.party.addHero(hero);
-        player.party.addHero(hero);
+        hero = new Warrior(250,136);
+        mage = new Mage(170,136);
+        gunner = new Gunner(90,136);
         BG bg = new BG();
         Coin coin = new Coin();
         coinText = new CoinText(player);
@@ -57,7 +62,9 @@ public class GameWorld {
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
+        gameObjectContainer.add(gunner);
         gameObjectContainer.add(coin);
+        gameObjectContainer.add(mage);
         dmgTextPool = new DamageTextPool(10);
 
         worldContainer.add(gameObjectContainer);
@@ -87,7 +94,7 @@ public class GameWorld {
 
 
 
-        Timer.schedule(this.dpsTimer,0,1);
+        Timer.schedule(this.dpsTimer,0,3);
         Timer.instance().start();
     }
 
@@ -117,6 +124,7 @@ public class GameWorld {
 
     public void update(float delta){
         worldTextContainer.update(delta);
+        worldContainer.update(delta);
         lock = false;
         if(!currentEnemy.isAlive()&&currentEnemy.waitForSpawn()){
             player.takeMoney(currentEnemy.getMoney());
@@ -134,11 +142,11 @@ public class GameWorld {
         return player;
     }
 
-    public CompositeGameObjectDrawable getWorldContainer() {
+    public CompositeGameObject getWorldContainer() {
         return worldContainer;
     }
 
-    public CompositeTextObjectDrawable getWorldTextContainer() {
+    public CompositeTextObject getWorldTextContainer() {
         return worldTextContainer;
     }
 }

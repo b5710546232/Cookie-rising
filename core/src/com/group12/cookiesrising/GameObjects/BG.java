@@ -6,7 +6,12 @@ import com.group12.cookiesrising.util.Assets;
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class BG implements IGameObjectDrawable {
+public class BG extends AbstractGameObject {
+
+    @Override
+    public void update(float delta) {
+
+    }
 
     @Override
     public void draw(SpriteBatch batch) {batch.draw(Assets.bg,0,0);}

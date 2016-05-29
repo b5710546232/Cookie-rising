@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -70,11 +69,11 @@ public class GamePlayScreen extends ScreenAdapter {
     @Override
     public void show() {
         // this method will be called when this screen becomes the current screen for a Game.
+        Assets.instance.init();
         stage = new Stage(new StretchViewport(Constants.VIEWPORT_WIDTH,
                 Constants.VIEWPORT_HEIGHT));
         Gdx.input.setInputProcessor(stage);
         super.show();
-        Assets.instance.init();
         renderer.init();
         initButton();
     }
