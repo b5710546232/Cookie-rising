@@ -1,6 +1,7 @@
 package com.group12.cookiesrising.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.group12.cookiesrising.Health;
 import com.group12.cookiesrising.State.AliveState;
 import com.group12.cookiesrising.State.DeathState;
 import com.group12.cookiesrising.State.State;
@@ -9,9 +10,9 @@ import com.group12.cookiesrising.util.Assets;
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class Enemy extends AbstractGameObject{
+public class Enemy extends AbstractGameObject implements Health{
     public static final String TAG = Enemy.class.getName();
-    public double healthPoint;
+    public double healthPoint,maxHealthPoint;
     public boolean waitForSpawn;
     public double getAttackPoint() {
         return attackPoint;
@@ -43,6 +44,7 @@ public class Enemy extends AbstractGameObject{
     public void init(){
         waitForSpawn = true;
         healthPoint = 10;
+        maxHealthPoint = 10;
         attackPoint = 1;
         money = 100;
         currentState = aliveState;
@@ -89,5 +91,15 @@ public class Enemy extends AbstractGameObject{
     public void draw(SpriteBatch batch) {
         if(isAlive())
         batch.draw(Assets.mon,400,136);
+    }
+
+    @Override
+    public double getHp() {
+        return healthPoint;
+    }
+
+    @Override
+    public double getMaxHp() {
+        return maxHealthPoint;
     }
 }
