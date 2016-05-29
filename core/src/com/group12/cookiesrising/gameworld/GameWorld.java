@@ -16,6 +16,7 @@ import com.group12.cookiesrising.gameobjects.Warrior;
 import com.group12.cookiesrising.gametext.CoinText;
 import com.group12.cookiesrising.gametext.DamageTextPool;
 import com.group12.cookiesrising.gametext.EnemyLabel;
+import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
 
 /**
@@ -67,6 +68,7 @@ public class GameWorld {
         HealthBar hpEnemy = new HealthBar(currentEnemy,258.5f,318f);
         HealthBar hpHero = new HealthBar(player,258.5f,110f);
         EnemyLabel enemyLabel = new EnemyLabel(currentEnemy);
+        HeroLevelText heroLevelText = new HeroLevelText();
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
@@ -83,6 +85,7 @@ public class GameWorld {
         worldTextContainer.add(coinText);
         worldTextContainer.add(statusText);
         worldTextContainer.add(enemyLabel);
+        worldTextContainer.add(heroLevelText);
         // for testing.
 
         Timer.instance().clear();
