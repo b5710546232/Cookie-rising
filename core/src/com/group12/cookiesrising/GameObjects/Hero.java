@@ -6,12 +6,13 @@
 package com.group12.cookiesrising.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.group12.cookiesrising.Health;
 import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.util.Assets;
 
-public class Hero extends AbstractGameObject implements Hittable {
+public class Hero extends AbstractGameObject implements Hittable,Health {
     protected double attackPoint;
-    protected double healthPoint;
+    protected double healthPoint,maxhealthPoint;
     protected double speed;
     protected double criticalRate;
     protected boolean isAlive;
@@ -29,6 +30,7 @@ public class Hero extends AbstractGameObject implements Hittable {
     private void init() {
         this.attackPoint = 1.0D;
         this.healthPoint = 10.0D;
+        this.maxhealthPoint = 10D;
     }
 
     public void attack(Enemy m) {
@@ -52,5 +54,15 @@ public class Hero extends AbstractGameObject implements Hittable {
 
     public void draw(SpriteBatch batch) {
         batch.draw(Assets.hero, this.position.x, this.position.y);
+    }
+
+    @Override
+    public double getHp() {
+        return healthPoint;
+    }
+
+    @Override
+    public double getMaxHp() {
+        return maxhealthPoint;
     }
 }

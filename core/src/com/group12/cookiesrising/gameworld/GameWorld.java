@@ -56,11 +56,15 @@ public class GameWorld {
         hero = new Warrior(250,136);
         mage = new Mage(170,136);
         gunner = new Gunner(90,136);
+        player.addHero(hero);
+        player.addHero(mage);
+        player.addHero(gunner);
         BG bg = new BG();
         Coin coin = new Coin();
         CoinText coinText = new CoinText(player);
         StatusText statusText = new StatusText(player);
-        HealthBar hpEnemy = new HealthBar(currentEnemy);
+        HealthBar hpEnemy = new HealthBar(currentEnemy,258.5f,318f);
+        HealthBar hpHero = new HealthBar(player,258.5f,110f);
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
@@ -68,6 +72,7 @@ public class GameWorld {
         gameObjectContainer.add(coin);
         gameObjectContainer.add(mage);
         gameObjectContainer.add(hpEnemy);
+        gameObjectContainer.add(hpHero);
         dmgTextPool = new DamageTextPool(10);
 
         worldContainer.add(gameObjectContainer);

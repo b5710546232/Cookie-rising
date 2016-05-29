@@ -13,7 +13,7 @@ import java.util.Observer;
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class Player extends Observable implements Upgradable,Observer{
+public class Player extends Observable implements Upgradable,Observer,Health{
 
     private int attackPoint;
     private double money;
@@ -74,5 +74,23 @@ public class Player extends Observable implements Upgradable,Observer{
         }else if (o instanceof CriticalButtonListener){
             upgradeCrt();
         }
+    }
+
+    @Override
+    public double getHp() {
+        double hp = 0;
+        for (Hero h : party.getHeroList()){
+            hp+=h.getHp();
+        }
+        return hp;
+    }
+
+    @Override
+    public double getMaxHp() {
+        double maxHp = 0;
+        for (Hero h : party.getHeroList()){
+            maxHp+=h.getMaxHp();
+        }
+        return maxHp;
     }
 }
