@@ -20,7 +20,7 @@ public class Player extends Observable implements Upgradable,Observer,Health{
     private double money;
     private int healPoint;
     private int criticalRate;
-
+    private String dmgText;
 
     private boolean isCritical;
     public Party party;
@@ -36,7 +36,8 @@ public class Player extends Observable implements Upgradable,Observer,Health{
         money = 0;
         party = new Party();
         healPoint = 1;
-        criticalRate = 1;
+        criticalRate = 50;
+        dmgText = attackPoint+"";
         rng = new RandomGenerator(CRI_RATE_MIN,CRI_RATE_MAX);
     }
     public void upgradeAtk(){ attackPoint++; }
@@ -65,7 +66,7 @@ public class Player extends Observable implements Upgradable,Observer,Health{
 
     public void attack(Enemy m){
         rng.random();
-        if(criticalRate<=rng.getValue()){
+        if(criticalRate>=rng.getValue()){
             //cri
             criticalFactor = 2;
 
@@ -77,6 +78,7 @@ public class Player extends Observable implements Upgradable,Observer,Health{
             isCritical = false;
         }
         m.takeDamage(attackPoint*criticalFactor);
+        dmgText = (int)(attackPoint*criticalFactor) + "";
 
     }
 
@@ -89,7 +91,7 @@ public class Player extends Observable implements Upgradable,Observer,Health{
     }
 
     public String getDamageText() {
-        return attackPoint+"";
+        return dmgText;
     }
 
     @Override

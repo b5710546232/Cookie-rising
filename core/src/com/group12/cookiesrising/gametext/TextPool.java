@@ -11,15 +11,8 @@ import com.badlogic.gdx.utils.Array;
 public class TextPool extends AbstractGameText {
 
     private Array<GameText> pool;
+    private AbstractGameTextFactory factory;
 
-    public TextPool(int number) {
-        pool = new Array<GameText>();
-        if(number>0){
-            for(int i= 0 ; i<number ; i++){
-                pool.add(new GameText());
-            }
-        }
-    }
 
     public TextPool(AbstractGameTextFactory factory,int number) {
         pool = new Array<GameText>();
@@ -28,6 +21,7 @@ public class TextPool extends AbstractGameText {
                 pool.add(factory.create());
             }
         }
+        this.factory = factory;
     }
 
     public GameText getDamageText(String text, int x, int y){
@@ -39,7 +33,7 @@ public class TextPool extends AbstractGameText {
                 return gtext;
             }
         }
-        GameText newDmgText = new GameText();
+        GameText newDmgText = factory.create();
         newDmgText.init(text,x,y);
         pool.add(newDmgText);
         Gdx.app.log("pool","total = "+pool.size);
