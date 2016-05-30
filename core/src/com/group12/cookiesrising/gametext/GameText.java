@@ -7,14 +7,14 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by nattapat on 5/7/2016 AD.
  */
-public class DamageText extends AbstractGameText {
-    public static final String TAG = DamageText.class.getName();
+public class GameText extends AbstractGameText  implements TextInitialable{
+    public static final String TAG = GameText.class.getName();
     private Vector2 position;
     private String text;
     public boolean isActive = false;
     private float limit = 0;
 
-    public DamageText(){
+    public GameText(){
         text = "";
         position = new Vector2(0,0);
     }

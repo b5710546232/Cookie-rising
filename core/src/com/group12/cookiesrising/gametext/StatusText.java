@@ -1,6 +1,5 @@
 package com.group12.cookiesrising.gametext;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.Player;

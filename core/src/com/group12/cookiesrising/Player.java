@@ -6,6 +6,7 @@ import com.group12.cookiesrising.Listener.HealButtonListener;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Party;
+import com.group12.cookiesrising.util.RandomGenerator;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -19,7 +20,15 @@ public class Player extends Observable implements Upgradable,Observer,Health{
     private double money;
     private int healPoint;
     private int criticalRate;
+
+
+    private boolean isCritical;
     public Party party;
+    private final int CRI_RATE_MIN = 1;
+    private final int CRI_RATE_MAX = 100;
+    private RandomGenerator rng;
+
+    private int criticalFactor = 2;
 
     public Player(){
         attackPoint = 1;
@@ -28,6 +37,7 @@ public class Player extends Observable implements Upgradable,Observer,Health{
         party = new Party();
         healPoint = 1;
         criticalRate = 1;
+        rng = new RandomGenerator(CRI_RATE_MIN,CRI_RATE_MAX);
     }
     public void upgradeAtk(){ attackPoint++; }
     public void upgradeHeal(){ healPoint++; }
@@ -35,6 +45,10 @@ public class Player extends Observable implements Upgradable,Observer,Health{
 
     public int getAttackPoint() {
         return attackPoint;
+    }
+
+    public boolean isCritical() {
+        return isCritical;
     }
 
     public int getCriticalRate() {
@@ -50,7 +64,20 @@ public class Player extends Observable implements Upgradable,Observer,Health{
     }
 
     public void attack(Enemy m){
-        m.takeDamage(attackPoint);
+        rng.random();
+        if(criticalRate<=rng.getValue()){
+            //cri
+            criticalFactor = 2;
+
+            isCritical = true;
+        }
+        else{
+            criticalFactor = 1;
+
+            isCritical = false;
+        }
+        m.takeDamage(attackPoint*criticalFactor);
+
     }
 
     public void takeMoney(double money){

@@ -14,7 +14,7 @@ import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Mage;
 import com.group12.cookiesrising.gameobjects.Warrior;
 import com.group12.cookiesrising.gametext.CoinText;
-import com.group12.cookiesrising.gametext.DamageTextPool;
+import com.group12.cookiesrising.gametext.TextPool;
 import com.group12.cookiesrising.gametext.EnemyLabel;
 import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
@@ -38,7 +38,7 @@ public class GameWorld {
     private Timer.Task nextEnemyTimerTask;
     private float waitTime = 1f;
     private Timer.Task dpsTimer;
-    private DamageTextPool dmgTextPool;
+    private TextPool dmgTextPool;
     private StatusText statusText;
     private CoinText coinText;
     private boolean lock = false;
@@ -77,7 +77,7 @@ public class GameWorld {
         gameObjectContainer.add(mage);
         gameObjectContainer.add(hpEnemy);
         gameObjectContainer.add(hpHero);
-        dmgTextPool = new DamageTextPool(10);
+        dmgTextPool = new TextPool(10);
 
         worldContainer.add(gameObjectContainer);
 
@@ -125,7 +125,13 @@ public class GameWorld {
         if(currentEnemy != null &&currentEnemy.isAlive() && !lock) {
             lock = true;
             this.player.attack(currentEnemy);
-            dmgTextPool.getDamageText(this.player.getDamageText(),450,200);
+            if(this.player.isCritical()){
+                // criText
+            }
+            else {
+                // normalText
+                dmgTextPool.getDamageText(this.player.getDamageText(), 450, 200);
+            }
             Gdx.app.log(TAG," player attack to monster");
         }
     }
