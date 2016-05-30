@@ -3,12 +3,10 @@ package com.group12.cookiesrising.gametext;
 /**
  * Created by nattapat on 5/10/2016 AD.
  */
-public class DamageTextFactory extends AbstractTextFactory {
-
-
-
+public class DamageTextFactory extends AbstractGameTextFactory {
     @Override
-    public AbstractGameText create() {
+    public GameText create() {
         return null;
     }
+
 }

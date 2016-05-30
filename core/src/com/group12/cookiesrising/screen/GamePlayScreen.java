@@ -58,7 +58,7 @@ public class GamePlayScreen extends ScreenAdapter {
             if(inputs.x <= 640/2){
 //                Gdx.app.error(TAG,"touch left side");
             }
-            else{
+            if (inputs.x>=640/2&&inputs.y>=136){
 //                Gdx.app.error(TAG,"touch right side");
                 world.playerAttack();
             }
