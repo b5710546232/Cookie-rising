@@ -9,5 +9,4 @@ public class DamageTextFactory extends AbstractGameTextFactory{
     public GameText create() {
         return new DamageText();
     }
-
 }
