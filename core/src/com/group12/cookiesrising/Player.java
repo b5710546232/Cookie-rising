@@ -113,6 +113,10 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
 
     }
 
+    public void heal(){
+
+    }
+
     public void takeMoney(double money){
         this.money += money;
     }
