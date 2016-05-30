@@ -114,6 +114,7 @@ public class GameWorld {
     }
 
     private void autoAttack() {
+        currentEnemy.attack(player);
         if(currentEnemy != null &&currentEnemy.isAlive()) {
             hero.attack(currentEnemy);
             dmgTextPool.getDamageText(this.player.getDamageText(),450,200);

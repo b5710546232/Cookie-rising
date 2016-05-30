@@ -34,6 +34,7 @@ public class Hero extends AbstractGameObject implements Hittable,Health {
         this.healthPoint = 10.0D;
         this.maxhealthPoint = 10D;
         level = 1;
+        isAlive = true;
     }
 
     public void attack(Enemy m) {
@@ -45,7 +46,8 @@ public class Hero extends AbstractGameObject implements Hittable,Health {
     }
 
     public void takeDamage(double dmg) {
-        if(this.isActive) {
+        Gdx.app.log(getClass().getName(),"current HP = "+healthPoint);
+        if(this.isAlive) {
             this.healthPoint -= dmg;
         }
 
