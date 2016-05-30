@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.group12.cookiesrising.composite.CompositeGameObject;
-import com.group12.cookiesrising.composite.CompositeTextObject;
+import com.group12.cookiesrising.composite.CompositeTextDraw;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -19,7 +19,7 @@ import com.group12.cookiesrising.composite.CompositeTextObject;
 public class GameWorldRenderer  implements Disposable{
 
     private CompositeGameObject worldContainer;
-    private CompositeTextObject worldTextContainer;
+    private CompositeTextDraw worldTextContainer;
     private SpriteBatch batch;
     private BitmapFont font;
     private OrthographicCamera camera;
@@ -29,7 +29,7 @@ public class GameWorldRenderer  implements Disposable{
      * @param worldContainer - CompositeGameObject of world that contain every gameobject world.
      * */
 
-    public GameWorldRenderer(CompositeGameObject worldContainer, CompositeTextObject worldTextContainer) {
+    public GameWorldRenderer(CompositeGameObject worldContainer, CompositeTextDraw worldTextContainer) {
         this.worldContainer = worldContainer;
         this.worldTextContainer = worldTextContainer;
     }
@@ -70,7 +70,7 @@ public class GameWorldRenderer  implements Disposable{
 //        batch.setProjectionMatrix(camera.combined);
 //        batch.enableBlending();
         batch.begin();
-        worldTextContainer.draw(font,batch);
+        worldTextContainer.draw(batch);
         batch.end();
     }
     public OrthographicCamera getCamera() {

@@ -9,10 +9,11 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class GameText extends AbstractGameText  implements TextInitialable{
     public static final String TAG = GameText.class.getName();
-    private Vector2 position;
-    private String text;
-    public boolean isActive = false;
-    private float limit = 0;
+    protected Vector2 position;
+    protected String text;
+    protected boolean isActive = false;
+    protected float limit = 0;
+    protected int speed = 100;
 
     public GameText(){
         text = "";
@@ -40,11 +41,16 @@ public class GameText extends AbstractGameText  implements TextInitialable{
         if(limit>=1){
             reset();
         }
-        position.y += 100*delta;
+        position.y += speed*delta;
     }
 
     @Override
     public void draw(BitmapFont font, SpriteBatch batch) {
         if(isActive)font.draw(batch,text,position.x,position.y);
+    }
+
+    protected void setDefualt(BitmapFont font){
+        font.getData().setScale(1,1);
+        font.setColor(font.getColor().r,font.getColor().g,font.getColor().b,1);
     }
 }

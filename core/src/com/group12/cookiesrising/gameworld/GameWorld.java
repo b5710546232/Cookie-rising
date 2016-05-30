@@ -1,10 +1,12 @@
 package com.group12.cookiesrising.gameworld;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Timer;
 import com.group12.cookiesrising.Player;
 import com.group12.cookiesrising.composite.CompositeGameObject;
-import com.group12.cookiesrising.composite.CompositeTextObject;
+import com.group12.cookiesrising.composite.CompositeTextDraw;
+import com.group12.cookiesrising.composite.TextDraw;
 import com.group12.cookiesrising.gameobjects.BG;
 import com.group12.cookiesrising.gameobjects.Coin;
 import com.group12.cookiesrising.gameobjects.Enemy;
@@ -13,11 +15,14 @@ import com.group12.cookiesrising.gameobjects.HealthBar;
 import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Mage;
 import com.group12.cookiesrising.gameobjects.Warrior;
+import com.group12.cookiesrising.gametext.AbstractGameTextFactory;
 import com.group12.cookiesrising.gametext.CoinText;
-import com.group12.cookiesrising.gametext.TextPool;
+import com.group12.cookiesrising.gametext.CriticalDamgeFactory;
+import com.group12.cookiesrising.gametext.DamageTextFactory;
 import com.group12.cookiesrising.gametext.EnemyLabel;
 import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
+import com.group12.cookiesrising.gametext.TextPool;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -28,7 +33,7 @@ public class GameWorld {
     CompositeGameObject worldContainer;
     CompositeGameObject gameObjectContainer;
 
-    CompositeTextObject worldTextContainer;
+    CompositeTextDraw worldTextContainer;
 
     private Player player;
     private Enemy currentEnemy;
@@ -39,21 +44,31 @@ public class GameWorld {
     private float waitTime = 1f;
     private Timer.Task dpsTimer;
     private TextPool dmgTextPool;
+    private TextPool criTextPool;
+    private AbstractGameTextFactory damgeTextFactory;
+    private AbstractGameTextFactory criticalDamageTextFactory;
     private StatusText statusText;
     private CoinText coinText;
+    private TextDraw textDraw;
     private boolean lock = false;
 
     public GameWorld(){
         init();
     }
 
+    private BitmapFont font;
+
     private void init() {
 
         player = new Player();
+        font = new BitmapFont();
+        damgeTextFactory = new DamageTextFactory();
+        criticalDamageTextFactory = new CriticalDamgeFactory();
 
         worldContainer = new CompositeGameObject();
         gameObjectContainer = new CompositeGameObject();
-        worldTextContainer = new CompositeTextObject();
+        worldTextContainer = new CompositeTextDraw();
+        textDraw = new TextDraw(font);
         currentEnemy  = new Enemy();
         hero = new Warrior(250,136);
         mage = new Mage(170,136);
@@ -77,15 +92,17 @@ public class GameWorld {
         gameObjectContainer.add(mage);
         gameObjectContainer.add(hpEnemy);
         gameObjectContainer.add(hpHero);
-        dmgTextPool = new TextPool(10);
-
+        dmgTextPool = new TextPool(damgeTextFactory,10);
+        criTextPool = new TextPool(criticalDamageTextFactory,3);
         worldContainer.add(gameObjectContainer);
 
-        worldTextContainer.add(dmgTextPool);
-        worldTextContainer.add(coinText);
-        worldTextContainer.add(statusText);
-        worldTextContainer.add(enemyLabel);
-        worldTextContainer.add(heroLevelText);
+        textDraw.add(dmgTextPool);
+        textDraw.add(criTextPool);
+        textDraw.add(coinText);
+        textDraw.add(statusText);
+        textDraw.add(enemyLabel);
+        textDraw.add(heroLevelText);
+        worldTextContainer.add(textDraw);
         // for testing.
 
         Timer.instance().clear();
@@ -128,11 +145,13 @@ public class GameWorld {
             this.player.attack(currentEnemy);
             if(this.player.isCritical()){
                 // criText
+                criTextPool.getDamageText(this.player.getDamageText(),448,200);
             }
             else {
                 // normalText
                 dmgTextPool.getDamageText(this.player.getDamageText(), 450, 200);
             }
+
             Gdx.app.log(TAG," player attack to monster");
         }
     }
@@ -168,7 +187,7 @@ public class GameWorld {
         return worldContainer;
     }
 
-    public CompositeTextObject getWorldTextContainer() {
+    public CompositeTextDraw getWorldTextContainer() {
         return worldTextContainer;
     }
 }
