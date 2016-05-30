@@ -30,7 +30,7 @@ public class Party implements Hittable{
     }
 
     public void takeHeal(double value){
-        
+
     }
 
     public void addHero(Hero h){
