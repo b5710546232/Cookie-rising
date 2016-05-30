@@ -55,13 +55,15 @@ public class GamePlayScreen extends ScreenAdapter {
             renderer.getCamera().unproject(inputs);
             //Log the postion x and y when touch.
 //            Gdx.app.log(TAG,"touch x = "+inputs.x+"  ||  "+"touch y = "+inputs.y);
-            if(inputs.x <= 640/2){
-//                Gdx.app.error(TAG,"touch left side");
+            if (inputs.y>=136){
+                if(inputs.x <= 640/2){
+                    Gdx.app.log(TAG,"Heal");
+                }else {
+                    world.playerAttack();
+                }
             }
-            if (inputs.x>=640/2&&inputs.y>=136){
-//                Gdx.app.error(TAG,"touch right side");
-                world.playerAttack();
-            }
+
+
 
         }
     }

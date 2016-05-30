@@ -98,7 +98,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         currentState.changeState();
     }
 
-    public void attack(Hero h){
+    public void attack(Hittable h){
         currentState.attack(h);
     }
 
@@ -157,7 +157,9 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         stateTime = 0;
         this.anim = anim;
     }
+    public boolean isActive(){ return isActive;}
     public void hitted(){
         isHited = true;
     }
+
 }

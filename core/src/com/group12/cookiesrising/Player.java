@@ -1,5 +1,6 @@
 package com.group12.cookiesrising;
 
+import com.badlogic.gdx.Gdx;
 import com.group12.cookiesrising.Listener.AttackButtonListener;
 import com.group12.cookiesrising.Listener.CriticalButtonListener;
 import com.group12.cookiesrising.Listener.HealButtonListener;
@@ -14,7 +15,7 @@ import java.util.Observer;
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class Player extends Observable implements Upgradable,Observer,Health{
+public class Player extends Observable implements Upgradable,Observer,Health,Hittable{
 
     private int attackPoint;
     private double money;
@@ -125,5 +126,18 @@ public class Player extends Observable implements Upgradable,Observer,Health{
 
     public Party getParty() {
         return party;
+    }
+
+    @Override
+    public void takeDamage(double dmg) {
+        int target = (int)Math.floor(Math.random()*(party.getHeroList().size()+1));
+        if (target==4) {
+            for (Hero h: party.getHeroList() ){
+                h.takeDamage(dmg);
+            }
+        }else {
+            Gdx.app.log(getClass().getName(),"random = "+target);
+            party.getHeroList().get(target).takeDamage(dmg);
+        }
     }
 }
