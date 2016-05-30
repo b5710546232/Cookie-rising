@@ -5,5 +5,5 @@ package com.group12.cookiesrising.composite;
  */
 public abstract class CompositeTextPool {
     public abstract void update(Float delta);
-    public abstract  void draw ()
+    public abstract  void draw ();
 }
