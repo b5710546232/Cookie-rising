@@ -130,7 +130,7 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
 
     @Override
     public void takeDamage(double dmg) {
-        int target = (int)Math.random()*(party.getHeroList().size()+1);
+        int target = (int)Math.floor(Math.random()*(party.getHeroList().size()+1));
         if (target==4) {
             for (Hero h: party.getHeroList() ){
                 h.takeDamage(dmg);
