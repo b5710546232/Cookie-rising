@@ -16,17 +16,38 @@ import com.group12.cookiesrising.util.Assets;
 public class Enemy extends AbstractGameObject implements Health,Hittable {
     private Animation anim;
     public static final String TAG = Enemy.class.getName();
-    public double healthPoint,maxHealthPoint;
+    public double healthPoint;
+
+    public void setMaxHealthPoint(double maxHealthPoint) {
+        this.maxHealthPoint = maxHealthPoint;
+    }
+
+    public double maxHealthPoint;
     public boolean waitForSpawn;
     public double getAttackPoint() {
         return attackPoint;
     }
     private String name;
     public double attackPoint;
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
+    public void setAttackPoint(double attackPoint) {
+        this.attackPoint = attackPoint;
+    }
+
     public double money;
     protected State currentState,deathState,aliveState;
     private float stateTime;
     private boolean isHited;
+
+    public EnemyUpdater getUpdater() {
+        return updater;
+    }
+
+    private EnemyUpdater updater;
     public void setCurrentState(State currentState) {
         this.currentState = currentState;
     }
@@ -43,15 +64,16 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         deathState = new DeathState(this);
         aliveState = new AliveState(this);
         currentState = aliveState;
+        updater = new EnemyUpdater(this);
+        maxHealthPoint = 10;
+        attackPoint = 1;
+        money = 100;
         init();
     }
 
     public void init(){
         waitForSpawn = true;
-        healthPoint = 10;
-        maxHealthPoint = 10;
-        attackPoint = 1;
-        money = 100;
+        healthPoint = maxHealthPoint;
         currentState = aliveState;
         name = "Cookie Ung";
         stateTime = 0;
