@@ -27,6 +27,9 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
     public Party party;
     private final int CRI_RATE_MIN = 1;
     private final int CRI_RATE_MAX = 100;
+    private static final int ATK = 0;
+    private static final int HEAL = 1;
+    private static final int CRI = 2;
     private RandomGenerator rng;
 
     private int criticalFactor = 2;
@@ -41,9 +44,36 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
         dmgText = attackPoint+"";
         rng = new RandomGenerator(CRI_RATE_MIN,CRI_RATE_MAX);
     }
-    public void upgradeAtk(){ attackPoint++; }
-    public void upgradeHeal(){ healPoint++; }
-    public void upgradeCrt(){ criticalRate++; }
+    public void upgradeAtk(){
+        int price = getUpgradeCost(ATK);
+        if (money>=price){
+            money-=price;
+            attackPoint++;
+        }
+    }
+    public void upgradeHeal(){
+        int price = getUpgradeCost(HEAL);
+        if (money>=price){
+            money-=price;
+            healPoint++;
+        }
+    }
+    public void upgradeCrt(){
+        int price = getUpgradeCost(CRI);
+        if (money>=price){
+            money-=price;
+            criticalRate++;
+        }
+    }
+
+    @Override
+    public int getUpgradeCost(int field) {
+        int level = 0;
+        if (field == ATK) level = attackPoint;
+        else if (field==HEAL) level = healPoint;
+        else if (field==CRI) level = criticalRate;
+        return (int)(100*Math.pow(1.2,level-1));
+    }
 
     public int getAttackPoint() {
         return attackPoint;
@@ -140,4 +170,5 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
             party.getHeroList().get(target).takeDamage(dmg);
         }
     }
+
 }

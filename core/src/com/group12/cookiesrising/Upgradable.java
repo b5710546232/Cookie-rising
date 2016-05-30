@@ -7,4 +7,5 @@ public interface Upgradable {
     public void upgradeAtk();
     public void upgradeHeal();
     public void upgradeCrt();
+    public int getUpgradeCost(int field);
 }

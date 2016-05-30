@@ -62,9 +62,6 @@ public class GamePlayScreen extends ScreenAdapter {
                     world.playerAttack();
                 }
             }
-
-
-
         }
     }
 
