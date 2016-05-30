@@ -68,7 +68,7 @@ public class GameWorld {
         HealthBar hpEnemy = new HealthBar(currentEnemy,258.5f,318f);
         HealthBar hpHero = new HealthBar(player,258.5f,110f);
         EnemyLabel enemyLabel = new EnemyLabel(currentEnemy);
-        HeroLevelText heroLevelText = new HeroLevelText();
+        HeroLevelText heroLevelText = new HeroLevelText(player);
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);

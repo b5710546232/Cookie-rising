@@ -69,4 +69,8 @@ public class Hero extends AbstractGameObject implements Hittable,Health {
     public double getMaxHp() {
         return maxhealthPoint;
     }
+
+    public int getLevel() {
+        return level;
+    }
 }

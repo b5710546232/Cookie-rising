@@ -93,4 +93,8 @@ public class Player extends Observable implements Upgradable,Observer,Health{
         }
         return maxHp;
     }
+
+    public Party getParty() {
+        return party;
+    }
 }
