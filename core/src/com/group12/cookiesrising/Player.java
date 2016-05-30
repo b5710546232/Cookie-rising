@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.group12.cookiesrising.Listener.AttackButtonListener;
 import com.group12.cookiesrising.Listener.CriticalButtonListener;
 import com.group12.cookiesrising.Listener.HealButtonListener;
+import com.group12.cookiesrising.Listener.HeroButtonListener;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Party;
@@ -137,6 +138,8 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
             upgradeHeal();
         }else if (o instanceof CriticalButtonListener){
             upgradeCrt();
+        }else if (o instanceof HeroButtonListener){
+            upgradeHero(((HeroButtonListener) o).getHero_num());
         }
     }
 
@@ -174,5 +177,11 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
             party.getHeroList().get(target).takeDamage(dmg);
         }
     }
-
+    public void upgradeHero(int hero_num){
+        int cost = party.getHeroList().get(hero_num).getUpgradeCost(0);
+        if (cost<=money){
+            money-=cost;
+            party.getHeroList().get(hero_num).upgrade();
+        }
+    }
 }

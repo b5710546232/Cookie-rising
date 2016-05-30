@@ -98,7 +98,10 @@ public class Hero extends AbstractGameObject implements Hittable,Health,Upgradab
     }
 
     public void upgrade(){
-
+        upgradeAtk();
+        upgradeHeal();
+        upgradeCrt();
+        level++;
     }
 
 }
