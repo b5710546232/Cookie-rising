@@ -36,6 +36,7 @@ public class DeathState implements State {
 
     @Override
     public void respawn() {
+        e.getUpdater().update();
         e.init();
         changeState();
     }
