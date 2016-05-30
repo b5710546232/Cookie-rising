@@ -44,6 +44,7 @@ public class GameWorld {
     private Timer.Task nextEnemyTimerTask;
     private float waitTime = 1f;
     private Timer.Task dpsTimer;
+    private Timer.Task enemyAttackTimer;
     private TextPool dmgTextPool;
     private TextPool criTextPool;
     private AbstractGameTextFactory damgeTextFactory;
@@ -125,16 +126,29 @@ public class GameWorld {
                 autoAttack();
             }
         };
-
+        this.enemyAttackTimer = new Timer.Task() {
+            @Override
+            public void run() {
+                Gdx.app.log(TAG,enemyAttackTimer.getExecuteTimeMillis()+"");
+                enemyAttack();
+            }
+        };
 
         int delay = 3;
         int interval = 3;
         Timer.schedule(this.dpsTimer,delay,interval);
+        Timer.schedule(this.enemyAttackTimer,delay,currentEnemy.getSpeed());
         Timer.instance().start();
     }
 
+    private void enemyAttack(){
+        if (currentEnemy.isAlive())
+            currentEnemy.attack(player);
+        else {
+            enemyAttackTimer.cancel();
+        }
+    }
     private void autoAttack() {
-        currentEnemy.attack(player);
         if(currentEnemy != null &&currentEnemy.isAlive()) {
             hero.attack(currentEnemy);
             dmgTextPool.getDamageText(this.player.getDamageText(),450,200);
@@ -163,7 +177,7 @@ public class GameWorld {
 //        currentEnemy = new Enemy();
 //        gameObjectContainer.add(currentEnemy);
         currentEnemy.respawn();
-
+        Timer.schedule(enemyAttackTimer,0,currentEnemy.getSpeed());
     }
 
     public void update(float delta){
