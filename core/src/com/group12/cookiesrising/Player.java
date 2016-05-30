@@ -27,9 +27,9 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
     public Party party;
     private final int CRI_RATE_MIN = 1;
     private final int CRI_RATE_MAX = 100;
-    private static final int ATK = 0;
-    private static final int HEAL = 1;
-    private static final int CRI = 2;
+    public static final int ATK = 0;
+    public static final int HEAL = 1;
+    public static final int CRI = 2;
     private RandomGenerator rng;
 
     private int criticalFactor = 2;

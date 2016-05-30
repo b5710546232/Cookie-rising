@@ -23,6 +23,7 @@ import com.group12.cookiesrising.gametext.EnemyLabel;
 import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
 import com.group12.cookiesrising.gametext.TextPool;
+import com.group12.cookiesrising.gametext.UpgradeCostText;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -84,6 +85,7 @@ public class GameWorld {
         HealthBar hpHero = new HealthBar(player,258.5f,110f);
         EnemyLabel enemyLabel = new EnemyLabel(currentEnemy);
         HeroLevelText heroLevelText = new HeroLevelText(player);
+        UpgradeCostText upgradeCostText = new UpgradeCostText(player);
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
         gameObjectContainer.add(hero);
@@ -102,6 +104,7 @@ public class GameWorld {
         textDraw.add(statusText);
         textDraw.add(enemyLabel);
         textDraw.add(heroLevelText);
+        textDraw.add(upgradeCostText);
         worldTextContainer.add(textDraw);
         // for testing.
 

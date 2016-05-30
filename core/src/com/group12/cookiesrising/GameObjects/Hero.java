@@ -9,9 +9,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.Health;
 import com.group12.cookiesrising.Hittable;
+import com.group12.cookiesrising.Upgradable;
 import com.group12.cookiesrising.util.Assets;
 
-public class Hero extends AbstractGameObject implements Hittable,Health {
+public class Hero extends AbstractGameObject implements Hittable,Health,Upgradable {
     protected double attackPoint;
     protected double healthPoint,maxhealthPoint;
     protected double speed;
@@ -75,4 +76,29 @@ public class Hero extends AbstractGameObject implements Hittable,Health {
     public int getLevel() {
         return level;
     }
+
+    @Override
+    public void upgradeAtk() {
+
+    }
+
+    @Override
+    public void upgradeHeal() {
+
+    }
+
+    @Override
+    public void upgradeCrt() {
+
+    }
+
+    @Override
+    public int getUpgradeCost(int field) {
+        return (int)(100*Math.pow(1.2,level-1));
+    }
+
+    public void upgrade(){
+
+    }
+
 }
