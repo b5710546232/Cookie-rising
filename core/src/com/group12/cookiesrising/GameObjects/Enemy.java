@@ -65,10 +65,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         aliveState = new AliveState(this);
         currentState = aliveState;
         updater = new EnemyUpdater(this);
-        maxHealthPoint = 10;
-        attackPoint = 1;
-        money = 100;
-        speed = 5;
+        loadData();
         init();
     }
 
@@ -173,8 +170,28 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         this.speed = speed;
     }
 
-    private void loadDate(){
-        
+    private void loadData(){
+        if(SaveManager.loadDataValue("enemy_money",double.class) != null){
+            money = SaveManager.loadDataValue("enemy_money",double.class);
+        } else{
+            money = 100;
+        }
+        if(SaveManager.loadDataValue("enemy_attackpoint",double.class)!=null){
+            attackPoint = SaveManager.loadDataValue("enemy_attackpoint",double.class);
+        } else{
+            attackPoint = 1;
+        }
+        if(SaveManager.loadDataValue("enemy_healpoint",double.class)!=null){
+            healthPoint = SaveManager.loadDataValue("enemy_healpoint",double.class);
+        } else{
+            healthPoint = 10;
+        }
+        if(SaveManager.loadDataValue("enemy_speed",float.class)!=null){
+            speed = SaveManager.loadDataValue("enemy_speed",float.class);
+        } else{
+            speed = 5;
+        }
+
     }
 
     public void saveData(){
