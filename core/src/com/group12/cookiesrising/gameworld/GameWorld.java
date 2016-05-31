@@ -16,11 +16,13 @@ import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Mage;
 import com.group12.cookiesrising.gameobjects.Party;
 import com.group12.cookiesrising.gameobjects.Warrior;
+import com.group12.cookiesrising.gametext.AbstractGameText;
 import com.group12.cookiesrising.gametext.AbstractGameTextFactory;
 import com.group12.cookiesrising.gametext.CoinText;
 import com.group12.cookiesrising.gametext.CriticalDamgeFactory;
 import com.group12.cookiesrising.gametext.DamageTextFactory;
 import com.group12.cookiesrising.gametext.EnemyLabel;
+import com.group12.cookiesrising.gametext.HealTextFactory;
 import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
 import com.group12.cookiesrising.gametext.TextPool;
@@ -48,8 +50,10 @@ public class GameWorld {
     private Timer.Task enemyAttackTimer;
     private TextPool dmgTextPool;
     private TextPool criTextPool;
+    private TextPool healTextPool;
     private AbstractGameTextFactory damgeTextFactory;
     private AbstractGameTextFactory criticalDamageTextFactory;
+    private AbstractGameTextFactory healTextFactory;
     private StatusText statusText;
     private CoinText coinText;
     private TextDraw textDraw;
@@ -67,6 +71,7 @@ public class GameWorld {
         font = new BitmapFont();
         damgeTextFactory = new DamageTextFactory();
         criticalDamageTextFactory = new CriticalDamgeFactory();
+        healTextFactory = new HealTextFactory();
 
         worldContainer = new CompositeGameObject();
         gameObjectContainer = new CompositeGameObject();
@@ -103,10 +108,12 @@ public class GameWorld {
         gameObjectContainer.add(hpGunner);
         dmgTextPool = new TextPool(damgeTextFactory,10);
         criTextPool = new TextPool(criticalDamageTextFactory,3);
+        healTextPool = new TextPool(healTextFactory,10);
         worldContainer.add(gameObjectContainer);
 
         textDraw.add(dmgTextPool);
         textDraw.add(criTextPool);
+        textDraw.add(healTextPool);
         textDraw.add(coinText);
         textDraw.add(statusText);
         textDraw.add(enemyLabel);
@@ -200,8 +207,10 @@ public class GameWorld {
                 h = p.getHeroList().get(i);
             }
         }
-        if(h.isAlive())
+        if(h.isAlive()){
             mage.action(h);
+            healTextPool.getDamageText(mage.getDmgText(),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+        }
     }
 
     private double calPerHP(Hero h){
@@ -242,13 +251,16 @@ public class GameWorld {
     public void playerHeal(){
         Party p = player.getParty();
         Hero h = p.getHeroList().get(0);
+        int x = 0;
         for(int i = 1; i<p.getHeroList().size();i++){
             if( (calPerHP(h) < calPerHP( p.getHeroList().get(i) ) ) && p.getHeroList().get(i).isAlive() ){
                 h = p.getHeroList().get(i);
             }
         }
-        if(h.isAlive())
+        if(h.isAlive()){
             player.heal(h);
+            healTextPool.getDamageText(Integer.toString(player.getHealPoint()),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+        }
     }
 
     public void nextEnemy(){

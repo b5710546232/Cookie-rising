@@ -78,4 +78,5 @@ public class Mage extends Hero {
     public void saveData(){
         SaveManager.saveDataValue("mage",this);
     }
+
 }

@@ -20,9 +20,9 @@ public abstract class AbstractGameObject{
     public abstract void update(float delta);
     public abstract void draw(SpriteBatch batch);
 
-
-
-
+    public Vector2 getPosition() {
+        return position;
+    }
 
     public AbstractGameObject() {
         isActive = false;
