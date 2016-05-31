@@ -219,7 +219,5 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
         SaveManager.saveDataValue("player_criticalrate",getCriticalRate());
         SaveManager.saveDataValue("player_healpoint",getHealPoint());
     }
-    public void heal(){
 
-    }
 }

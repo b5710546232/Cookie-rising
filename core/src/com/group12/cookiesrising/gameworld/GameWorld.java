@@ -240,7 +240,7 @@ public class GameWorld {
     }
 
     public void playerHeal(){
-      
+
     }
 
     public void nextEnemy(){
