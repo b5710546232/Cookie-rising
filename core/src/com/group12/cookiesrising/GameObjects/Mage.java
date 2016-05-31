@@ -3,6 +3,9 @@ package com.group12.cookiesrising.gameobjects;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.Hittable;
+import com.group12.cookiesrising.State.HeroDeathState;
+import com.group12.cookiesrising.State.MageAliveState;
+import com.group12.cookiesrising.State.WarriorAliveState;
 import com.group12.cookiesrising.util.Assets;
 
 /**
@@ -15,6 +18,9 @@ public class Mage extends Hero {
 
         super(x, y);
         setAnimation(Assets.anim_mage_idle);
+        setAliveState(new MageAliveState(this));
+        setDeathState(new HeroDeathState(this));
+        currentState = getAliveState();
     }
 
     @Override
@@ -33,10 +39,7 @@ public class Mage extends Hero {
 
     @Override
     public void attack(Hittable m) {
-        if(m.isAlive()) {
-            setAnimation(Assets.anim_mage_heal);
-            m.takeDamage(this.attackPoint);
-        }
+        currentState.attack(m);
 
     }
 

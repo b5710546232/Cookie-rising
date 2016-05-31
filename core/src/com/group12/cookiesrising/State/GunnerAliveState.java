@@ -1,25 +1,23 @@
 package com.group12.cookiesrising.State;
 
 import com.group12.cookiesrising.Hittable;
-import com.group12.cookiesrising.gameobjects.Hero;
-import com.group12.cookiesrising.gameobjects.Warrior;
+import com.group12.cookiesrising.gameobjects.Gunner;
 import com.group12.cookiesrising.util.Assets;
 
 /**
  * Created by DELL on 5/31/2016.
  */
-public class WarriorAliveState implements State {
+public class GunnerAliveState implements State{
+    Gunner h;
 
-    private Warrior h;
-
-    public WarriorAliveState(Warrior h) {
+    public GunnerAliveState(Gunner h) {
         this.h = h;
     }
 
     @Override
     public void attack(Hittable target) {
         if(target.isAlive()) {
-            h.setAnimation(Assets.anim_warrior_atk);
+            h.setAnimation(Assets.anim_gunner_atk);
             target.takeDamage(h.getAttackPoint());
         }
     }

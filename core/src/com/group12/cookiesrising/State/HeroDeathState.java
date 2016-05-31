@@ -1,16 +1,17 @@
 package com.group12.cookiesrising.State;
 
 import com.group12.cookiesrising.Hittable;
+import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Warrior;
 import com.group12.cookiesrising.util.Assets;
 
 /**
  * Created by DELL on 5/31/2016.
  */
-public class WarriorDeathState implements State {
-    private Warrior h;
+public class HeroDeathState implements State {
+    private Hero h;
 
-    public WarriorDeathState(Warrior h) {
+    public HeroDeathState(Hero h) {
         this.h = h;
     }
 
@@ -33,7 +34,7 @@ public class WarriorDeathState implements State {
 
     @Override
     public void changeState() {
-        h.setCurrentState(h.getAliveState());
+        h.currentState = h.getAliveState();
     }
 
     @Override

@@ -15,15 +15,7 @@ import com.group12.cookiesrising.util.Assets;
 
 public abstract class Hero extends AbstractGameObject implements Hittable,Health,Upgradable {
 
-    public State getCurrentState() {
-        return currentState;
-    }
-
-    public void setCurrentState(State state) {
-        this.currentState = state;
-    }
-
-    private State currentState;
+    public State currentState;
 
     public State getAliveState() {
         return aliveState;
