@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by nattapat on 5/7/2016 AD.
  */
-public class GameText extends AbstractGameText  implements TextInitialable{
+public class GameText extends AbstractGameText{
     public static final String TAG = GameText.class.getName();
     protected Vector2 position;
     protected String text;

@@ -196,6 +196,10 @@ public class GameWorld {
         }
     }
 
+    public void saveGame(){
+        player.saveData();
+    }
+
     public Player getPlayer() {
         return player;
     }

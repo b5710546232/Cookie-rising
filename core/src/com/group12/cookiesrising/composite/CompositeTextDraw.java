@@ -2,17 +2,16 @@ package com.group12.cookiesrising.composite;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Disposable;
 
 /**
  * Created by nattapat on 5/30/2016 AD.
  */
-public class CompositeTextDraw implements Disposable,Drawable {
+public class CompositeTextDraw extends AbstractTextDraw {
 
-    private Array<TextDraw> children;
+    private Array<AbstractTextDraw> children;
 
     public CompositeTextDraw() {
-        children = new Array<TextDraw>();
+        children = new Array<AbstractTextDraw>();
     }
     public void add(TextDraw child){
         children.add(child);
@@ -20,20 +19,20 @@ public class CompositeTextDraw implements Disposable,Drawable {
 
     @Override
     public void dispose() {
-        for(TextDraw child:children){
+        for(AbstractTextDraw child:children){
             child.dispose();
         }
     }
-
+    @Override
     public void update(float delta){
-        for(TextDraw child:children){
+        for(AbstractTextDraw child:children){
             child.update(delta);
         }
     }
 
     @Override
     public void draw(SpriteBatch batch) {
-        for(TextDraw child:children){
+        for(AbstractTextDraw child:children){
             child.draw(batch);
         }
     }
