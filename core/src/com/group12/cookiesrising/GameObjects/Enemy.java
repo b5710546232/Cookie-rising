@@ -1,6 +1,5 @@
 package com.group12.cookiesrising.gameobjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.Health;
@@ -174,5 +173,8 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
 
     public boolean isHited() {
         return isHited;
+    }
+    public void saveData(){
+
     }
 }

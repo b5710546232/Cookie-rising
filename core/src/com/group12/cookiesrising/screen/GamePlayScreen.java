@@ -48,6 +48,12 @@ public class GamePlayScreen extends ScreenAdapter {
         renderer.renderText();
     }
 
+    @Override
+    public void pause() {
+        super.pause();
+        world.saveGame();
+    }
+
     private void testInput() {
         if(Gdx.input.justTouched()){
             int x = Gdx.input.getX();

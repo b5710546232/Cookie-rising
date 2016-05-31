@@ -9,6 +9,7 @@ import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Party;
 import com.group12.cookiesrising.util.RandomGenerator;
+import com.group12.cookiesrising.util.SaveManager;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -36,12 +37,14 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
     private int criticalFactor = 2;
 
     public Player(){
-        attackPoint = 1;
+
         //will load later;
-        money = 0;
+        loadData();
         party = new Party();
+
         healPoint = 1;
         criticalRate = 1;
+
         dmgText = attackPoint+"";
         rng = new RandomGenerator(CRI_RATE_MIN,CRI_RATE_MAX);
     }
@@ -188,4 +191,35 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
             party.getHeroList().get(hero_num).upgrade();
         }
     }
+
+    public void loadData(){
+        if(SaveManager.loadDataValue("money",int.class) != null){
+            money = SaveManager.loadDataValue("money",int.class);
+        } else{
+            money = 0;
+        }
+        if(SaveManager.loadDataValue("player_attackpoint",int.class)!=null){
+            attackPoint = SaveManager.loadDataValue("player_attackpoint",int.class);
+        } else{
+            attackPoint = 1;
+        }
+        if(SaveManager.loadDataValue("player_criticalrate",int.class)!=null){
+            criticalRate = SaveManager.loadDataValue("player_criticalrate",int.class);
+        } else{
+            criticalRate = 1;
+        }
+        if(SaveManager.loadDataValue("player_healpoint",int.class)!=null){
+            healPoint = SaveManager.loadDataValue("player_healpoint",int.class);
+        } else{
+            healPoint = 1;
+        }
+
+    }
+    public void saveData(){
+        SaveManager.saveDataValue("money",getMoney());
+        SaveManager.saveDataValue("player_attackpoint",getAttackPoint());
+        SaveManager.saveDataValue("player_criticalrate",getCriticalRate());
+        SaveManager.saveDataValue("player_healpoint",getHealPoint());
+    }
+
 }

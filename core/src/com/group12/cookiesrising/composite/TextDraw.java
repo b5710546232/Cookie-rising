@@ -3,13 +3,12 @@ package com.group12.cookiesrising.composite;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Disposable;
 import com.group12.cookiesrising.gametext.AbstractGameText;
 
 /**
  * Created by nattapat on 5/30/2016 AD.
  */
-public class TextDraw implements Drawable, Disposable{
+public class TextDraw extends AbstractTextDraw{
     public BitmapFont font;
     private Array<AbstractGameText> list;
     public TextDraw(BitmapFont font) {

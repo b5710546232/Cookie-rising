@@ -157,14 +157,14 @@ public class GameWorld {
         Timer.instance().start();
     }
 
-    private void enemyAttack(){
+    private void enemyAttack(){/*
         if (currentEnemy.isAlive())
             if (!currentEnemy.isHited()){
                 currentEnemy.attack(player);
             }
         else {
             enemyAttackTimer.cancel();
-        }
+        }*/
     }
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()) {
@@ -223,6 +223,10 @@ public class GameWorld {
             Timer.schedule(nextEnemyTimerTask, waitTime, 0 ,0);
             Gdx.app.error(TAG,"call death");
         }
+    }
+
+    public void saveGame(){
+        player.saveData();
     }
 
     public Player getPlayer() {
