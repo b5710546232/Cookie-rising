@@ -84,6 +84,7 @@ public class GameWorld {
         CoinText coinText = new CoinText(player);
         StatusText statusText = new StatusText(player);
         HealthBar hpEnemy = new HealthBar(currentEnemy,400,270,1);
+
         HealthBar hpHero = new HealthBar(warrior,250,200,2);
         HealthBar hpMage = new HealthBar(mage,170,200,2);
         HealthBar hpGunner = new HealthBar(gunner,90,200,2);
