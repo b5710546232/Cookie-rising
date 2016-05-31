@@ -120,7 +120,6 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
 
     public void init() {
         healthPoint = maxhealthPoint;
-        level = 1;
         isAlive = true;
     }
 
