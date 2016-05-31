@@ -18,10 +18,12 @@ public class Warrior extends Hero{
 
     public Warrior(int x, int y) {
         super(x, y);
+        attackPoint = 2;
         setAliveState(new WarriorAliveState(this));
         setDeathState(new HeroDeathState(this));
         setAnimation(Assets.anim_warrior_idle);
         currentState = getAliveState();
+
     }
 
     @Override
@@ -41,7 +43,6 @@ public class Warrior extends Hero{
     @Override
     public void attack(Hittable m) {
         currentState.attack(m);
-
     }
 
     @Override

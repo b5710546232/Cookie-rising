@@ -40,7 +40,6 @@ public class Gunner extends Hero {
     @Override
     public void attack(Hittable m) {
         currentState.attack(m);
-
     }
 
     @Override

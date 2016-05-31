@@ -171,4 +171,8 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         if (speed<=0) speed = 1;
         this.speed = speed;
     }
+
+    public boolean isHited() {
+        return isHited;
+    }
 }

@@ -83,7 +83,9 @@ public class GameWorld {
         CoinText coinText = new CoinText(player);
         StatusText statusText = new StatusText(player);
         HealthBar hpEnemy = new HealthBar(currentEnemy,258.5f,318f);
-        HealthBar hpHero = new HealthBar(player,258.5f,110f);
+        HealthBar hpHero = new HealthBar(hero,258.5f,110f);
+        HealthBar hpMage = new HealthBar(hero,258.5f,110f);
+        HealthBar hpGunner = new HealthBar(hero,258.5f,110f);
         EnemyLabel enemyLabel = new EnemyLabel(currentEnemy);
         HeroLevelText heroLevelText = new HeroLevelText(player);
         UpgradeCostText upgradeCostText = new UpgradeCostText(player);
@@ -95,6 +97,8 @@ public class GameWorld {
         gameObjectContainer.add(mage);
         gameObjectContainer.add(hpEnemy);
         gameObjectContainer.add(hpHero);
+        gameObjectContainer.add(hpMage);
+        gameObjectContainer.add(hpGunner);
         dmgTextPool = new TextPool(damgeTextFactory,10);
         criTextPool = new TextPool(criticalDamageTextFactory,3);
         worldContainer.add(gameObjectContainer);
@@ -155,7 +159,9 @@ public class GameWorld {
 
     private void enemyAttack(){
         if (currentEnemy.isAlive())
-            currentEnemy.attack(player);
+            if (!currentEnemy.isHited()){
+                currentEnemy.attack(player);
+            }
         else {
             enemyAttackTimer.cancel();
         }

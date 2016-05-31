@@ -89,15 +89,12 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
     protected double criticalRate;
     protected boolean isAlive;
     private int level;
-    protected String dmgText;
 
     public Hero(int x, int y) {
         super(x, y);
         this.init();
-        this.attackPoint = 1.0D;
         this.healthPoint = 10.0D;
         this.maxhealthPoint = 10D;
-        dmgText = (int)attackPoint+"";
         speed = 5;
     }
 
@@ -118,7 +115,6 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
 
     public void takeDamage(double dmg) {
         currentState.takeDamage(dmg);
-
     }
 
     public void draw(SpriteBatch batch) {
@@ -167,11 +163,7 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
     }
 
     public String getDmgText() {
-        return dmgText;
-    }
-
-    public void setDmgText(String dmgText) {
-        this.dmgText = dmgText;
+        return (int)attackPoint+"";
     }
 
 }
