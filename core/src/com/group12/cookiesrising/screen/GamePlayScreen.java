@@ -64,7 +64,7 @@ public class GamePlayScreen extends ScreenAdapter {
 //            Gdx.app.log(TAG,"touch x = "+inputs.x+"  ||  "+"touch y = "+inputs.y);
             if (inputs.y>=136){
                 if(inputs.x <= 640/2){
-                    Gdx.app.log(TAG,"Heal");
+                    world.playerHeal();
                 }else {
                     world.playerAttack();
                 }
