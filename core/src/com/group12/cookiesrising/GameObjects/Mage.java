@@ -1,5 +1,6 @@
 package com.group12.cookiesrising.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.State.HeroDeathState;
@@ -68,6 +69,7 @@ public class Mage extends Hero {
         level = temp.getLevel();
         attackPoint = temp.getAttackPoint();
         maxhealthPoint = temp.getMaxhealthPoint();
+        Gdx.app.error("hi","safe");
         speed = temp.getSpeed();
 
 
