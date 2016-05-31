@@ -15,7 +15,7 @@ public class GunnerAliveState implements State{
     }
 
     @Override
-    public void attack(Hittable target) {
+    public void action(Hittable target) {
         if(target.isAlive()) {
             h.setAnimation(Assets.anim_gunner_atk);
             target.takeDamage(h.getAttackPoint());

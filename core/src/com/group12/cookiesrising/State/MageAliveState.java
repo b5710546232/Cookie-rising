@@ -16,7 +16,7 @@ public class MageAliveState implements State{
     private Mage h;
 
     @Override
-    public void attack(Hittable target) {
+    public void action(Hittable target) {
         if(target.isAlive()) {
             h.setAnimation(Assets.anim_mage_heal);
             target.takeDamage(h.getAttackPoint());

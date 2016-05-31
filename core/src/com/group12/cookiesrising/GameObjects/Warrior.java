@@ -42,11 +42,6 @@ public class Warrior extends Hero{
     }
 
     @Override
-    public void attack(Hittable m) {
-        currentState.attack(m);
-    }
-
-    @Override
     public void draw(SpriteBatch batch) {
         batch.draw(anim.getKeyFrame(stateTime),position.x,position.y);
     }

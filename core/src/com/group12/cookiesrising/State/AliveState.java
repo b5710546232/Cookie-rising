@@ -17,7 +17,7 @@ public class AliveState implements State {
     }
 
     @Override
-    public void attack(Hittable target) {
+    public void action(Hittable target) {
         e.setAnimation(Assets.anim_enemy01_atk);
         target.takeDamage(e.getAttackPoint());
     }

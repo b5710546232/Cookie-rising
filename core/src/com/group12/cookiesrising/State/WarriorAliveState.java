@@ -17,7 +17,7 @@ public class WarriorAliveState implements State {
     }
 
     @Override
-    public void attack(Hittable target) {
+    public void action(Hittable target) {
         if(target.isAlive()) {
             h.setAnimation(Assets.anim_warrior_atk);
             target.takeDamage(h.getAttackPoint());

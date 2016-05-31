@@ -40,12 +40,6 @@ public class Mage extends Hero {
     }
 
     @Override
-    public void attack(Hittable m) {
-        currentState.attack(m);
-
-    }
-
-    @Override
     public void upgradeAtk() {
         setMaxhealthPoint(getMaxhealthPoint()+1);
         setHealthPoint(getHealthPoint()+1);

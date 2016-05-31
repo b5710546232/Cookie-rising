@@ -16,7 +16,7 @@ public class DeathState implements State {
     }
 
     @Override
-    public void attack(Hittable target) {
+    public void action(Hittable target) {
         target.takeDamage(e.getAttackPoint());
     }
 
