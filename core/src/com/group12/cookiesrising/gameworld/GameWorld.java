@@ -82,10 +82,10 @@ public class GameWorld {
         Coin coin = new Coin();
         CoinText coinText = new CoinText(player);
         StatusText statusText = new StatusText(player);
-        HealthBar hpEnemy = new HealthBar(currentEnemy,258.5f,318f);
-        HealthBar hpHero = new HealthBar(warrior,258.5f,110f);
-        HealthBar hpMage = new HealthBar(warrior,258.5f,110f);
-        HealthBar hpGunner = new HealthBar(warrior,258.5f,110f);
+        HealthBar hpEnemy = new HealthBar(currentEnemy,400,270,1);
+        HealthBar hpHero = new HealthBar(warrior,250,200,2);
+        HealthBar hpMage = new HealthBar(mage,170,200,2);
+        HealthBar hpGunner = new HealthBar(gunner,90,200,2);
         EnemyLabel enemyLabel = new EnemyLabel(currentEnemy);
         HeroLevelText heroLevelText = new HeroLevelText(player);
         UpgradeCostText upgradeCostText = new UpgradeCostText(player);
@@ -157,14 +157,14 @@ public class GameWorld {
         Timer.instance().start();
     }
 
-    private void enemyAttack(){/*
+    private void enemyAttack(){
         if (currentEnemy.isAlive())
             if (!currentEnemy.isHited()){
                 currentEnemy.action(player);
             }
         else {
             enemyAttackTimer.cancel();
-        }*/
+        }
     }
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()) {
