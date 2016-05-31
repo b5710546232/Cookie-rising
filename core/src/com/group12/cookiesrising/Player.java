@@ -41,6 +41,11 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
         //will load later;
         loadData();
         party = new Party();
+<<<<<<< HEAD
+=======
+        healPoint = 1;
+        criticalRate = 1;
+>>>>>>> cc12f6c394e3024bc911e493190e8f4b124d26de
         dmgText = attackPoint+"";
         rng = new RandomGenerator(CRI_RATE_MIN,CRI_RATE_MAX);
     }
@@ -168,14 +173,18 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
     public void takeDamage(double dmg) {
         int target = (int)Math.floor(Math.random()*(party.getHeroList().size()+1));
         if (target==4) {
-            for (Hero h: party.getHeroList() ){
-                h.takeDamage(dmg);
-            }
+            party.takeDamage(dmg/3);
         }else {
             Gdx.app.log(getClass().getName(),"random = "+target);
             party.getHeroList().get(target).takeDamage(dmg);
         }
     }
+
+    @Override
+    public boolean isAlive() {
+        return false;
+    }
+
     public void upgradeHero(int hero_num){
         int cost = party.getHeroList().get(hero_num).getUpgradeCost(0);
         if (cost<=money){

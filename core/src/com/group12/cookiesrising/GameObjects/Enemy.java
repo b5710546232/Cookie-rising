@@ -28,7 +28,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
     }
     private String name;
     public double attackPoint;
-    private int speed;
+    private float speed;
     public void setMoney(double money) {
         this.money = money;
     }
@@ -162,11 +162,11 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         isHited = true;
     }
 
-    public int getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(float speed) {
         if (speed<=0) speed = 1;
         this.speed = speed;
     }

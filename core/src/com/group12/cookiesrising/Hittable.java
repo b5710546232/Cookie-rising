@@ -5,4 +5,5 @@ package com.group12.cookiesrising;
  */
 public interface Hittable {
     public void takeDamage(double dmg);
+    public boolean isAlive();
 }

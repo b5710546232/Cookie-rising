@@ -2,6 +2,10 @@ package com.group12.cookiesrising.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.group12.cookiesrising.Hittable;
+import com.group12.cookiesrising.State.GunnerAliveState;
+import com.group12.cookiesrising.State.HeroDeathState;
+import com.group12.cookiesrising.State.MageAliveState;
 import com.group12.cookiesrising.util.Assets;
 
 /**
@@ -14,6 +18,9 @@ public class Gunner extends Hero {
 
         super(x, y);
         setAnimation(Assets.anim_gunner_idle);
+        setAliveState(new GunnerAliveState(this));
+        setDeathState(new HeroDeathState(this));
+        currentState = getAliveState();
     }
 
     @Override
@@ -31,11 +38,8 @@ public class Gunner extends Hero {
     }
 
     @Override
-    public void attack(Enemy m) {
-        if(m.isAlive()) {
-            setAnimation(Assets.anim_gunner_atk);
-            m.takeDamage(this.attackPoint);
-        }
+    public void attack(Hittable m) {
+        currentState.attack(m);
 
     }
 

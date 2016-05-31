@@ -43,7 +43,7 @@ public class GameWorld {
     private Hero gunner;
     private Timer.Task nextEnemyTimerTask;
     private float waitTime = 1f;
-    private Timer.Task dpsTimer;
+    private Timer.Task warriorTimer,mageTimer,gunnerTimer;
     private Timer.Task enemyAttackTimer;
     private TextPool dmgTextPool;
     private TextPool criTextPool;
@@ -118,12 +118,11 @@ public class GameWorld {
             }
         };
         // test auto attack.
-        this.dpsTimer = new Timer.Task(){
+        this.warriorTimer = new Timer.Task(){
 
             @Override
             public void run() {
-
-                autoAttack();
+                warriorAttack();
             }
         };
         this.enemyAttackTimer = new Timer.Task() {
@@ -133,10 +132,23 @@ public class GameWorld {
                 enemyAttack();
             }
         };
-
+        this.mageTimer = new Timer.Task() {
+            @Override
+            public void run() {
+                mageAttack();
+            }
+        };
+        this.gunnerTimer = new Timer.Task() {
+            @Override
+            public void run() {
+                gunnerAttack();
+            }
+        };
         int delay = 3;
         int interval = 3;
-        Timer.schedule(this.dpsTimer,delay,interval);
+        Timer.schedule(this.warriorTimer,delay,hero.getSpeed());
+        Timer.schedule(this.mageTimer,delay,mage.getSpeed());
+        Timer.schedule(this.gunnerTimer,delay,gunner.getSpeed());
         Timer.schedule(this.enemyAttackTimer,delay,currentEnemy.getSpeed());
         Timer.instance().start();
     }
@@ -148,13 +160,24 @@ public class GameWorld {
             enemyAttackTimer.cancel();
         }
     }
-    private void autoAttack() {
+    private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()) {
             hero.attack(currentEnemy);
-            dmgTextPool.getDamageText(this.player.getDamageText(),450,200);
+            dmgTextPool.getDamageText(hero.getDmgText(),450,200);
         }
     }
-
+    private void mageAttack(){
+        if(currentEnemy != null &&currentEnemy.isAlive()) {
+            mage.attack(currentEnemy);
+            dmgTextPool.getDamageText(mage.getDmgText(),450,200);
+        }
+    }
+    private void gunnerAttack(){
+        if(currentEnemy != null &&currentEnemy.isAlive()) {
+            gunner.attack(currentEnemy);
+            dmgTextPool.getDamageText(gunner.getDmgText(),450,200);
+        }
+    }
     public void playerAttack(){
         Gdx.app.error(TAG,"call");
         if(currentEnemy != null &&currentEnemy.isAlive() && !lock) {

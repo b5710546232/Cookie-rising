@@ -29,6 +29,11 @@ public class Party implements Hittable{
         }
     }
 
+    @Override
+    public boolean isAlive() {
+        return false;
+    }
+
     public void takeHeal(double value){
 
     }
