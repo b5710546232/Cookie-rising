@@ -27,6 +27,7 @@ import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
 import com.group12.cookiesrising.gametext.TextPool;
 import com.group12.cookiesrising.gametext.UpgradeCostText;
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -190,8 +191,25 @@ public class GameWorld {
     }
 
     private void enemyAttack(){
-        if (currentEnemy.isAlive())
-                currentEnemy.action(player);
+        if (currentEnemy.isAlive()){
+            Party party = player.getParty();
+            int target = (int)Math.floor(Math.random()*(party.getHeroList().size()+1));
+            Gdx.app.log(getClass().getName(),"random = "+target);
+            if (target==3) {
+                currentEnemy.action(party);
+                for(Hero h: party.getHeroList()){
+                    if (h.isAlive()){
+                        dmgTextPool.getDamageText(Double.toString(Math.floor(currentEnemy.getAttackPoint())),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+                    }
+                }
+            }else {
+                Hero h = party.getHeroList().get(target);
+                currentEnemy.action(h);
+                if (h.isAlive()){
+                    dmgTextPool.getDamageText(Double.toString(Math.floor(currentEnemy.getAttackPoint())),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+                }
+            }
+        }
     }
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()&&warrior.isAlive()) {
