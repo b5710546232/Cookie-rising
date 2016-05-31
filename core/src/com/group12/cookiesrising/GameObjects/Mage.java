@@ -2,7 +2,6 @@ package com.group12.cookiesrising.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.State.HeroDeathState;
 import com.group12.cookiesrising.State.MageAliveState;
 import com.group12.cookiesrising.util.Assets;
@@ -23,6 +22,7 @@ public class Mage extends Hero {
         setAttackPoint(1.0);
         setSpeed(7.5F);
         currentState = getAliveState();
+        loadData();
     }
 
     @Override
@@ -62,7 +62,17 @@ public class Mage extends Hero {
         batch.draw(anim.getKeyFrame(stateTime),position.x,position.y);
     }
 
+    private void loadData(){
+        if(SaveManager.loadDataValue("mage",Mage.class)==null)return;
+        Mage temp = SaveManager.loadDataValue("mage",Mage.class);
+        level = temp.getLevel();
+        attackPoint = temp.getAttackPoint();
+        maxhealthPoint = temp.getMaxhealthPoint();
+        speed = temp.getSpeed();
+
+
+    }
     public void saveData(){
-//        SaveManager.saveDataValue("mage_level",getAttackPoint());
+        SaveManager.saveDataValue("mage",this);
     }
 }

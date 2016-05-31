@@ -38,7 +38,7 @@ public class GameWorld {
 
     private Player player;
     private Enemy currentEnemy;
-    private Hero hero;
+    private Hero warrior;
     private Hero mage;
     private Hero gunner;
     private Timer.Task nextEnemyTimerTask;
@@ -72,10 +72,10 @@ public class GameWorld {
         worldTextContainer = new CompositeTextDraw();
         textDraw = new TextDraw(font);
         currentEnemy  = new Enemy();
-        hero = new Warrior(250,136);
+        warrior = new Warrior(250,136);
         mage = new Mage(170,136);
         gunner = new Gunner(90,136);
-        player.addHero(hero);
+        player.addHero(warrior);
         player.addHero(mage);
         player.addHero(gunner);
         BG bg = new BG();
@@ -83,15 +83,15 @@ public class GameWorld {
         CoinText coinText = new CoinText(player);
         StatusText statusText = new StatusText(player);
         HealthBar hpEnemy = new HealthBar(currentEnemy,258.5f,318f);
-        HealthBar hpHero = new HealthBar(hero,258.5f,110f);
-        HealthBar hpMage = new HealthBar(hero,258.5f,110f);
-        HealthBar hpGunner = new HealthBar(hero,258.5f,110f);
+        HealthBar hpHero = new HealthBar(warrior,258.5f,110f);
+        HealthBar hpMage = new HealthBar(warrior,258.5f,110f);
+        HealthBar hpGunner = new HealthBar(warrior,258.5f,110f);
         EnemyLabel enemyLabel = new EnemyLabel(currentEnemy);
         HeroLevelText heroLevelText = new HeroLevelText(player);
         UpgradeCostText upgradeCostText = new UpgradeCostText(player);
         gameObjectContainer.add(bg);
         gameObjectContainer.add(currentEnemy);
-        gameObjectContainer.add(hero);
+        gameObjectContainer.add(warrior);
         gameObjectContainer.add(gunner);
         gameObjectContainer.add(coin);
         gameObjectContainer.add(mage);
@@ -150,7 +150,7 @@ public class GameWorld {
         };
         int delay = 3;
         int interval = 3;
-        Timer.schedule(this.warriorTimer,delay,hero.getSpeed());
+        Timer.schedule(this.warriorTimer,delay, warrior.getSpeed());
         Timer.schedule(this.mageTimer,delay,mage.getSpeed());
         Timer.schedule(this.gunnerTimer,delay,gunner.getSpeed());
         Timer.schedule(this.enemyAttackTimer,delay,currentEnemy.getSpeed());
@@ -168,8 +168,8 @@ public class GameWorld {
     }
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()) {
-            hero.action(currentEnemy);
-            dmgTextPool.getDamageText(hero.getDmgText(),450,200);
+            warrior.action(currentEnemy);
+            dmgTextPool.getDamageText(warrior.getDmgText(),450,200);
         }
     }
     private void mageAttack(){
@@ -228,6 +228,9 @@ public class GameWorld {
     public void saveGame(){
         player.saveData();
         currentEnemy.saveData();
+        warrior.saveData();
+        mage.saveData();
+        gunner.saveData();
     }
 
     public Player getPlayer() {

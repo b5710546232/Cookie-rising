@@ -2,10 +2,10 @@ package com.group12.cookiesrising.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.State.GunnerAliveState;
 import com.group12.cookiesrising.State.HeroDeathState;
 import com.group12.cookiesrising.util.Assets;
+import com.group12.cookiesrising.util.SaveManager;
 
 /**
  * Created by nattapat on 5/29/2016 AD.
@@ -22,6 +22,7 @@ public class Gunner extends Hero {
         setAttackPoint(1);
         setSpeed(5);
         currentState = getAliveState();
+        loadData();
     }
 
     @Override
@@ -60,5 +61,18 @@ public class Gunner extends Hero {
     public void upgradeCrt() {
         if(getLevel()%5==0)
             setCriticalRate(getCriticalRate()+1);
+    }
+    private void loadData(){
+        if(SaveManager.loadDataValue("gunner",Warrior.class)==null)return;
+        Warrior temp = SaveManager.loadDataValue("gunner",Mage.class);
+        level = temp.getLevel();
+        attackPoint = temp.getAttackPoint();
+        maxhealthPoint = temp.getMaxhealthPoint();
+        speed = temp.getSpeed();
+
+
+    }
+    public void saveData(){
+        SaveManager.saveDataValue("gunner",this);
     }
 }
