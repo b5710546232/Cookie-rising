@@ -18,7 +18,7 @@ public class HeroDeathState implements State {
 
 
     @Override
-    public void attack(Hittable target) {
+    public void action(Hittable target) {
         //You're death
     }
 

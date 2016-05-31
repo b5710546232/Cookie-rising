@@ -17,7 +17,7 @@ public class WarriorAliveState implements State {
     }
 
     @Override
-    public void attack(Hittable target) {
+    public void action(Hittable target) {
         if(target.isAlive()) {
             h.setAnimation(Assets.anim_warrior_atk);
             target.takeDamage(h.getAttackPoint());
@@ -33,6 +33,10 @@ public class WarriorAliveState implements State {
             h.setHealthPoint(0);
             //h.setAnimation(Assets.anim_enemy01_die);
             changeState();
+        }
+
+        else if(h.getHealthPoint()>h.getMaxhealthPoint()){
+            h.setHealthPoint(h.getMaxhealthPoint());
         }
     }
 

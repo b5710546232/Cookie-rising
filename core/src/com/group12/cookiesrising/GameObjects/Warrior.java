@@ -23,6 +23,7 @@ public class Warrior extends Hero{
         setSpeed(10);
         setAnimation(Assets.anim_warrior_idle);
         currentState = getAliveState();
+
     }
 
     @Override
@@ -37,12 +38,6 @@ public class Warrior extends Hero{
     public void setAnimation(Animation anim){
         stateTime = 0;
         this.anim = anim;
-    }
-
-    @Override
-    public void attack(Hittable m) {
-        currentState.attack(m);
-
     }
 
     @Override

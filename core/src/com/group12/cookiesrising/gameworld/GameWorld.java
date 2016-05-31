@@ -83,7 +83,9 @@ public class GameWorld {
         CoinText coinText = new CoinText(player);
         StatusText statusText = new StatusText(player);
         HealthBar hpEnemy = new HealthBar(currentEnemy,258.5f,318f);
-        HealthBar hpHero = new HealthBar(player,258.5f,110f);
+        HealthBar hpHero = new HealthBar(hero,258.5f,110f);
+        HealthBar hpMage = new HealthBar(hero,258.5f,110f);
+        HealthBar hpGunner = new HealthBar(hero,258.5f,110f);
         EnemyLabel enemyLabel = new EnemyLabel(currentEnemy);
         HeroLevelText heroLevelText = new HeroLevelText(player);
         UpgradeCostText upgradeCostText = new UpgradeCostText(player);
@@ -95,6 +97,8 @@ public class GameWorld {
         gameObjectContainer.add(mage);
         gameObjectContainer.add(hpEnemy);
         gameObjectContainer.add(hpHero);
+        gameObjectContainer.add(hpMage);
+        gameObjectContainer.add(hpGunner);
         dmgTextPool = new TextPool(damgeTextFactory,10);
         criTextPool = new TextPool(criticalDamageTextFactory,3);
         worldContainer.add(gameObjectContainer);
@@ -117,7 +121,7 @@ public class GameWorld {
                 Gdx.app.log(TAG," next enemy");
             }
         };
-        // test auto attack.
+        // test auto action.
         this.warriorTimer = new Timer.Task(){
 
             @Override
@@ -155,26 +159,28 @@ public class GameWorld {
 
     private void enemyAttack(){/*
         if (currentEnemy.isAlive())
-            currentEnemy.attack(player);
+            if (!currentEnemy.isHited()){
+                currentEnemy.action(player);
+            }
         else {
             enemyAttackTimer.cancel();
         }*/
     }
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()) {
-            hero.attack(currentEnemy);
+            hero.action(currentEnemy);
             dmgTextPool.getDamageText(hero.getDmgText(),450,200);
         }
     }
     private void mageAttack(){
         if(currentEnemy != null &&currentEnemy.isAlive()) {
-            mage.attack(currentEnemy);
+            mage.action(currentEnemy);
             dmgTextPool.getDamageText(mage.getDmgText(),450,200);
         }
     }
     private void gunnerAttack(){
         if(currentEnemy != null &&currentEnemy.isAlive()) {
-            gunner.attack(currentEnemy);
+            gunner.action(currentEnemy);
             dmgTextPool.getDamageText(gunner.getDmgText(),450,200);
         }
     }
@@ -192,7 +198,7 @@ public class GameWorld {
                 dmgTextPool.getDamageText(this.player.getDamageText(), 450, 200);
             }
 
-            Gdx.app.log(TAG," player attack to monster");
+            Gdx.app.log(TAG," player action to monster");
         }
     }
 

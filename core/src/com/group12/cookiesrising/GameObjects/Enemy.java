@@ -96,8 +96,8 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         currentState.changeState();
     }
 
-    public void attack(Hittable h){
-        currentState.attack(h);
+    public void action(Hittable h){
+        currentState.action(h);
     }
 
     public void respawn(){
@@ -170,6 +170,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         this.speed = speed;
     }
 
+<<<<<<< HEAD
     private void loadData(){
         if(SaveManager.loadDataValue("enemy_money",double.class) != null){
             money = SaveManager.loadDataValue("enemy_money",double.class);
@@ -194,6 +195,11 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
 
     }
 
+=======
+    public boolean isHited() {
+        return isHited;
+    }
+>>>>>>> 36f531f529daee2ab8efe7d1df766d63354db613
     public void saveData(){
         SaveManager.saveDataValue("enemy_money",getMoney());
         SaveManager.saveDataValue("enemy_attackpoint",getAttackPoint());
