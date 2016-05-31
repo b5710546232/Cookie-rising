@@ -14,6 +14,7 @@ import com.group12.cookiesrising.gameobjects.Gunner;
 import com.group12.cookiesrising.gameobjects.HealthBar;
 import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Mage;
+import com.group12.cookiesrising.gameobjects.Party;
 import com.group12.cookiesrising.gameobjects.Warrior;
 import com.group12.cookiesrising.gametext.AbstractGameTextFactory;
 import com.group12.cookiesrising.gametext.CoinText;
@@ -173,11 +174,21 @@ public class GameWorld {
         }
     }
     private void mageAttack(){
-        if(currentEnemy != null &&currentEnemy.isAlive()) {
-            mage.action(currentEnemy);
-            dmgTextPool.getDamageText(mage.getDmgText(),450,200);
+        Party p = player.getParty();
+        Hero h = p.getHeroList().get(0);
+        for(int i = 1; i<p.getHeroList().size();i++){
+            if( (calPerHP(h) < calPerHP( p.getHeroList().get(i) ) ) && p.getHeroList().get(i).isAlive() ){
+                h = p.getHeroList().get(i);
+            }
         }
+        if(h.isAlive())
+            mage.action(h);
     }
+
+    private double calPerHP(Hero h){
+        return (h.getMaxhealthPoint()-h.getHealthPoint())/h.getMaxhealthPoint()*100;
+    }
+
     private void gunnerAttack(){
         if(currentEnemy != null &&currentEnemy.isAlive()) {
             gunner.action(currentEnemy);

@@ -5,7 +5,7 @@ package com.group12.cookiesrising.gameobjects;
  */
 public class EnemyUpdater {
     private Enemy e;
-    private final int CYCLE = 2;
+    private final int CYCLE = 1;
     private int currentCycle = 1;
 
     public EnemyUpdater(Enemy e) {
@@ -16,7 +16,8 @@ public class EnemyUpdater {
         if(currentCycle%CYCLE ==0){
             e.setMaxHealthPoint(e.getMaxHp()+10);
             e.setMoney(e.getMoney()+10);
-            e.setAttackPoint(e.getAttackPoint()+10);
+            //e.setAttackPoint(e.getAttackPoint()+1);
+            e.setAttackPoint(1);
             e.setSpeed(e.getSpeed()*0.95f);
             currentCycle =0;
         }
