@@ -41,7 +41,6 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
         //will load later;
         loadData();
         party = new Party();
-
         healPoint = 1;
         criticalRate = 1;
 
@@ -193,7 +192,7 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
     }
 
     public void loadData(){
-        if(SaveManager.loadDataValue("money",int.class) != null){
+        if(SaveManager.loadDataValue("money",double.class) != null){
             money = SaveManager.loadDataValue("money",int.class);
         } else{
             money = 0;

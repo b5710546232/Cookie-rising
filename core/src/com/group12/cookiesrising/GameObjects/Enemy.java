@@ -8,6 +8,7 @@ import com.group12.cookiesrising.State.AliveState;
 import com.group12.cookiesrising.State.DeathState;
 import com.group12.cookiesrising.State.State;
 import com.group12.cookiesrising.util.Assets;
+import com.group12.cookiesrising.util.SaveManager;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -68,6 +69,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         attackPoint = 1;
         money = 100;
         speed = 1;
+        loadData();
         init();
     }
 
@@ -140,8 +142,9 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
 
     @Override
     public void draw(SpriteBatch batch) {
-        if(isActive)
-            batch.draw(anim.getKeyFrame(stateTime),400,136);
+        if(isActive) {
+            batch.draw(anim.getKeyFrame(stateTime), 400, 136);
+        }
     }
 
     @Override
@@ -171,10 +174,39 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         this.speed = speed;
     }
 
+    private void loadData(){
+        if(SaveManager.loadDataValue("enemy_money",double.class) != null){
+            money = SaveManager.loadDataValue("enemy_money",double.class);
+        } else{
+            money = 100;
+        }
+        if(SaveManager.loadDataValue("enemy_attackpoint",double.class)!=null){
+            attackPoint = SaveManager.loadDataValue("enemy_attackpoint",double.class);
+        } else{
+            attackPoint = 1;
+        }
+        if(SaveManager.loadDataValue("enemy_healpoint",double.class)!=null){
+            healthPoint = SaveManager.loadDataValue("enemy_healpoint",double.class);
+        } else{
+            healthPoint = 10;
+        }
+        if(SaveManager.loadDataValue("enemy_speed",float.class)!=null){
+            speed = SaveManager.loadDataValue("enemy_speed",float.class);
+        } else{
+            speed = 5;
+        }
+
+    }
+
     public boolean isHited() {
         return isHited;
     }
     public void saveData(){
+        SaveManager.saveDataValue("enemy_money",getMoney());
+        SaveManager.saveDataValue("enemy_attackpoint",getAttackPoint());
+        SaveManager.saveDataValue("enemy_healpoint",getMaxHp());
+        SaveManager.saveDataValue("enemy_speed",getSpeed());
+        SaveManager.saveDataValue("enemy_name",getName());
 
     }
 }

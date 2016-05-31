@@ -19,7 +19,7 @@ public class MageAliveState implements State{
     public void action(Hittable target) {
         if(target.isAlive()) {
             h.setAnimation(Assets.anim_mage_heal);
-            target.takeDamage(h.getAttackPoint());
+            target.takeDamage( -h.getAttackPoint());
         }
     }
 
@@ -32,6 +32,10 @@ public class MageAliveState implements State{
             h.setHealthPoint(0);
             //h.setAnimation(Assets.anim_enemy01_die);
             changeState();
+        }
+
+        else if(h.getHealthPoint()>h.getMaxhealthPoint()){
+            h.setHealthPoint(h.getMaxhealthPoint());
         }
     }
 

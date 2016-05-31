@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.State.GunnerAliveState;
 import com.group12.cookiesrising.State.HeroDeathState;
-import com.group12.cookiesrising.State.MageAliveState;
 import com.group12.cookiesrising.util.Assets;
 
 /**

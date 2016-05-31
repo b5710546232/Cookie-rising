@@ -3,7 +3,6 @@ package com.group12.cookiesrising.gameobjects;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.Hittable;
-import com.group12.cookiesrising.State.AliveState;
 import com.group12.cookiesrising.State.HeroDeathState;
 import com.group12.cookiesrising.State.WarriorAliveState;
 import com.group12.cookiesrising.util.Assets;

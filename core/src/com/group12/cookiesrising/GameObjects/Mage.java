@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.State.HeroDeathState;
 import com.group12.cookiesrising.State.MageAliveState;
-import com.group12.cookiesrising.State.WarriorAliveState;
 import com.group12.cookiesrising.util.Assets;
+import com.group12.cookiesrising.util.SaveManager;
 
 /**
  * Created by nattapat on 5/29/2016 AD.
@@ -60,5 +60,9 @@ public class Mage extends Hero {
     @Override
     public void draw(SpriteBatch batch) {
         batch.draw(anim.getKeyFrame(stateTime),position.x,position.y);
+    }
+
+    public void saveData(){
+//        SaveManager.saveDataValue("mage_level",getAttackPoint());
     }
 }
