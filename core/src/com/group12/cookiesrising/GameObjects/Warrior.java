@@ -1,6 +1,5 @@
 package com.group12.cookiesrising.gameobjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.State.HeroDeathState;
@@ -67,16 +66,38 @@ public class Warrior extends Hero{
             setCriticalRate(getCriticalRate()+1);
     }
     private void loadData(){
-        if(SaveManager.loadDataValue("warrior",Warrior.class)==null)return;
-        Warrior temp = SaveManager.loadDataValue("warrior",Mage.class);
-        level = temp.getLevel();
-        attackPoint = temp.getAttackPoint();
-        maxhealthPoint = temp.getMaxhealthPoint();
-        speed = temp.getSpeed();
-
+        if(SaveManager.loadDataValue("warrior_level",int.class) != null){
+            level = SaveManager.loadDataValue("warrior_level",int.class);
+        } else{
+            level = 1;
+        }
+        if(SaveManager.loadDataValue("warrior_attackpoint",double.class)!=null){
+            attackPoint = SaveManager.loadDataValue("warrior_attackpoint",double.class);
+        } else{
+            attackPoint = 1;
+        }
+        if(SaveManager.loadDataValue("warrior_criticalrate",double.class)!=null){
+            criticalRate = SaveManager.loadDataValue("warrior_criticalrate",double.class);
+        } else{
+            criticalRate = 1;
+        }
+        if(SaveManager.loadDataValue("warrior_speed",double.class)!=null){
+            speed = SaveManager.loadDataValue("warrior_speed",double.class);
+        } else{
+            speed = 5;
+        }
+        if(SaveManager.loadDataValue("warrior_healpoint",double.class)!=null){
+            healthPoint = SaveManager.loadDataValue("warrior_healpoint",double.class);
+        } else{
+            healthPoint = 10;
+        }
 
     }
     public void saveData(){
-        SaveManager.saveDataValue("warrior",this);
+        SaveManager.saveDataValue("warrior_level",level);
+        SaveManager.saveDataValue("warrior_attackpoint",getAttackPoint());
+        SaveManager.saveDataValue("warrior_criticalrate",getCriticalRate());
+        SaveManager.saveDataValue("warrior_healpoint",maxhealthPoint);
+        SaveManager.saveDataValue("warrior_speed",speed);
     }
 }

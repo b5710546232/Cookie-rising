@@ -285,10 +285,10 @@ public class GameWorld {
 
     public void saveGame(){
         player.saveData();
-        currentEnemy.saveData();
+//        currentEnemy.saveData();
         warrior.saveData();
-        mage.saveData();
-        gunner.saveData();
+//        mage.saveData();
+//        gunner.saveData();
     }
 
     public Player getPlayer() {

@@ -52,6 +52,7 @@ public class GamePlayScreen extends ScreenAdapter {
     public void pause() {
         super.pause();
         world.saveGame();
+
     }
 
     private void testInput() {
@@ -133,7 +134,6 @@ public class GamePlayScreen extends ScreenAdapter {
     public void dispose() {
         //dispose
         super.dispose();
-        world.saveGame();
         Assets.instance.dispose();
         renderer.dispose();
         stage.dispose();
