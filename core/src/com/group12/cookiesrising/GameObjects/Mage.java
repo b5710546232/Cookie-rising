@@ -43,7 +43,8 @@ public class Mage extends Hero {
     @Override
     public void upgradeAtk() {
         setMaxhealthPoint(getMaxhealthPoint()+1);
-        setHealthPoint(getHealthPoint()+1);
+        if(isAlive())
+            setHealthPoint(getHealthPoint()+1);
         setAttackPoint(getAttackPoint()*1.2);
     }
 
