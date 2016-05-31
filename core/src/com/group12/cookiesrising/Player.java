@@ -41,7 +41,7 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
         money = 0;
         party = new Party();
         healPoint = 1;
-        criticalRate = 50;
+        criticalRate = 1;
         dmgText = attackPoint+"";
         rng = new RandomGenerator(CRI_RATE_MIN,CRI_RATE_MAX);
     }
@@ -169,7 +169,7 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
     public void takeDamage(double dmg) {
         int target = (int)Math.floor(Math.random()*(party.getHeroList().size()+1));
         if (target==4) {
-            party.takeDamage(dmg);
+            party.takeDamage(dmg/3);
         }else {
             Gdx.app.log(getClass().getName(),"random = "+target);
             party.getHeroList().get(target).takeDamage(dmg);
