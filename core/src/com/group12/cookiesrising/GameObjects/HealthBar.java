@@ -9,11 +9,12 @@ import com.group12.cookiesrising.util.Assets;
  */
 public class HealthBar extends AbstractGameObject {
     private Health health;
-    private float x,y;
-    public HealthBar(Health health,float x,float y){
+    private float x,y,ratio;
+    public HealthBar(Health health,float x,float y,float ratio){
         this.health = health;
         this.x =x;
         this.y=y;
+        this.ratio = ratio;
     }
     @Override
     public void update(float delta) {
@@ -22,7 +23,7 @@ public class HealthBar extends AbstractGameObject {
 
     @Override
     public void draw(SpriteBatch batch) {
-        batch.draw(Assets.hp_bg,x,y);
-        batch.draw(Assets.hp_knob,x+5,y+5,(float)(113*(health.getHp()/health.getMaxHp())),14);
+        batch.draw(Assets.hp_bg,x,y,123/ratio,24/ratio);
+        batch.draw(Assets.hp_knob,x+5/ratio,y+5/ratio,(float)(113*(health.getHp()/health.getMaxHp()))/ratio,14/ratio);
     }
 }

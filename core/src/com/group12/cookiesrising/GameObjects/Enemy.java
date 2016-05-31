@@ -67,7 +67,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         maxHealthPoint = 10;
         attackPoint = 1;
         money = 100;
-        speed = 5;
+        speed = 1;
         init();
     }
 
@@ -98,7 +98,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         currentState.changeState();
     }
 
-    public void attack(Hittable h){
+    public void action(Hittable h){
         currentState.action(h);
     }
 
