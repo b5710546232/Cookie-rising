@@ -187,7 +187,7 @@ public class GameWorld {
                 currentEnemy.action(player);
     }
     private void warriorAttack() {
-        if(currentEnemy != null &&currentEnemy.isAlive()) {
+        if(currentEnemy != null &&currentEnemy.isAlive()&&warrior.isAlive()) {
             warrior.action(currentEnemy);
             dmgTextPool.getDamageText(warrior.getDmgText(),450,200);
         }
@@ -209,7 +209,7 @@ public class GameWorld {
     }
 
     private void gunnerAttack(){
-        if(currentEnemy != null &&currentEnemy.isAlive()) {
+        if(currentEnemy != null &&currentEnemy.isAlive()&&gunner.isAlive()) {
             gunner.action(currentEnemy);
             dmgTextPool.getDamageText(gunner.getDmgText(),450,200);
         }
@@ -237,6 +237,10 @@ public class GameWorld {
 
             Gdx.app.log(TAG," player action to monster");
         }
+    }
+
+    public void playerHeal(){
+      
     }
 
     public void nextEnemy(){
