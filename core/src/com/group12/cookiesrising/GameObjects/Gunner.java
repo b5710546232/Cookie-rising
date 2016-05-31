@@ -2,6 +2,7 @@ package com.group12.cookiesrising.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.util.Assets;
 
 /**
@@ -31,7 +32,7 @@ public class Gunner extends Hero {
     }
 
     @Override
-    public void attack(Enemy m) {
+    public void attack(Hittable m) {
         if(m.isAlive()) {
             setAnimation(Assets.anim_gunner_atk);
             m.takeDamage(this.attackPoint);

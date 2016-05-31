@@ -169,14 +169,18 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
     public void takeDamage(double dmg) {
         int target = (int)Math.floor(Math.random()*(party.getHeroList().size()+1));
         if (target==4) {
-            for (Hero h: party.getHeroList() ){
-                h.takeDamage(dmg);
-            }
+            party.takeDamage(dmg);
         }else {
             Gdx.app.log(getClass().getName(),"random = "+target);
             party.getHeroList().get(target).takeDamage(dmg);
         }
     }
+
+    @Override
+    public boolean isAlive() {
+        return false;
+    }
+
     public void upgradeHero(int hero_num){
         int cost = party.getHeroList().get(hero_num).getUpgradeCost(0);
         if (cost<=money){
