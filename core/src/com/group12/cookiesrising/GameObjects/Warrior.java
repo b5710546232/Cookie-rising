@@ -20,6 +20,8 @@ public class Warrior extends Hero{
         super(x, y);
         setAliveState(new WarriorAliveState(this));
         setDeathState(new HeroDeathState(this));
+        setAttackPoint(2);
+        setSpeed(10);
         setAnimation(Assets.anim_warrior_idle);
         currentState = getAliveState();
     }
@@ -47,5 +49,24 @@ public class Warrior extends Hero{
     @Override
     public void draw(SpriteBatch batch) {
         batch.draw(anim.getKeyFrame(stateTime),position.x,position.y);
+    }
+
+    @Override
+    public void upgradeAtk() {
+        setMaxhealthPoint(getMaxhealthPoint()+2);
+        setHealthPoint(getHealthPoint()+2);
+        setAttackPoint(getAttackPoint()*1.2);
+    }
+
+    @Override
+    public void upgradeHeal() {
+        if(getLevel()%10==0)
+            setSpeed(getSpeed()-0.2f);
+    }
+
+    @Override
+    public void upgradeCrt() {
+        if(getLevel()%10==0)
+            setCriticalRate(getCriticalRate()+1);
     }
 }

@@ -20,6 +20,8 @@ public class Mage extends Hero {
         setAnimation(Assets.anim_mage_idle);
         setAliveState(new MageAliveState(this));
         setDeathState(new HeroDeathState(this));
+        setAttackPoint(1.5);
+        setSpeed(7.5F);
         currentState = getAliveState();
     }
 
@@ -41,6 +43,24 @@ public class Mage extends Hero {
     public void attack(Hittable m) {
         currentState.attack(m);
 
+    }
+
+    @Override
+    public void upgradeAtk() {
+        setMaxhealthPoint(getMaxhealthPoint()+1);
+        setHealthPoint(getHealthPoint()+1);
+        setAttackPoint(getAttackPoint()*1.2);
+    }
+
+    @Override
+    public void upgradeHeal() {
+        if(getLevel()%10==0)
+        setSpeed(getSpeed()-0.1f);
+    }
+
+    @Override
+    public void upgradeCrt() {
+//never
     }
 
     @Override

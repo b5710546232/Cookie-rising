@@ -153,12 +153,12 @@ public class GameWorld {
         Timer.instance().start();
     }
 
-    private void enemyAttack(){
+    private void enemyAttack(){/*
         if (currentEnemy.isAlive())
             currentEnemy.attack(player);
         else {
             enemyAttackTimer.cancel();
-        }
+        }*/
     }
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()) {
