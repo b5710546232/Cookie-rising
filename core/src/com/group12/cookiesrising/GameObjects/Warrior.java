@@ -74,7 +74,7 @@ public class Warrior extends Hero{
         if(SaveManager.loadDataValue("warrior_attackpoint",double.class)!=null){
             attackPoint = SaveManager.loadDataValue("warrior_attackpoint",double.class);
         } else{
-            attackPoint = 1;
+            attackPoint = 2;
         }
         if(SaveManager.loadDataValue("warrior_criticalrate",double.class)!=null){
             criticalRate = SaveManager.loadDataValue("warrior_criticalrate",double.class);

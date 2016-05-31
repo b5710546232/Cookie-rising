@@ -189,9 +189,9 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         if(SaveManager.loadDataValue("enemy_speed",float.class)!=null){
             speed = SaveManager.loadDataValue("enemy_speed",float.class);
         } else{
-            speed = 0.5f;
+            speed = 3f;
         }
-
+        healthPoint = maxHealthPoint;
     }
 
     public boolean isHited() {

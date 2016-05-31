@@ -19,7 +19,11 @@ public class GunnerAliveState implements State{
     public void action(Hittable target) {
         if(target.isAlive()) {
             h.setAnimation(Assets.anim_gunner_atk);
-            target.takeDamage(h.getAttackPoint());
+            if (h.isCritical()){
+                target.takeDamage(h.getAttackPoint()*2);
+            }else {
+                target.takeDamage(h.getAttackPoint());
+            }
         }
     }
 

@@ -52,8 +52,6 @@ public class GameWorld {
     private AbstractGameTextFactory damgeTextFactory;
     private AbstractGameTextFactory criticalDamageTextFactory;
     private AbstractGameTextFactory healTextFactory;
-    private StatusText statusText;
-    private CoinText coinText;
     private TextDraw textDraw;
     private boolean lock = false;
 
@@ -209,7 +207,14 @@ public class GameWorld {
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()&&warrior.isAlive()) {
             warrior.action(currentEnemy);
-            dmgTextPool.getDamageText(warrior.getDmgText(),450,200);
+            if(this.player.isCritical()){
+                // criText
+                criTextPool.getDamageText(this.warrior.getDmgText(),448,200);
+            }
+            else {
+                // normalText
+                dmgTextPool.getDamageText(this.warrior.getDmgText(), 450, 200);
+            }
         }
     }
     private void mageAttack(){
@@ -233,7 +238,14 @@ public class GameWorld {
     private void gunnerAttack(){
         if(currentEnemy != null &&currentEnemy.isAlive()&&gunner.isAlive()) {
             gunner.action(currentEnemy);
-            dmgTextPool.getDamageText(gunner.getDmgText(),450,200);
+            if(this.player.isCritical()){
+                // criText
+                criTextPool.getDamageText(this.gunner.getDmgText(),448,200);
+            }
+            else {
+                // normalText
+                dmgTextPool.getDamageText(this.gunner.getDmgText(), 450, 200);
+            }
         }
     }
 
@@ -318,10 +330,10 @@ public class GameWorld {
 
     public void saveGame(){
         player.saveData();
-//        currentEnemy.saveData();
+        currentEnemy.saveData();
         warrior.saveData();
-//        mage.saveData();
-//        gunner.saveData();
+        mage.saveData();
+        gunner.saveData();
     }
 
     public Player getPlayer() {

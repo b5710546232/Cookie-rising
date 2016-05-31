@@ -20,7 +20,7 @@ public class Gunner extends Hero {
         setAliveState(new GunnerAliveState(this));
         setDeathState(new HeroDeathState(this));
         setAttackPoint(1);
-        setSpeed(5);
+        setSpeed(3);
         currentState = getAliveState();
         loadData();
     }
@@ -64,17 +64,47 @@ public class Gunner extends Hero {
             setCriticalRate(getCriticalRate()+1);
     }
     private void loadData(){
-        if(SaveManager.loadDataValue("gunner",Warrior.class)==null)return;
-        Warrior temp = SaveManager.loadDataValue("gunner",Mage.class);
-        level = temp.getLevel();
-        attackPoint = temp.getAttackPoint();
-        maxhealthPoint = temp.getMaxhealthPoint();
-        speed = temp.getSpeed();
+        if(SaveManager.loadDataValue("gunner_level",int.class) != null){
+            level = SaveManager.loadDataValue("gunner_level",int.class);
+        } else{
+            level = 1;
+        }
+        if(SaveManager.loadDataValue("gunner_attackpoint",double.class)!=null){
+            attackPoint = SaveManager.loadDataValue("gunner_attackpoint",double.class);
+        } else{
+            attackPoint = 1;
+        }
+        if(SaveManager.loadDataValue("gunner_criticalrate",double.class)!=null){
+            criticalRate = SaveManager.loadDataValue("gunner_criticalrate",double.class);
+        } else{
+            criticalRate = 1;
+        }
+        if(SaveManager.loadDataValue("gunner_speed",double.class)!=null){
+            speed = SaveManager.loadDataValue("gunner_speed",double.class);
+        } else{
+            speed = 3;
+        }
+        if(SaveManager.loadDataValue("gunner_maxhealpoint",double.class)!=null){
+            maxhealthPoint = SaveManager.loadDataValue("gunner_maxhealpoint",double.class);
+        } else{
+            maxhealthPoint = 10;
+        }
+//        if(SaveManager.loadDataValue("gunner",Warrior.class)==null)return;
+//        Warrior temp = SaveManager.loadDataValue("gunner",Mage.class);
+//        level = temp.getLevel();
+//        attackPoint = temp.getAttackPoint();
+//        maxhealthPoint = temp.getMaxhealthPoint();
+//        speed = temp.getSpeed();
 
 
     }
     public void saveData(){
-        SaveManager.saveDataValue("gunner",this);
+        SaveManager.saveDataValue("gunner_level",level);
+        SaveManager.saveDataValue("gunner_attackpoint",getAttackPoint());
+        SaveManager.saveDataValue("gunner_criticalrate",getCriticalRate());
+        SaveManager.saveDataValue("gunner_maxhealpoint",maxhealthPoint);
+        SaveManager.saveDataValue("gunner_speed",speed);
+//        SaveManager.saveDataValue("gunner",this);
     }
 
     @Override
