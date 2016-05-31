@@ -100,4 +100,10 @@ public class Warrior extends Hero{
         SaveManager.saveDataValue("warrior_maxhealpoint",maxhealthPoint);
         SaveManager.saveDataValue("warrior_speed",speed);
     }
+
+    @Override
+    public void init() {
+        super.init();
+        setAnimation(Assets.anim_warrior_idle);
+    }
 }

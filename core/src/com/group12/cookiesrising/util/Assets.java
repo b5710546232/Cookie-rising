@@ -149,6 +149,7 @@ public class Assets implements Disposable{
         anim_gunner_atk.setPlayMode(Animation.PlayMode.NORMAL);
 
         TextureRegion[] gunner_reg_faint = new TextureRegion[1];
+        gunner_reg_faint[0] = hero_sheet_textureRegions.get(12);
         anim_gunner_faint = new Animation(1f,gunner_reg_faint);
         anim_gunner_faint.setPlayMode(Animation.PlayMode.LOOP);
     }
@@ -168,6 +169,7 @@ public class Assets implements Disposable{
         anim_mage_heal.setPlayMode(Animation.PlayMode.NORMAL);
 
         TextureRegion[] mage_reg_faint = new TextureRegion[1];
+        mage_reg_faint[0] = hero_sheet_textureRegions.get(14);
         anim_mage_faint = new Animation(1f,mage_reg_faint);
         anim_mage_faint.setPlayMode(Animation.PlayMode.LOOP);
     }
@@ -187,6 +189,7 @@ public class Assets implements Disposable{
         anim_warrior_atk.setPlayMode(Animation.PlayMode.NORMAL);
 
         TextureRegion[] warrior_reg_faint = new TextureRegion[1];
+        warrior_reg_faint[0] = hero_sheet_textureRegions.get(13);
         anim_warrior_faint = new Animation(1f,warrior_reg_faint);
         anim_warrior_faint.setPlayMode(Animation.PlayMode.LOOP);
 
@@ -207,7 +210,7 @@ public class Assets implements Disposable{
         hero_sheet = new Texture(Gdx.files.internal("hero_sprite_sheet.png"));
         int row = 4;
         int size = 64;
-        int col = 3;
+        int col = 4;
         int number = 15;
         hero_sheet_textureRegions = createTextureRegionsArray(size,row,col,number,hero_sheet);
     }

@@ -32,6 +32,7 @@ public class MageAliveState implements State{
         if(h.getHealthPoint()<=0){
             h.setHealthPoint(0);
             h.setWaitForSpawn(true);
+            h.setAnimation(Assets.anim_mage_faint);
             changeState();
         }
 

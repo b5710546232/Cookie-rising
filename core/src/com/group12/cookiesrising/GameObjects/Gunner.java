@@ -76,4 +76,10 @@ public class Gunner extends Hero {
     public void saveData(){
         SaveManager.saveDataValue("gunner",this);
     }
+
+    @Override
+    public void init() {
+        super.init();
+        setAnimation(Assets.anim_gunner_idle);
+    }
 }

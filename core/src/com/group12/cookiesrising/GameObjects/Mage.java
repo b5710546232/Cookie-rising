@@ -79,4 +79,9 @@ public class Mage extends Hero {
         SaveManager.saveDataValue("mage",this);
     }
 
+    @Override
+    public void init() {
+        setAnimation(Assets.anim_mage_idle);
+        super.init();
+    }
 }

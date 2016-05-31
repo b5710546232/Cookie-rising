@@ -33,6 +33,7 @@ public class GunnerAliveState implements State{
             h.setWaitForSpawn(true);
             h.setHealthPoint(0);
             //h.setAnimation(Assets.anim_enemy01_die);
+            h.setAnimation(Assets.anim_gunner_faint);
             changeState();
         }
 
