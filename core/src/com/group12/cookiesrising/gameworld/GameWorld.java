@@ -84,8 +84,8 @@ public class GameWorld {
         StatusText statusText = new StatusText(player);
         HealthBar hpEnemy = new HealthBar(currentEnemy,400,270,1);
         HealthBar hpHero = new HealthBar(hero,250,200,2);
-        HealthBar hpMage = new HealthBar(hero,170,200,2);
-        HealthBar hpGunner = new HealthBar(hero,90,200,2);
+        HealthBar hpMage = new HealthBar(mage,170,200,2);
+        HealthBar hpGunner = new HealthBar(gunner,90,200,2);
         EnemyLabel enemyLabel = new EnemyLabel(currentEnemy);
         HeroLevelText heroLevelText = new HeroLevelText(player);
         UpgradeCostText upgradeCostText = new UpgradeCostText(player);

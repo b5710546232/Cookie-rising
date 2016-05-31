@@ -68,7 +68,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         maxHealthPoint = 10;
         attackPoint = 1;
         money = 100;
-        speed = 1;
+        speed = 0.5f;
         loadData();
         init();
     }

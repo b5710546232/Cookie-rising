@@ -1,5 +1,6 @@
 package com.group12.cookiesrising.State;
 
+import com.badlogic.gdx.Gdx;
 import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.gameobjects.Mage;
 import com.group12.cookiesrising.util.Assets;
@@ -19,12 +20,13 @@ public class MageAliveState implements State{
     public void action(Hittable target) {
         if(target.isAlive()) {
             h.setAnimation(Assets.anim_mage_heal);
-            target.takeDamage( -h.getAttackPoint());
+            target.takeDamage(-h.getAttackPoint());
         }
     }
 
     @Override
     public void takeDamage(double dmg) {
+        Gdx.app.log(getClass().getName(),"Take damage "+dmg+" HP = "+h.getHp());
         h.setHealthPoint(h.getHealthPoint()-dmg);
         //h.hitted();
         //h.setAnimation(Assets.anim_enemy01_hitted);

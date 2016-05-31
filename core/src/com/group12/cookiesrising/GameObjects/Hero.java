@@ -136,19 +136,13 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
     }
 
     @Override
-    public void upgradeAtk() {
-
-    }
+    public abstract void upgradeAtk();
 
     @Override
-    public void upgradeHeal() {
-
-    }
+    public abstract void upgradeHeal();
 
     @Override
-    public void upgradeCrt() {
-
-    }
+    public abstract void upgradeCrt();
 
     @Override
     public int getUpgradeCost(int field) {

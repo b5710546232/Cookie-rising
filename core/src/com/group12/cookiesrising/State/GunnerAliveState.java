@@ -1,5 +1,6 @@
 package com.group12.cookiesrising.State;
 
+import com.badlogic.gdx.Gdx;
 import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.gameobjects.Gunner;
 import com.group12.cookiesrising.util.Assets;
@@ -24,6 +25,7 @@ public class GunnerAliveState implements State{
 
     @Override
     public void takeDamage(double dmg) {
+        Gdx.app.log(getClass().getName(),"Take damage "+dmg+" HP = "+h.getHp());
         h.setHealthPoint(h.getHealthPoint()-dmg);
         //h.hitted();
         //h.setAnimation(Assets.anim_enemy01_hitted);
