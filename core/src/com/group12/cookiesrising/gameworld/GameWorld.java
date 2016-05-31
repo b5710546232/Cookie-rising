@@ -240,7 +240,15 @@ public class GameWorld {
     }
 
     public void playerHeal(){
-      
+        Party p = player.getParty();
+        Hero h = p.getHeroList().get(0);
+        for(int i = 1; i<p.getHeroList().size();i++){
+            if( (calPerHP(h) < calPerHP( p.getHeroList().get(i) ) ) && p.getHeroList().get(i).isAlive() ){
+                h = p.getHeroList().get(i);
+            }
+        }
+        if(h.isAlive())
+            player.heal(h);
     }
 
     public void nextEnemy(){

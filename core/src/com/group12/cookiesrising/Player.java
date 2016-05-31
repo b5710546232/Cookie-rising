@@ -8,6 +8,7 @@ import com.group12.cookiesrising.Listener.HeroButtonListener;
 import com.group12.cookiesrising.gameobjects.Enemy;
 import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Party;
+import com.group12.cookiesrising.util.Assets;
 import com.group12.cookiesrising.util.RandomGenerator;
 import com.group12.cookiesrising.util.SaveManager;
 
@@ -219,5 +220,7 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
         SaveManager.saveDataValue("player_criticalrate",getCriticalRate());
         SaveManager.saveDataValue("player_healpoint",getHealPoint());
     }
-
+    public void heal(Hero h){
+        h.takeDamage(-getHealPoint());
+    }
 }
