@@ -32,6 +32,7 @@ public class WarriorAliveState implements State {
         //h.hitted();
         //h.setAnimation(Assets.anim_enemy01_hitted);
         if(h.getHealthPoint()<=0){
+            h.setWaitForSpawn(true);
             h.setHealthPoint(0);
             //h.setAnimation(Assets.anim_enemy01_die);
             changeState();

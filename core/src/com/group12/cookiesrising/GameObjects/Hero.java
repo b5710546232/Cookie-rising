@@ -95,7 +95,22 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
         this.init();
         this.healthPoint = 10.0D;
         this.maxhealthPoint = 10D;
+        waitForSpawn = false;
         speed = 5;
+    }
+
+    public void setWaitForSpawn(boolean waitForSpawn) {
+        this.waitForSpawn = waitForSpawn;
+    }
+
+    boolean waitForSpawn;
+
+    public boolean waitForSpawn(){
+        if(waitForSpawn){
+            waitForSpawn = false;
+            return true;
+        }
+        return waitForSpawn;
     }
 
     @Override
@@ -147,6 +162,10 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
     @Override
     public int getUpgradeCost(int field) {
         return (int)(100*Math.pow(1.2,level-1));
+    }
+
+    public void respawn(){
+        currentState.respawn();
     }
 
     public void upgrade(){

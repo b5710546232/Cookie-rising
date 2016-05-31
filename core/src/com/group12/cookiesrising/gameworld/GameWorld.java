@@ -44,7 +44,7 @@ public class GameWorld {
     private Hero gunner;
     private Timer.Task nextEnemyTimerTask;
     private float waitTime = 1f;
-    private Timer.Task warriorTimer,mageTimer,gunnerTimer;
+    private Timer.Task warriorTimer,mageTimer,gunnerTimer,warriorSpawn,mageSpawn,gunnerSpawn;
     private Timer.Task enemyAttackTimer;
     private TextPool dmgTextPool;
     private TextPool criTextPool;
@@ -134,7 +134,6 @@ public class GameWorld {
         this.enemyAttackTimer = new Timer.Task() {
             @Override
             public void run() {
-                Gdx.app.log(TAG,enemyAttackTimer.getExecuteTimeMillis()+"");
                 enemyAttack();
             }
         };
@@ -150,23 +149,42 @@ public class GameWorld {
                 gunnerAttack();
             }
         };
+        this.warriorSpawn = new Timer.Task() {
+            @Override
+            public void run() {
+                spawn(warrior);
+               // Timer.schedule(warriorTimer,0,warrior.getSpeed());
+            }
+        };
+
+        this.mageSpawn = new Timer.Task() {
+            @Override
+            public void run() {
+                spawn(mage);
+               // Timer.schedule(mageTimer,0,mage.getSpeed());
+            }
+        };
+
+        this.gunnerSpawn = new Timer.Task() {
+            @Override
+            public void run() {
+                spawn(gunner);
+               // Timer.schedule(gunnerTimer,0,gunner.getSpeed());
+            }
+        };
+
         int delay = 3;
         int interval = 3;
         Timer.schedule(this.warriorTimer,delay, warrior.getSpeed());
-        Timer.schedule(this.mageTimer,delay,mage.getSpeed());
-        Timer.schedule(this.gunnerTimer,delay,gunner.getSpeed());
+        Timer.schedule(this.mageTimer,delay+1,mage.getSpeed());
+        Timer.schedule(this.gunnerTimer,delay+2,gunner.getSpeed());
         Timer.schedule(this.enemyAttackTimer,delay,currentEnemy.getSpeed());
         Timer.instance().start();
     }
 
     private void enemyAttack(){
         if (currentEnemy.isAlive())
-            if (!currentEnemy.isHited()){
                 currentEnemy.action(player);
-            }
-        else {
-            enemyAttackTimer.cancel();
-        }
     }
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()) {
@@ -196,6 +214,13 @@ public class GameWorld {
             dmgTextPool.getDamageText(gunner.getDmgText(),450,200);
         }
     }
+
+
+
+    private void spawn(Hero h){
+        h.respawn();
+    }
+
     public void playerAttack(){
         Gdx.app.error(TAG,"call");
         if(currentEnemy != null &&currentEnemy.isAlive() && !lock) {
@@ -215,8 +240,6 @@ public class GameWorld {
     }
 
     public void nextEnemy(){
-//        currentEnemy = new Enemy();
-//        gameObjectContainer.add(currentEnemy);
         currentEnemy.respawn();
         Timer.schedule(enemyAttackTimer,0,currentEnemy.getSpeed());
     }
@@ -228,11 +251,30 @@ public class GameWorld {
         if(!currentEnemy.isAlive()&&currentEnemy.waitForSpawn()){
             player.takeMoney(currentEnemy.getMoney());
             Gdx.app.log(TAG, "player money: " + player.getMoney());
-//            gameObjectContainer.remove(currentEnemy);
-//            currentEnemy = null;
             waitTime = (float)(Math.random()*5 +1 );
             Gdx.app.log(TAG, "spawn delay: " + waitTime);
             Timer.schedule(nextEnemyTimerTask, waitTime, 0 ,0);
+            Gdx.app.error(TAG,"call death");
+        }
+
+        if(!warrior.isAlive()&&warrior.waitForSpawn()){
+            waitTime = 20;
+            Gdx.app.log(TAG, "spawn delay: " + waitTime);
+            Timer.schedule(warriorSpawn, waitTime, 0 ,0);
+            Gdx.app.error(TAG,"call death");
+        }
+
+        if(!mage.isAlive()&&mage.waitForSpawn()){
+            waitTime = 20;
+            Gdx.app.log(TAG, "spawn delay: " + waitTime);
+            Timer.schedule(mageSpawn, waitTime, 0 ,0);
+            Gdx.app.error(TAG,"call death");
+        }
+
+        if(!gunner.isAlive()&&gunner.waitForSpawn()){
+            waitTime = 20;
+            Gdx.app.log(TAG, "spawn delay: " + waitTime);
+            Timer.schedule(gunnerSpawn, waitTime, 0 ,0);
             Gdx.app.error(TAG,"call death");
         }
     }

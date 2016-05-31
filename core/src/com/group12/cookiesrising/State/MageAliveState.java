@@ -28,12 +28,10 @@ public class MageAliveState implements State{
     public void takeDamage(double dmg) {
         Gdx.app.log(getClass().getName(),"Take damage "+dmg+" HP = "+h.getHp());
 
-        h.setHealthPoint(h.getHealthPoint()+dmg);
-        //h.hitted();
-        //h.setAnimation(Assets.anim_enemy01_hitted);
+        h.setHealthPoint(h.getHealthPoint()-dmg);
         if(h.getHealthPoint()<=0){
             h.setHealthPoint(0);
-            //h.setAnimation(Assets.anim_enemy01_die);
+            h.setWaitForSpawn(true);
             changeState();
         }
 
