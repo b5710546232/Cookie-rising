@@ -88,7 +88,7 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
     protected float speed;
     protected double criticalRate;
     protected boolean isAlive;
-    private int level;
+    protected int level;
 
     public Hero(int x, int y) {
         super(x, y);
@@ -160,5 +160,6 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
         Gdx.app.log(getClass().getName(),getAttackPoint()+"");
         return Double.toString(getAttackPoint());
     }
+    public abstract void saveData();
 
 }

@@ -133,6 +133,7 @@ public class GamePlayScreen extends ScreenAdapter {
     public void dispose() {
         //dispose
         super.dispose();
+        world.saveGame();
         Assets.instance.dispose();
         renderer.dispose();
         stage.dispose();
