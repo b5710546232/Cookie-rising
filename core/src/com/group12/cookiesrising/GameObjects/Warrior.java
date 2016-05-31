@@ -86,10 +86,10 @@ public class Warrior extends Hero{
         } else{
             speed = 5;
         }
-        if(SaveManager.loadDataValue("warrior_healpoint",double.class)!=null){
-            healthPoint = SaveManager.loadDataValue("warrior_healpoint",double.class);
+        if(SaveManager.loadDataValue("warrior_maxhealpoint",double.class)!=null){
+            maxhealthPoint = SaveManager.loadDataValue("warrior_healpoint",double.class);
         } else{
-            healthPoint = 10;
+            maxhealthPoint = 10;
         }
 
     }
@@ -97,7 +97,7 @@ public class Warrior extends Hero{
         SaveManager.saveDataValue("warrior_level",level);
         SaveManager.saveDataValue("warrior_attackpoint",getAttackPoint());
         SaveManager.saveDataValue("warrior_criticalrate",getCriticalRate());
-        SaveManager.saveDataValue("warrior_healpoint",maxhealthPoint);
+        SaveManager.saveDataValue("warrior_maxhealpoint",maxhealthPoint);
         SaveManager.saveDataValue("warrior_speed",speed);
     }
 }

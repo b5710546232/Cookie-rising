@@ -181,10 +181,10 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         } else{
             attackPoint = 1;
         }
-        if(SaveManager.loadDataValue("enemy_healpoint",double.class)!=null){
-            healthPoint = SaveManager.loadDataValue("enemy_healpoint",double.class);
+        if(SaveManager.loadDataValue("enemy_maxhealpoint",double.class)!=null){
+            maxHealthPoint = SaveManager.loadDataValue("enemy_maxhealpoint",double.class);
         } else{
-            healthPoint = 10;
+            maxHealthPoint = 10;
         }
         if(SaveManager.loadDataValue("enemy_speed",float.class)!=null){
             speed = SaveManager.loadDataValue("enemy_speed",float.class);
