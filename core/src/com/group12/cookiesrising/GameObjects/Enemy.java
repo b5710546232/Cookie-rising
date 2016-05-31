@@ -69,8 +69,8 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         attackPoint = 1;
         money = 100;
         speed = 0.5f;
-        loadData();
         init();
+        loadData();
     }
 
     public void init(){
@@ -193,7 +193,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         if(SaveManager.loadDataValue("enemy_speed",float.class)!=null){
             speed = SaveManager.loadDataValue("enemy_speed",float.class);
         } else{
-            speed = 5;
+            speed = 0.5f;
         }
 
     }
