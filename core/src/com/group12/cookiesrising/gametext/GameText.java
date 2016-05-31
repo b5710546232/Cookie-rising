@@ -46,7 +46,9 @@ public class GameText extends AbstractGameText{
 
     @Override
     public void draw(BitmapFont font, SpriteBatch batch) {
-        if(isActive)font.draw(batch,text,position.x,position.y);
+        if(isActive){
+            font.draw(batch,text,position.x,position.y);
+        }
     }
 
     protected void setDefualt(BitmapFont font){

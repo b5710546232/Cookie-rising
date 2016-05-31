@@ -8,6 +8,7 @@ import com.group12.cookiesrising.State.AliveState;
 import com.group12.cookiesrising.State.DeathState;
 import com.group12.cookiesrising.State.State;
 import com.group12.cookiesrising.util.Assets;
+import com.group12.cookiesrising.util.SaveManager;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -140,8 +141,9 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
 
     @Override
     public void draw(SpriteBatch batch) {
-        if(isActive)
-            batch.draw(anim.getKeyFrame(stateTime),400,136);
+        if(isActive) {
+            batch.draw(anim.getKeyFrame(stateTime), 400, 136);
+        }
     }
 
     @Override
@@ -171,7 +173,16 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         this.speed = speed;
     }
 
+    private void loadDate(){
+        
+    }
+
     public void saveData(){
+        SaveManager.saveDataValue("enemy_money",getMoney());
+        SaveManager.saveDataValue("enemy_attackpoint",getAttackPoint());
+        SaveManager.saveDataValue("enemy_healpoint",getMaxHp());
+        SaveManager.saveDataValue("enemy_speed",getSpeed());
+        SaveManager.saveDataValue("enemy_name",getName());
 
     }
 }

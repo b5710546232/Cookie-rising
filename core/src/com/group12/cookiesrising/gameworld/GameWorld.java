@@ -221,6 +221,7 @@ public class GameWorld {
 
     public void saveGame(){
         player.saveData();
+        currentEnemy.saveData();
     }
 
     public Player getPlayer() {

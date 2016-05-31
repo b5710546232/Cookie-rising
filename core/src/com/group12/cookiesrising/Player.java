@@ -41,11 +41,6 @@ public class Player extends Observable implements Upgradable,Observer,Health,Hit
         //will load later;
         loadData();
         party = new Party();
-<<<<<<< HEAD
-=======
-        healPoint = 1;
-        criticalRate = 1;
->>>>>>> cc12f6c394e3024bc911e493190e8f4b124d26de
         dmgText = attackPoint+"";
         rng = new RandomGenerator(CRI_RATE_MIN,CRI_RATE_MAX);
     }

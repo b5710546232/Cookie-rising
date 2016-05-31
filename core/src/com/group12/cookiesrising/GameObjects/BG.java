@@ -14,5 +14,8 @@ public class BG extends AbstractGameObject {
     }
 
     @Override
-    public void draw(SpriteBatch batch) {batch.draw(Assets.bg,0,0);}
+    public void draw(SpriteBatch batch) {
+        batch.draw(Assets.bg,0,0);
+    }
+
 }

@@ -5,7 +5,6 @@
 
 package com.group12.cookiesrising.gameobjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.Health;
 import com.group12.cookiesrising.Hittable;
