@@ -19,6 +19,8 @@ public class Gunner extends Hero {
         setAnimation(Assets.anim_gunner_idle);
         setAliveState(new GunnerAliveState(this));
         setDeathState(new HeroDeathState(this));
+        setAttackPoint(1);
+        setSpeed(5);
         currentState = getAliveState();
     }
 
@@ -45,5 +47,24 @@ public class Gunner extends Hero {
     @Override
     public void draw(SpriteBatch batch) {
         batch.draw(anim.getKeyFrame(stateTime),position.x,position.y);
+    }
+
+    @Override
+    public void upgradeAtk() {
+        setMaxhealthPoint(getMaxhealthPoint()+1);
+        setHealthPoint(getHealthPoint()+1);
+        setSpeed(getSpeed()-0.2f);
+    }
+
+    @Override
+    public void upgradeHeal() {
+        if(getLevel()%10==0)
+            setAttackPoint(getAttackPoint()*1.2);
+    }
+
+    @Override
+    public void upgradeCrt() {
+        if(getLevel()%5==0)
+            setCriticalRate(getCriticalRate()+1);
     }
 }
