@@ -87,7 +87,7 @@ public class Warrior extends Hero{
             speed = 5;
         }
         if(SaveManager.loadDataValue("warrior_maxhealpoint",double.class)!=null){
-            maxhealthPoint = SaveManager.loadDataValue("warrior_healpoint",double.class);
+            maxhealthPoint = SaveManager.loadDataValue("warrior_maxhealpoint",double.class);
         } else{
             maxhealthPoint = 10;
         }
