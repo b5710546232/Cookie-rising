@@ -20,7 +20,7 @@ public class Mage extends Hero {
         setAnimation(Assets.anim_mage_idle);
         setAliveState(new MageAliveState(this));
         setDeathState(new HeroDeathState(this));
-        setAttackPoint(1.5);
+        setAttackPoint(1.0);
         setSpeed(7.5F);
         currentState = getAliveState();
     }
