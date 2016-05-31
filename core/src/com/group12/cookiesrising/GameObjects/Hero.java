@@ -109,8 +109,8 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
         isAlive = true;
     }
 
-    public void attack(Hittable m) {
-        currentState.attack(m);
+    public void action(Hittable m) {
+        currentState.action(m);
     }
 
     public void takeDamage(double dmg) {

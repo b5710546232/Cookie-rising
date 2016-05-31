@@ -121,7 +121,7 @@ public class GameWorld {
                 Gdx.app.log(TAG," next enemy");
             }
         };
-        // test auto attack.
+        // test auto action.
         this.warriorTimer = new Timer.Task(){
 
             @Override
@@ -160,7 +160,7 @@ public class GameWorld {
     private void enemyAttack(){/*
         if (currentEnemy.isAlive())
             if (!currentEnemy.isHited()){
-                currentEnemy.attack(player);
+                currentEnemy.action(player);
             }
         else {
             enemyAttackTimer.cancel();
@@ -168,19 +168,19 @@ public class GameWorld {
     }
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()) {
-            hero.attack(currentEnemy);
+            hero.action(currentEnemy);
             dmgTextPool.getDamageText(hero.getDmgText(),450,200);
         }
     }
     private void mageAttack(){
         if(currentEnemy != null &&currentEnemy.isAlive()) {
-            mage.attack(currentEnemy);
+            mage.action(currentEnemy);
             dmgTextPool.getDamageText(mage.getDmgText(),450,200);
         }
     }
     private void gunnerAttack(){
         if(currentEnemy != null &&currentEnemy.isAlive()) {
-            gunner.attack(currentEnemy);
+            gunner.action(currentEnemy);
             dmgTextPool.getDamageText(gunner.getDmgText(),450,200);
         }
     }
@@ -198,7 +198,7 @@ public class GameWorld {
                 dmgTextPool.getDamageText(this.player.getDamageText(), 450, 200);
             }
 
-            Gdx.app.log(TAG," player attack to monster");
+            Gdx.app.log(TAG," player action to monster");
         }
     }
 

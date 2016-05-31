@@ -99,7 +99,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
     }
 
     public void attack(Hittable h){
-        currentState.attack(h);
+        currentState.action(h);
     }
 
     public void respawn(){
