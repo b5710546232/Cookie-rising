@@ -32,6 +32,10 @@ public class GunnerAliveState implements State{
             //h.setAnimation(Assets.anim_enemy01_die);
             changeState();
         }
+
+        else if(h.getHealthPoint()>h.getMaxhealthPoint()){
+            h.setHealthPoint(h.getMaxhealthPoint());
+        }
     }
 
     @Override
