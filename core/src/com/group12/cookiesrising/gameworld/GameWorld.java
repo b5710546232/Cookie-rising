@@ -16,18 +16,15 @@ import com.group12.cookiesrising.gameobjects.Hero;
 import com.group12.cookiesrising.gameobjects.Mage;
 import com.group12.cookiesrising.gameobjects.Party;
 import com.group12.cookiesrising.gameobjects.Warrior;
-import com.group12.cookiesrising.gametext.AbstractGameText;
 import com.group12.cookiesrising.gametext.AbstractGameTextFactory;
 import com.group12.cookiesrising.gametext.CoinText;
 import com.group12.cookiesrising.gametext.CriticalDamgeFactory;
 import com.group12.cookiesrising.gametext.DamageTextFactory;
-import com.group12.cookiesrising.gametext.EnemyLabel;
 import com.group12.cookiesrising.gametext.HealTextFactory;
 import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
 import com.group12.cookiesrising.gametext.TextPool;
 import com.group12.cookiesrising.gametext.UpgradeCostText;
-import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -94,7 +91,6 @@ public class GameWorld {
         HealthBar hpHero = new HealthBar(warrior,250,200,2);
         HealthBar hpMage = new HealthBar(mage,170,200,2);
         HealthBar hpGunner = new HealthBar(gunner,90,200,2);
-        EnemyLabel enemyLabel = new EnemyLabel(currentEnemy);
         HeroLevelText heroLevelText = new HeroLevelText(player);
         UpgradeCostText upgradeCostText = new UpgradeCostText(player);
         gameObjectContainer.add(bg);
@@ -117,7 +113,6 @@ public class GameWorld {
         textDraw.add(healTextPool);
         textDraw.add(coinText);
         textDraw.add(statusText);
-        textDraw.add(enemyLabel);
         textDraw.add(heroLevelText);
         textDraw.add(upgradeCostText);
         worldTextContainer.add(textDraw);
