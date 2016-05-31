@@ -34,10 +34,13 @@ public class Assets implements Disposable{
 
     public static Animation anim_warrior_idle;
     public static Animation anim_warrior_atk;
+    public static Animation anim_warrior_faint;
     public static Animation anim_mage_heal;
     public static Animation anim_mage_idle;
+    public static Animation anim_mage_faint;
     public static Animation anim_gunner_idle;
     public static Animation anim_gunner_atk;
+    public static Animation anim_gunner_faint;
 
     public static Animation anim_enemy01_idle;
     public static Animation anim_enemy01_atk;
@@ -144,6 +147,10 @@ public class Assets implements Disposable{
         gunner_reg_atk[0] = hero_sheet_textureRegions.get(3);
         anim_gunner_atk = new Animation(0.25f,gunner_reg_atk);
         anim_gunner_atk.setPlayMode(Animation.PlayMode.NORMAL);
+
+        TextureRegion[] gunner_reg_faint = new TextureRegion[1];
+        anim_gunner_faint = new Animation(1f,gunner_reg_faint);
+        anim_gunner_faint.setPlayMode(Animation.PlayMode.LOOP);
     }
 
     private void setMageAnimate() {
@@ -159,6 +166,10 @@ public class Assets implements Disposable{
         mage_reg_heal[0] = hero_sheet_textureRegions.get(11);
         anim_mage_heal = new Animation(0.25f,mage_reg_heal);
         anim_mage_heal.setPlayMode(Animation.PlayMode.NORMAL);
+
+        TextureRegion[] mage_reg_faint = new TextureRegion[1];
+        anim_mage_faint = new Animation(1f,mage_reg_faint);
+        anim_mage_faint.setPlayMode(Animation.PlayMode.LOOP);
     }
 
     private void setWarriorAnimate() {
@@ -174,6 +185,10 @@ public class Assets implements Disposable{
         wariror_reg_atk[0] = hero_sheet_textureRegions.get(7);
         anim_warrior_atk = new Animation(0.25f,wariror_reg_atk);
         anim_warrior_atk.setPlayMode(Animation.PlayMode.NORMAL);
+
+        TextureRegion[] warrior_reg_faint = new TextureRegion[1];
+        anim_warrior_faint = new Animation(1f,warrior_reg_faint);
+        anim_warrior_faint.setPlayMode(Animation.PlayMode.LOOP);
 
     }
 
@@ -193,7 +208,7 @@ public class Assets implements Disposable{
         int row = 4;
         int size = 64;
         int col = 3;
-        int number = 12;
+        int number = 15;
         hero_sheet_textureRegions = createTextureRegionsArray(size,row,col,number,hero_sheet);
     }
 
