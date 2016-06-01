@@ -1,5 +1,6 @@
 package com.group12.cookiesrising.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.group12.cookiesrising.Health;
@@ -183,6 +184,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         }
         if(SaveManager.loadDataValue("enemy_maxhealpoint",double.class)!=null){
             maxHealthPoint = SaveManager.loadDataValue("enemy_maxhealpoint",double.class);
+            Gdx.app.error("enemy load"," hpmax = "+getMaxHp());
         } else{
             maxHealthPoint = 10;
         }
@@ -200,9 +202,18 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
     public void saveData(){
         SaveManager.saveDataValue("enemy_money",getMoney());
         SaveManager.saveDataValue("enemy_attackpoint",getAttackPoint());
-        SaveManager.saveDataValue("enemy_healpoint",getMaxHp());
+        SaveManager.saveDataValue("enemy_maxhealpoint",getMaxHp());
         SaveManager.saveDataValue("enemy_speed",getSpeed());
         SaveManager.saveDataValue("enemy_name",getName());
+
+        Gdx.app.error("enemy save"," hpmax = "+getMaxHp());
+//        ObjectMapWrapper wrapper = new ObjectMapWrapper();
+//        ObjectMap<String,Object> data = wrapper.data;
+//        data.put("enemy_money",getMoney());
+//        data.put("enemy_attackpoint",getAttackPoint());
+//        data.put("enemy_healpoint",getMaxHp());
+//        data.put("enemy_speed",getSpeed());
+//        SaveManager.saveDataValue("enemy_data",data);
 
     }
 }

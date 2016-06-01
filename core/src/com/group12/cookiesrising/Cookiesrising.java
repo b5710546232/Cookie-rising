@@ -16,4 +16,9 @@ public class Cookiesrising extends Game {
 		this.setScreen(gamePlayScreen);
 	}
 
+	@Override
+	public void dispose() {
+		super.dispose();
+		gamePlayScreen.dispose();
+	}
 }

@@ -43,7 +43,7 @@ public class GameWorld {
     private Hero mage;
     private Hero gunner;
     private Timer.Task nextEnemyTimerTask;
-    private float waitTime = 1f;
+    private float waitTime = 1;
     private Timer.Task warriorTimer,mageTimer,gunnerTimer,warriorSpawn,mageSpawn,gunnerSpawn;
     private Timer.Task enemyAttackTimer;
     private TextPool dmgTextPool;
@@ -187,7 +187,7 @@ public class GameWorld {
         if (currentEnemy.isAlive()){
             Party party = player.getParty();
             int target = (int)Math.floor(Math.random()*(party.getHeroList().size()+1));
-            Gdx.app.log(getClass().getName(),"random = "+target);
+//            Gdx.app.log(getClass().getName(),"random = "+target);
             if (target==3) {
                 currentEnemy.action(party);
                 for(Hero h: party.getHeroList()){
@@ -300,7 +300,8 @@ public class GameWorld {
         if(!currentEnemy.isAlive()&&currentEnemy.waitForSpawn()){
             player.takeMoney(currentEnemy.getMoney());
             Gdx.app.log(TAG, "player money: " + player.getMoney());
-            waitTime = (float)(Math.random()*5 +1 );
+//            waitTime = (float)(Math.random()*5 +1 );
+            waitTime = 0.8f;
             Gdx.app.log(TAG, "spawn delay: " + waitTime);
             Timer.schedule(nextEnemyTimerTask, waitTime, 0 ,0);
             Gdx.app.error(TAG,"call death");
@@ -329,8 +330,8 @@ public class GameWorld {
     }
 
     public void saveGame(){
-        player.saveData();
         currentEnemy.saveData();
+        player.saveData();
         warrior.saveData();
         mage.saveData();
         gunner.saveData();
