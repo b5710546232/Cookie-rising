@@ -3,6 +3,7 @@ package com.group12.cookiesrising.gameworld;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Timer;
+import com.group12.cookiesrising.Listener.HeroButtonListener;
 import com.group12.cookiesrising.Player;
 import com.group12.cookiesrising.composite.CompositeGameObject;
 import com.group12.cookiesrising.composite.CompositeTextDraw;
@@ -27,10 +28,13 @@ import com.group12.cookiesrising.gametext.TextPool;
 import com.group12.cookiesrising.gametext.UpgradeCostText;
 import com.group12.cookiesrising.util.Assets;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Created by nattapat on 5/6/2016 AD.
  */
-public class GameWorld {
+public class GameWorld implements Observer{
     private static final String TAG = GameWorld.class.getName();
 
     CompositeGameObject worldContainer;
@@ -349,5 +353,24 @@ public class GameWorld {
 
     public CompositeTextDraw getWorldTextContainer() {
         return worldTextContainer;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o instanceof HeroButtonListener){
+            int index = ((HeroButtonListener) o).getHero_num();
+            if (index==0){
+                warriorTimer.cancel();
+                Timer.instance().scheduleTask(warriorTimer,0,warrior.getSpeed());
+            }
+            else if (index==1){
+                mageTimer.cancel();
+                Timer.instance().scheduleTask(mageTimer,0,mage.getSpeed());
+            }
+            else if (index==2){
+                gunnerTimer.cancel();
+                Timer.instance().scheduleTask(gunnerTimer,0,gunner.getSpeed());
+            }
+        }
     }
 }

@@ -50,13 +50,14 @@ public class Gunner extends Hero {
         if(isAlive())
             setHealthPoint(getHealthPoint()+1);
         setSpeed(getSpeed()*0.95f);
+        //setSpeed(0.05f);
         if (getSpeed()<=0.05f) setSpeed(0.05f);
     }
 
     @Override
     public void upgradeHeal() {
         if(getLevel()%2==0)
-            setAttackPoint(getAttackPoint()+Math.ceil(level/5));
+            setAttackPoint(getAttackPoint()+Math.ceil(level/5f));
     }
 
     @Override

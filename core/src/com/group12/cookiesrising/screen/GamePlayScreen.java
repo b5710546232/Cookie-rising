@@ -95,6 +95,9 @@ public class GamePlayScreen extends ScreenAdapter {
         hero1Lis.addObserver(world.getPlayer());
         hero2Lis.addObserver(world.getPlayer());
         hero3Lis.addObserver(world.getPlayer());
+        hero1Lis.addObserver(world);
+        hero2Lis.addObserver(world);
+        hero3Lis.addObserver(world);
         ImageButton hero3Button = new ImageButton(Assets.button_h3_up,Assets.button_h3_down);
         hero3Button.addListener(hero3Lis.getListener());
         hero3Button.setPosition(40,10);
