@@ -51,7 +51,7 @@ public class Warrior extends Hero{
         setMaxhealthPoint(getMaxhealthPoint()+2);
         if(isAlive())
             setHealthPoint(getHealthPoint()+2);
-        setAttackPoint(getAttackPoint()*1.2);
+        setAttackPoint(getAttackPoint()*1.5);
     }
 
     @Override

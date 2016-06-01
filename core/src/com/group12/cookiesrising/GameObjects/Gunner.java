@@ -55,7 +55,7 @@ public class Gunner extends Hero {
     @Override
     public void upgradeHeal() {
         if(getLevel()%2==0)
-            setAttackPoint(getAttackPoint()*1.2);
+            setAttackPoint(getAttackPoint()*1.5);
     }
 
     @Override
