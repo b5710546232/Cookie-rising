@@ -15,7 +15,13 @@ import com.group12.cookiesrising.util.SaveManager;
  * Created by nattapat on 5/6/2016 AD.
  */
 public class Enemy extends AbstractGameObject implements Health,Hittable {
-    private Animation anim;
+    private Animation anim_current;
+    private Animation anim_idle;
+    private Animation anim_die;
+    private Animation anim_att;
+    private Animation anim_hitted;
+
+
     public static final String TAG = Enemy.class.getName();
     public double healthPoint;
 
@@ -69,6 +75,21 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         init();
         loadData();
     }
+    public Animation getAnim_idle() {
+        return anim_idle;
+    }
+
+    public Animation getAnim_die() {
+        return anim_die;
+    }
+
+    public Animation getAnim_att() {
+        return anim_att;
+    }
+
+    public Animation getAnim_hitted() {
+        return anim_hitted;
+    }
 
     public void init(){
         waitForSpawn = true;
@@ -78,7 +99,16 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         stateTime = 0;
         isHited = false;
         isActive = true;
-        setAnimation(Assets.anim_enemy01_idle);
+        loadAnimation();
+        setAnimation(anim_idle);
+    }
+
+    public void loadAnimation(){
+        EnemyDataAnimation dataAnim = EnemyData.instance.getEnemyDataAnimation();
+        anim_att = dataAnim.getAttack();
+        anim_idle = dataAnim.getidle();
+        anim_die = dataAnim.getDie();
+        anim_hitted = dataAnim.getHiited();
     }
 
     public String getName() {
@@ -122,13 +152,13 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
     public void update(float delta) {
 
         stateTime += delta;
-        if(anim.equals(Assets.anim_enemy01_die)){
-            if(anim.isAnimationFinished(stateTime)){
+        if(anim_current.equals(Assets.anim_enemy01_die)){
+            if(anim_current.isAnimationFinished(stateTime)){
                 isActive = false;
             }
         }
-        if(!anim.getPlayMode().equals(Animation.PlayMode.LOOP)){
-            if(anim.isAnimationFinished(stateTime)){
+        if(!anim_current.getPlayMode().equals(Animation.PlayMode.LOOP)){
+            if(anim_current.isAnimationFinished(stateTime)){
                 setAnimation(Assets.anim_enemy01_idle);
                 if(isHited){
                     isHited = false;
@@ -141,7 +171,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
     @Override
     public void draw(SpriteBatch batch) {
         if(isActive) {
-            batch.draw(anim.getKeyFrame(stateTime), 400, 136);
+            batch.draw(anim_current.getKeyFrame(stateTime), 400, 136);
         }
     }
 
@@ -156,7 +186,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
     }
     public void setAnimation(Animation anim){
         stateTime = 0;
-        this.anim = anim;
+        this.anim_current = anim;
     }
     public boolean isActive(){ return isActive;}
     public void hitted(){

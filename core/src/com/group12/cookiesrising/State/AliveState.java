@@ -18,7 +18,7 @@ public class AliveState implements State {
 
     @Override
     public void action(Hittable target) {
-        e.setAnimation(Assets.anim_enemy01_atk);
+        e.setAnimation(e.getAnim_att());
         target.takeDamage(e.getAttackPoint());
     }
 
@@ -26,13 +26,13 @@ public class AliveState implements State {
     public void takeDamage(double dmg) {
         e.healthPoint-=dmg;
         e.hitted();
-        e.setAnimation(Assets.anim_enemy01_hitted);
+        e.setAnimation(e.getAnim_hitted());
         Gdx.app.log(e.TAG,"current hp = "+e.healthPoint);
         Assets.hitted_sound.play(1.0f);
         if(e.healthPoint<=0){
             e.healthPoint = 0;
             Gdx.app.log(e.TAG,"monster die");
-            e.setAnimation(Assets.anim_enemy01_die);
+            e.setAnimation(e.getAnim_die());
             Assets.mon_die_sound.play(1.0f);
             changeState();
         }

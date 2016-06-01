@@ -21,6 +21,14 @@ public class RandomGenerator {
         value = MIN+random.nextInt(MAX);
     }
 
+    public void setMAX(int m){
+        MAX = m;
+    }
+
+    public void setMIN(int m){
+        MIN = m;
+    }
+
     public int getValue(){
         return value;
     }

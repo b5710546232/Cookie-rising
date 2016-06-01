@@ -44,13 +44,14 @@ public class Mage extends Hero {
         setMaxhealthPoint(getMaxhealthPoint()+1);
         if(isAlive())
             setHealthPoint(getHealthPoint()+1);
-        setAttackPoint(getAttackPoint()*1.2);
+        setAttackPoint(getAttackPoint()+Math.ceil(level/3f));
     }
 
     @Override
     public void upgradeHeal() {
         if(getLevel()%10==0)
-        setSpeed(getSpeed()-0.1f);
+        setSpeed(getSpeed()-0.2f);
+        if (getSpeed()<1f) setSpeed(1f);
     }
 
     @Override
@@ -82,7 +83,7 @@ public class Mage extends Hero {
         if(SaveManager.loadDataValue("mage_speed",double.class)!=null){
             speed = SaveManager.loadDataValue("mage_speed",double.class);
         } else{
-            speed = 7.5f;
+            speed = 5f;
         }
         if(SaveManager.loadDataValue("mage_maxhealpoint",double.class)!=null){
             maxhealthPoint = SaveManager.loadDataValue("mage_maxhealpoint",double.class);

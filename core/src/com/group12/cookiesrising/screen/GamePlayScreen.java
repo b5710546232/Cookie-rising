@@ -32,7 +32,6 @@ public class GamePlayScreen extends ScreenAdapter {
         this.game = game;
         world = new GameWorld();
         renderer = new GameWorldRenderer(world.getWorldContainer(),world.getWorldTextContainer());
-
     }
 
     @Override
@@ -75,6 +74,7 @@ public class GamePlayScreen extends ScreenAdapter {
     public void show() {
         // this method will be called when this screen becomes the current screen for a Game.
         Assets.instance.init();
+        Assets.bgm.play();
         stage = new Stage(new StretchViewport(Constants.VIEWPORT_WIDTH,
                 Constants.VIEWPORT_HEIGHT));
         Gdx.input.setInputProcessor(stage);
@@ -95,6 +95,9 @@ public class GamePlayScreen extends ScreenAdapter {
         hero1Lis.addObserver(world.getPlayer());
         hero2Lis.addObserver(world.getPlayer());
         hero3Lis.addObserver(world.getPlayer());
+        hero1Lis.addObserver(world);
+        hero2Lis.addObserver(world);
+        hero3Lis.addObserver(world);
         ImageButton hero3Button = new ImageButton(Assets.button_h3_up,Assets.button_h3_down);
         hero3Button.addListener(hero3Lis.getListener());
         hero3Button.setPosition(40,10);

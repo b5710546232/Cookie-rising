@@ -46,21 +46,23 @@ public class Gunner extends Hero {
 
     @Override
     public void upgradeAtk() {
-        setMaxhealthPoint(getMaxhealthPoint()+1);
+        setMaxhealthPoint(getMaxhealthPoint()+3);
         if(isAlive())
             setHealthPoint(getHealthPoint()+1);
-        setSpeed(getSpeed()-0.2f);
+        setSpeed(getSpeed()*0.95f);
+        //setSpeed(0.05f);
+        if (getSpeed()<=0.15f) setSpeed(0.15f);
     }
 
     @Override
     public void upgradeHeal() {
-        if(getLevel()%10==0)
-            setAttackPoint(getAttackPoint()*1.2);
+        if(getLevel()%2==0)
+            setAttackPoint(getAttackPoint()+Math.ceil(level/5f));
     }
 
     @Override
     public void upgradeCrt() {
-        if(getLevel()%5==0)
+        if(getLevel()%2==0)
             setCriticalRate(getCriticalRate()+1);
     }
     private void loadData(){
