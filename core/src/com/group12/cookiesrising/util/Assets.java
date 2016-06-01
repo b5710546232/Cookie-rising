@@ -34,6 +34,7 @@ public class Assets implements Disposable{
     public static Texture hp_bg,hp_knob;
     public static Texture enemy01_sheet;
     public static Texture enemy02_sheet;
+    public static Texture enemy03_sheet;
 
     public static TextureRegionDrawable button_atk_up;
     public static TextureRegionDrawable button_atk_down;
@@ -52,6 +53,7 @@ public class Assets implements Disposable{
     public static Array<TextureRegion> hero_sheet_textureRegions;
     public static Array<TextureRegion> enemy01_sheet_textureRegions;
     public static Array<TextureRegion> enemy02_sheet_textureRegions;
+    public static Array<TextureRegion> enemy03_sheet_textureRegions;
 //    public static Array<TextureRegion> button_sheet_textureRegions;
 //    public static Array<TextureRegionDrawable> button_sheet_drawable;
 
@@ -75,11 +77,17 @@ public class Assets implements Disposable{
     public static Animation anim_enemy02_hitted;
     public static Animation anim_enemy02_die;
 
+    public static Animation anim_enemy03_idle;
+    public static Animation anim_enemy03_atk;
+    public static Animation anim_enemy03_hitted;
+    public static Animation anim_enemy03_die;
+
     public static Sound hitted_sound;
     public static Sound mon_die_sound;
     public static Sound click_sound;
     public static Sound heal_sound;
     public static Music bgm;
+    private static EnemyDataAnimation mon03_anim;
     private static EnemyDataAnimation mon02_anim;
     private static EnemyDataAnimation mon01_anim;
 
@@ -157,8 +165,45 @@ public class Assets implements Disposable{
         splitEnemySheetToArray();
         setEnemy01Animate();
         setEnemy02Animate();
+        setEnemy03Animate();
         EnemyData.instance.addEnemyAnimationData(mon01_anim);
         EnemyData.instance.addEnemyAnimationData(mon02_anim);
+        EnemyData.instance.addEnemyAnimationData(mon03_anim);
+
+    }
+
+    private void setEnemy03Animate() {
+        TextureRegion[] enemy03_reg_idle = new TextureRegion[4];
+        enemy03_reg_idle[0] = enemy03_sheet_textureRegions.get(0);
+        enemy03_reg_idle[1] = enemy03_sheet_textureRegions.get(1);
+        enemy03_reg_idle[2] = enemy03_sheet_textureRegions.get(2);
+        enemy03_reg_idle[3] = enemy03_sheet_textureRegions.get(1);
+        TextureRegion[] enemy03_reg_atk= new TextureRegion[1];
+        enemy03_reg_atk[0] = enemy02_sheet_textureRegions.get(3);
+
+
+        TextureRegion[] enemy03_reg_hitted = new TextureRegion[2];
+        enemy03_reg_hitted[0] = enemy03_sheet_textureRegions.get(4);
+        enemy03_reg_hitted[1] = enemy03_sheet_textureRegions.get(5);
+
+        TextureRegion[] enemy03_reg_die = new TextureRegion[3];
+        enemy03_reg_die[0] = enemy02_sheet_textureRegions.get(4);
+        enemy03_reg_die[1] = enemy02_sheet_textureRegions.get(6);
+        enemy03_reg_die[2] = enemy02_sheet_textureRegions.get(7);
+//
+        anim_enemy03_idle = new Animation(0.2f,enemy03_reg_idle);
+        anim_enemy03_idle.setPlayMode(Animation.PlayMode.LOOP);
+//
+        anim_enemy03_atk = new Animation(0.25f,enemy03_reg_atk);
+        anim_enemy03_atk.setPlayMode(Animation.PlayMode.NORMAL);
+//
+        anim_enemy03_hitted = new Animation(0.1f,enemy03_reg_hitted);
+        anim_enemy03_hitted.setPlayMode(Animation.PlayMode.NORMAL);
+//
+        anim_enemy03_die = new Animation(0.25f,enemy03_reg_die);
+        anim_enemy03_die.setPlayMode(Animation.PlayMode.NORMAL);
+
+        mon03_anim = new EnemyDataAnimation("Cookie03",anim_enemy03_idle,anim_enemy03_die,anim_enemy03_atk,anim_enemy03_hitted);
 
     }
 
@@ -243,6 +288,9 @@ public class Assets implements Disposable{
 
         enemy02_sheet = new Texture(Gdx.files.internal("mon02_sheet.png"));
         enemy02_sheet_textureRegions = createTextureRegionsArray(size,row,col,number,enemy02_sheet);
+
+        enemy03_sheet = new Texture(Gdx.files.internal("mon03_sheet.png"));
+        enemy03_sheet_textureRegions = createTextureRegionsArray(size,row,col,number,enemy03_sheet);
     }
 
     private void loadHero() {
