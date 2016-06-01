@@ -48,7 +48,7 @@ public class Warrior extends Hero{
 
     @Override
     public void upgradeAtk() {
-        setMaxhealthPoint(getMaxhealthPoint()+5);
+        setMaxhealthPoint(getMaxhealthPoint()+level);
         if(isAlive())
             setHealthPoint(getHealthPoint()+2);
         setAttackPoint(getAttackPoint()+Math.ceil(level/3f));
@@ -93,6 +93,7 @@ public class Warrior extends Hero{
         } else{
             maxhealthPoint = 10;
         }
+        healthPoint = maxhealthPoint;
 
     }
     public void saveData(){
