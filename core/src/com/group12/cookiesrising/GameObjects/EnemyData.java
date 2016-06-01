@@ -21,7 +21,7 @@ public class EnemyData {
 
     public void addEnemyAnimationData(EnemyDataAnimation e){
         listAnim.add(e);
-        rng.setMAX(listAnim.size());
+        rng.setMAX(listAnim.size()-1);
         Gdx.app.error("enemy size ",listAnim.size()+"");
     }
 
