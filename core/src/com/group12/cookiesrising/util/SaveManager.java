@@ -16,10 +16,10 @@ public class SaveManager {
     private static Save save = getSave();
     private static Save getSave(){
         Save save = new Save();
+        file = Gdx.files.local("bin/save.json");
         if(file.exists()){
             Json json = new Json();
 
-            
             save = json.fromJson(Save.class, Base64Coder.
                     decodeString(file.readString()));
         }
@@ -42,7 +42,7 @@ public class SaveManager {
 
 
     public static class Save{
-        public ObjectMap<String, Object> data = new ObjectMap<String,
+        public  ObjectMap<String, Object> data = new ObjectMap<String,
                 Object>();
     }
 

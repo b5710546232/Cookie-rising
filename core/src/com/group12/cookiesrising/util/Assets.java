@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
@@ -28,9 +29,12 @@ public class Assets implements Disposable{
     public static Texture hero_sheet;
     public static Texture hp_bg,hp_knob;
     public static Texture enemy01_sheet;
+    private static Texture button_sheet;
     public static TextureRegion atk,cri,heal,h1b,h2b,h3b;
     public static Array<TextureRegion> hero_sheet_textureRegions;
     public static Array<TextureRegion> enemy01_sheet_textureRegions;
+    public static Array<TextureRegion> button_sheet_textureRegions;
+    public static Array<TextureRegionDrawable> button_sheet_drawable;
 
     public static Animation anim_warrior_idle;
     public static Animation anim_warrior_atk;
@@ -65,6 +69,7 @@ public class Assets implements Disposable{
     private void load() {
         loadHero();
         loadEnemy();
+        loadButton();
         hero = new Texture(Gdx.files.internal("hero.png"));
         mon = new Texture(Gdx.files.internal("mon.png"));
         bg = new Texture(Gdx.files.internal("bg.png"));
@@ -77,6 +82,25 @@ public class Assets implements Disposable{
         h1b = new TextureRegion(new Texture(Gdx.files.internal("hero01_button.png")));
         h2b = new TextureRegion(new Texture(Gdx.files.internal("hero02_button.png")));
         h3b = new TextureRegion(new Texture(Gdx.files.internal("hero03_button.png")));
+    }
+
+    private void loadButton() {
+        int size = 80;
+        int col = 6;
+        int row = 2;
+        int num = 12;
+        button_sheet = new Texture(Gdx.files.internal("button_sheet.png"));
+        button_sheet_textureRegions = createTextureRegionsArray(size,row,col,num,button_sheet);
+        button_sheet_drawable = createTextureRegionDrawableArray(button_sheet_textureRegions);
+
+    }
+
+    private Array<TextureRegionDrawable> createTextureRegionDrawableArray(Array<TextureRegion> list) {
+        Array<TextureRegionDrawable> listdrawble = new Array<TextureRegionDrawable>();
+        for(TextureRegion t : list){
+            listdrawble.add(new TextureRegionDrawable(t));
+        }
+        return  listdrawble;
     }
 
     private void loadEnemy() {
@@ -118,8 +142,8 @@ public class Assets implements Disposable{
     }
 
     private void splitEnemy01SheetToArray() {
-        int row = 4;
-        int col = 2;
+        int row = 2;
+        int col = 4;
         int size = 128;
         int number = 8;
         enemy01_sheet = new Texture(Gdx.files.internal("mon01_sheet.png"));
@@ -219,8 +243,8 @@ public class Assets implements Disposable{
     private Array<TextureRegion> createTextureRegionsArray(int size,int row,int col,int numberOfSprite,Texture texture){
         Array<TextureRegion> sheet = new Array<TextureRegion>();
         int count = 0;
-        for(int i = 0 ; i<col ;i++){
-            for(int j = 0 ;j<row ; j++){
+        for(int i = 0 ; i<row ;i++){
+            for(int j = 0 ;j<col ; j++){
                 if(count>=numberOfSprite) break;
                 sheet.add(new TextureRegion(texture,j*size,i*size,size,size));
                 count++;
@@ -233,10 +257,10 @@ public class Assets implements Disposable{
 
     @Override
     public void dispose() {
-//        hero_sheet.dispose();
-//        enemy01_sheet.dispose();
-//        bg.dispose();
-//        coin.dispose();
-//        hero.dispose();
+        hero_sheet.dispose();
+        enemy01_sheet.dispose();
+        bg.dispose();
+        coin.dispose();
+        hero.dispose();
     }
 }
