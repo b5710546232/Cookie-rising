@@ -26,6 +26,7 @@ import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
 import com.group12.cookiesrising.gametext.TextPool;
 import com.group12.cookiesrising.gametext.UpgradeCostText;
+import com.group12.cookiesrising.util.Assets;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -298,6 +299,7 @@ public class GameWorld implements Observer{
         if(h!=null){
             player.heal(h);
             healTextPool.getDamageText(mage.getDmgText(),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+            Assets.heal_sound.play(1.0f);
         }
     }
 
