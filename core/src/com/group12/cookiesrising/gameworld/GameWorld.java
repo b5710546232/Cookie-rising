@@ -90,7 +90,6 @@ public class GameWorld implements Observer{
         CoinText coinText = new CoinText(player);
         StatusText statusText = new StatusText(player);
         HealthBar hpEnemy = new HealthBar(currentEnemy,400,270,1);
-
         HealthBar hpHero = new HealthBar(warrior,250,200,2);
         HealthBar hpMage = new HealthBar(mage,170,200,2);
         HealthBar hpGunner = new HealthBar(gunner,90,200,2);
@@ -283,17 +282,18 @@ public class GameWorld implements Observer{
 
     public void playerHeal(){
         Party p = player.getParty();
-        Hero h = p.getHeroList().get(0);
-        int x = 0;
-        for(int i = 1; i<p.getHeroList().size();i++){
-            if( (calPerHP(h) < calPerHP( p.getHeroList().get(i) ) ) && p.getHeroList().get(i).isAlive() ){
-                h = p.getHeroList().get(i);
+        double max =0;
+        Hero h =null,temp;
+        for(int i = 0; i<p.getHeroList().size();i++){
+            temp = p.getHeroList().get(i);
+            if( (max < calPerHP( temp ) ) && temp.isAlive() ){
+                h = temp;
+                max = calPerHP(temp);
             }
         }
-        if(h.isAlive()){
+        if(h!=null){
             player.heal(h);
-            Assets.heal_sound.play(1.0f);
-            healTextPool.getDamageText(Integer.toString(player.getHealPoint()),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+            healTextPool.getDamageText(mage.getDmgText(),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
         }
     }
 

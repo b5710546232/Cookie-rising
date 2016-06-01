@@ -51,6 +51,7 @@ public class Warrior extends Hero{
         setMaxhealthPoint(getMaxhealthPoint()+level);
         if(isAlive())
             setHealthPoint(getHealthPoint()+2);
+        if(healthPoint>maxhealthPoint) setHealthPoint(maxhealthPoint);
         setAttackPoint(getAttackPoint()+Math.ceil(level/3f));
     }
 

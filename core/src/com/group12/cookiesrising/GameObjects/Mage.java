@@ -44,6 +44,7 @@ public class Mage extends Hero {
         setMaxhealthPoint(getMaxhealthPoint()+Math.ceil(level/7f));
         if(isAlive())
             setHealthPoint(getHealthPoint()+1);
+        if(healthPoint>maxhealthPoint) setHealthPoint(maxhealthPoint);
         setAttackPoint(getAttackPoint()+Math.ceil(level/3f));
     }
 
