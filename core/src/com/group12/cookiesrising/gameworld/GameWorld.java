@@ -26,7 +26,6 @@ import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
 import com.group12.cookiesrising.gametext.TextPool;
 import com.group12.cookiesrising.gametext.UpgradeCostText;
-import com.group12.cookiesrising.util.Assets;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -59,17 +58,20 @@ public class GameWorld implements Observer{
     private AbstractGameTextFactory healTextFactory;
     private TextDraw textDraw;
     private boolean lock = false;
+    private TextDraw textDraw2;
 
     public GameWorld(){
         init();
     }
 
     private BitmapFont font;
+    private BitmapFont font2;
 
     private void init() {
 
         player = new Player();
         font = new BitmapFont();
+        font2 = new BitmapFont(Gdx.files.internal("fonts/Visitor.fnt"));
         damgeTextFactory = new DamageTextFactory();
         criticalDamageTextFactory = new CriticalDamgeFactory();
         healTextFactory = new HealTextFactory();
@@ -78,6 +80,7 @@ public class GameWorld implements Observer{
         gameObjectContainer = new CompositeGameObject();
         worldTextContainer = new CompositeTextDraw();
         textDraw = new TextDraw(font);
+        textDraw2 = new TextDraw(font2);
         currentEnemy  = new Enemy();
         warrior = new Warrior(250,136);
         mage = new Mage(170,136);
@@ -110,14 +113,15 @@ public class GameWorld implements Observer{
         healTextPool = new TextPool(healTextFactory,10);
         worldContainer.add(gameObjectContainer);
 
-        textDraw.add(dmgTextPool);
-        textDraw.add(criTextPool);
-        textDraw.add(healTextPool);
+        textDraw2.add(dmgTextPool);
+        textDraw2.add(criTextPool);
+        textDraw2.add(healTextPool);
         textDraw.add(coinText);
         textDraw.add(statusText);
         textDraw.add(heroLevelText);
         textDraw.add(upgradeCostText);
         worldTextContainer.add(textDraw);
+        worldTextContainer.add(textDraw2);
         // for testing.
 
         Timer.instance().clear();
