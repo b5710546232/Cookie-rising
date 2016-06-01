@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Animation;
  * Created by nattapat on 6/1/2016 AD.
  */
 public class EnemyDataAnimation {
-    private Animation anim_idle;
-    private Animation anim_die;
-    private Animation anim_attack;
-    private Animation anim_hiited;
+    private  Animation anim_idle;
+    private  Animation anim_die;
+    private  Animation anim_attack;
+    private  Animation anim_hiited;
 
     private String name;
 

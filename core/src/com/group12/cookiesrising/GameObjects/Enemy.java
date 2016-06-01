@@ -159,7 +159,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
         }
         if(!anim_current.getPlayMode().equals(Animation.PlayMode.LOOP)){
             if(anim_current.isAnimationFinished(stateTime)){
-                setAnimation(Assets.anim_enemy01_idle);
+                setAnimation(anim_idle);
                 if(isHited){
                     isHited = false;
                 }

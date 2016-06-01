@@ -1,6 +1,5 @@
 package com.group12.cookiesrising.gametext;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
@@ -28,7 +27,7 @@ public class TextPool extends AbstractGameText {
 
         for(GameText gtext : pool){
             if(!gtext.isActive){
-                Gdx.app.error("pool","out");
+//                Gdx.app.error("pool","out");
                 gtext.init(text,x,y);
                 return gtext;
             }
@@ -36,7 +35,7 @@ public class TextPool extends AbstractGameText {
         GameText newDmgText = factory.create();
         newDmgText.init(text,x,y);
         pool.add(newDmgText);
-        Gdx.app.log("pool","total = "+pool.size);
+//        Gdx.app.log("pool","total = "+pool.size);
         return newDmgText;
     }
 

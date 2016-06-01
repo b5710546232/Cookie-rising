@@ -12,6 +12,7 @@ import com.group12.cookiesrising.Listener.CriticalButtonListener;
 import com.group12.cookiesrising.Listener.HealButtonListener;
 import com.group12.cookiesrising.Listener.HeroButtonListener;
 import com.group12.cookiesrising.Listener.ObservableListener;
+import com.group12.cookiesrising.gameobjects.EnemyData;
 import com.group12.cookiesrising.gameworld.GameWorld;
 import com.group12.cookiesrising.gameworld.GameWorldRenderer;
 import com.group12.cookiesrising.util.Assets;
@@ -49,6 +50,7 @@ public class GamePlayScreen extends ScreenAdapter {
     @Override
     public void pause() {
         super.pause();
+        EnemyData.instance.clearAnim();
         world.saveGame();
     }
 
