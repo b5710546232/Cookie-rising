@@ -16,9 +16,9 @@ public class EnemyUpdater {
         if(currentCycle%CYCLE ==0){
             e.setMaxHealthPoint(e.getMaxHp()+5);
             e.setMoney(e.getMoney()+10);
-            e.setAttackPoint(e.getAttackPoint()+0.5);
+            e.setAttackPoint(e.getAttackPoint()+0.1);
             //e.setAttackPoint(2);
-            e.setSpeed(e.getSpeed()*0.95f);
+            e.setSpeed(e.getSpeed()*0.97f);
             currentCycle =0;
         }
         currentCycle++;

@@ -208,7 +208,7 @@ public class GameWorld {
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()&&warrior.isAlive()) {
             warrior.action(currentEnemy);
-            if(this.player.isCritical()){
+            if(this.warrior.isCritical()){
                 // criText
                 criTextPool.getDamageText(this.warrior.getDmgText(),448,200);
             }
@@ -239,7 +239,7 @@ public class GameWorld {
     private void gunnerAttack(){
         if(currentEnemy != null &&currentEnemy.isAlive()&&gunner.isAlive()) {
             gunner.action(currentEnemy);
-            if(this.player.isCritical()){
+            if(this.gunner.isCritical()){
                 // criText
                 criTextPool.getDamageText(this.gunner.getDmgText(),448,200);
             }

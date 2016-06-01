@@ -82,7 +82,7 @@ public class Mage extends Hero {
         if(SaveManager.loadDataValue("mage_speed",double.class)!=null){
             speed = SaveManager.loadDataValue("mage_speed",double.class);
         } else{
-            speed = 7.5f;
+            speed = 5f;
         }
         if(SaveManager.loadDataValue("mage_maxhealpoint",double.class)!=null){
             maxhealthPoint = SaveManager.loadDataValue("mage_maxhealpoint",double.class);

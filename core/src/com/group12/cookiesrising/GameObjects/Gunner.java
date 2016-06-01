@@ -54,13 +54,13 @@ public class Gunner extends Hero {
 
     @Override
     public void upgradeHeal() {
-        if(getLevel()%10==0)
+        if(getLevel()%2==0)
             setAttackPoint(getAttackPoint()*1.2);
     }
 
     @Override
     public void upgradeCrt() {
-        if(getLevel()%5==0)
+        if(getLevel()%2==0)
             setCriticalRate(getCriticalRate()+1);
     }
     private void loadData(){

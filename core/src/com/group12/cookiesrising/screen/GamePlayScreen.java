@@ -32,7 +32,6 @@ public class GamePlayScreen extends ScreenAdapter {
         this.game = game;
         world = new GameWorld();
         renderer = new GameWorldRenderer(world.getWorldContainer(),world.getWorldTextContainer());
-
     }
 
     @Override
@@ -75,6 +74,7 @@ public class GamePlayScreen extends ScreenAdapter {
     public void show() {
         // this method will be called when this screen becomes the current screen for a Game.
         Assets.instance.init();
+        Assets.bgm.play();
         stage = new Stage(new StretchViewport(Constants.VIEWPORT_WIDTH,
                 Constants.VIEWPORT_HEIGHT));
         Gdx.input.setInputProcessor(stage);

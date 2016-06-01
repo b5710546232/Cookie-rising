@@ -1,6 +1,7 @@
 package com.group12.cookiesrising.util;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -69,6 +70,7 @@ public class Assets implements Disposable{
     public static Sound mon_die_sound;
     public static Sound click_sound;
     public static Sound heal_sound;
+    public static Music bgm;
 
     private Assets() {}
 
@@ -90,6 +92,7 @@ public class Assets implements Disposable{
         loadEnemy();
         loadButton();
         loadSoundFX();
+        loadBgm();
         hero = new Texture(Gdx.files.internal("hero.png"));
         mon = new Texture(Gdx.files.internal("mon.png"));
         bg = new Texture(Gdx.files.internal("bg.png"));
@@ -109,6 +112,11 @@ public class Assets implements Disposable{
         mon_die_sound = Gdx.audio.newSound(Gdx.files.internal("sfx/Explosion11.wav"));
         click_sound = Gdx.audio.newSound(Gdx.files.internal("sfx/Powerup19.wav"));
         heal_sound = Gdx.audio.newSound(Gdx.files.internal("sfx/Powerup26.wav"));
+    }
+
+    private void loadBgm(){
+        bgm = Gdx.audio.newMusic(Gdx.files.internal("bgm/newbattle.wav"));
+        bgm.setLooping(true);
     }
 
     private void loadButton() {
