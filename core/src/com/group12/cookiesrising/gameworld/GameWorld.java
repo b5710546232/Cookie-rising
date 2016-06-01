@@ -224,13 +224,16 @@ public class GameWorld implements Observer{
     }
     private void mageAttack(){
         Party p = player.getParty();
-        Hero h = p.getHeroList().get(0);
-        for(int i = 1; i<p.getHeroList().size();i++){
-            if( (calPerHP(h) < calPerHP( p.getHeroList().get(i) ) ) && p.getHeroList().get(i).isAlive() ){
-                h = p.getHeroList().get(i);
+        double max =0;
+        Hero h =null,temp;
+        for(int i = 0; i<p.getHeroList().size();i++){
+            temp = p.getHeroList().get(i);
+            if( (max < calPerHP( temp ) ) && temp.isAlive() ){
+                h = temp;
+                max = calPerHP(temp);
             }
         }
-        if(h.isAlive()){
+        if(h!=null){
             mage.action(h);
             healTextPool.getDamageText(mage.getDmgText(),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
         }
