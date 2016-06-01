@@ -283,17 +283,15 @@ public class GameWorld implements Observer{
 
     public void playerHeal(){
         Party p = player.getParty();
-        Hero h = p.getHeroList().get(0);
-        int x = 0;
-        for(int i = 1; i<p.getHeroList().size();i++){
-            if( (calPerHP(h) < calPerHP( p.getHeroList().get(i) ) ) && p.getHeroList().get(i).isAlive() ){
-                h = p.getHeroList().get(i);
+        Hero h;
+        for(int i = 0; i<p.getHeroList().size();i++){
+            h = p.getHeroList().get(i);
+            if( h.isAlive()){
+                player.heal(h);
+                Assets.heal_sound.play(1.0f);
+                healTextPool.getDamageText(Integer.toString(player.getHealPoint()),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+
             }
-        }
-        if(h.isAlive()){
-            player.heal(h);
-            Assets.heal_sound.play(1.0f);
-            healTextPool.getDamageText(Integer.toString(player.getHealPoint()),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
         }
     }
 
