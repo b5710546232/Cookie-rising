@@ -65,17 +65,54 @@ public class Mage extends Hero {
     }
 
     private void loadData(){
-        if(SaveManager.loadDataValue("mage",Mage.class)==null)return;
-        Mage temp = SaveManager.loadDataValue("mage",Mage.class);
-        level = temp.getLevel();
-        attackPoint = temp.getAttackPoint();
-        maxhealthPoint = temp.getMaxhealthPoint();
-        Gdx.app.error("hi","safe");
-        speed = temp.getSpeed();
+        if(SaveManager.loadDataValue("mage_level",int.class) != null){
+            level = SaveManager.loadDataValue("mage_level",int.class);
+        } else{
+            level = 1;
+        }
+        if(SaveManager.loadDataValue("mage_attackpoint",double.class)!=null){
+            attackPoint = SaveManager.loadDataValue("mage_attackpoint",double.class);
+        } else{
+            attackPoint = 1;
+        }
+        if(SaveManager.loadDataValue("mage_criticalrate",double.class)!=null){
+            criticalRate = SaveManager.loadDataValue("mage_criticalrate",double.class);
+        } else{
+            criticalRate = 1;
+        }
+        if(SaveManager.loadDataValue("mage_speed",double.class)!=null){
+            speed = SaveManager.loadDataValue("mage_speed",double.class);
+        } else{
+            speed = 7.5f;
+        }
+        if(SaveManager.loadDataValue("mage_maxhealpoint",double.class)!=null){
+            maxhealthPoint = SaveManager.loadDataValue("mage_maxhealpoint",double.class);
+        } else{
+            maxhealthPoint = 10;
+        }
+//        if(SaveManager.loadDataValue("mage",Mage.class)==null)return;
+//        Mage temp = SaveManager.loadDataValue("mage",Mage.class);
+//        level = temp.getLevel();
+//        attackPoint = temp.getAttackPoint();
+//        maxhealthPoint = temp.getMaxhealthPoint();
+//        Gdx.app.error("hi","safe");
+//        speed = temp.getSpeed();
 
 
     }
     public void saveData(){
-        SaveManager.saveDataValue("mage",this);
+
+        SaveManager.saveDataValue("mage_level",level);
+        SaveManager.saveDataValue("mage_attackpoint",getAttackPoint());
+        SaveManager.saveDataValue("mage_criticalrate",getCriticalRate());
+        SaveManager.saveDataValue("mage_maxhealpoint",maxhealthPoint);
+        SaveManager.saveDataValue("mage_speed",speed);
+//        SaveManager.saveDataValue("mage",this);
+    }
+
+    @Override
+    public void init() {
+        setAnimation(Assets.anim_mage_idle);
+        super.init();
     }
 }

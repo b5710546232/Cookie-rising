@@ -20,7 +20,7 @@ import com.group12.cookiesrising.gametext.AbstractGameTextFactory;
 import com.group12.cookiesrising.gametext.CoinText;
 import com.group12.cookiesrising.gametext.CriticalDamgeFactory;
 import com.group12.cookiesrising.gametext.DamageTextFactory;
-import com.group12.cookiesrising.gametext.EnemyLabel;
+import com.group12.cookiesrising.gametext.HealTextFactory;
 import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
 import com.group12.cookiesrising.gametext.TextPool;
@@ -48,10 +48,10 @@ public class GameWorld {
     private Timer.Task enemyAttackTimer;
     private TextPool dmgTextPool;
     private TextPool criTextPool;
+    private TextPool healTextPool;
     private AbstractGameTextFactory damgeTextFactory;
     private AbstractGameTextFactory criticalDamageTextFactory;
-    private StatusText statusText;
-    private CoinText coinText;
+    private AbstractGameTextFactory healTextFactory;
     private TextDraw textDraw;
     private boolean lock = false;
 
@@ -67,6 +67,7 @@ public class GameWorld {
         font = new BitmapFont();
         damgeTextFactory = new DamageTextFactory();
         criticalDamageTextFactory = new CriticalDamgeFactory();
+        healTextFactory = new HealTextFactory();
 
         worldContainer = new CompositeGameObject();
         gameObjectContainer = new CompositeGameObject();
@@ -88,7 +89,6 @@ public class GameWorld {
         HealthBar hpHero = new HealthBar(warrior,250,200,2);
         HealthBar hpMage = new HealthBar(mage,170,200,2);
         HealthBar hpGunner = new HealthBar(gunner,90,200,2);
-        EnemyLabel enemyLabel = new EnemyLabel(currentEnemy);
         HeroLevelText heroLevelText = new HeroLevelText(player);
         UpgradeCostText upgradeCostText = new UpgradeCostText(player);
         gameObjectContainer.add(bg);
@@ -103,13 +103,14 @@ public class GameWorld {
         gameObjectContainer.add(hpGunner);
         dmgTextPool = new TextPool(damgeTextFactory,10);
         criTextPool = new TextPool(criticalDamageTextFactory,3);
+        healTextPool = new TextPool(healTextFactory,10);
         worldContainer.add(gameObjectContainer);
 
         textDraw.add(dmgTextPool);
         textDraw.add(criTextPool);
+        textDraw.add(healTextPool);
         textDraw.add(coinText);
         textDraw.add(statusText);
-        textDraw.add(enemyLabel);
         textDraw.add(heroLevelText);
         textDraw.add(upgradeCostText);
         worldTextContainer.add(textDraw);
@@ -183,13 +184,37 @@ public class GameWorld {
     }
 
     private void enemyAttack(){
-        if (currentEnemy.isAlive())
-                currentEnemy.action(player);
+        if (currentEnemy.isAlive()){
+            Party party = player.getParty();
+            int target = (int)Math.floor(Math.random()*(party.getHeroList().size()+1));
+            Gdx.app.log(getClass().getName(),"random = "+target);
+            if (target==3) {
+                currentEnemy.action(party);
+                for(Hero h: party.getHeroList()){
+                    if (h.isAlive()){
+                        dmgTextPool.getDamageText(Integer.toString((int)Math.floor(currentEnemy.getAttackPoint())),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+                    }
+                }
+            }else {
+                Hero h = party.getHeroList().get(target);
+                currentEnemy.action(h);
+                if (h.isAlive()){
+                    dmgTextPool.getDamageText(Integer.toString((int)Math.floor(currentEnemy.getAttackPoint())),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+                }
+            }
+        }
     }
     private void warriorAttack() {
         if(currentEnemy != null &&currentEnemy.isAlive()&&warrior.isAlive()) {
             warrior.action(currentEnemy);
-            dmgTextPool.getDamageText(warrior.getDmgText(),450,200);
+            if(this.player.isCritical()){
+                // criText
+                criTextPool.getDamageText(this.warrior.getDmgText(),448,200);
+            }
+            else {
+                // normalText
+                dmgTextPool.getDamageText(this.warrior.getDmgText(), 450, 200);
+            }
         }
     }
     private void mageAttack(){
@@ -200,8 +225,10 @@ public class GameWorld {
                 h = p.getHeroList().get(i);
             }
         }
-        if(h.isAlive())
+        if(h.isAlive()){
             mage.action(h);
+            healTextPool.getDamageText(mage.getDmgText(),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+        }
     }
 
     private double calPerHP(Hero h){
@@ -211,7 +238,14 @@ public class GameWorld {
     private void gunnerAttack(){
         if(currentEnemy != null &&currentEnemy.isAlive()&&gunner.isAlive()) {
             gunner.action(currentEnemy);
-            dmgTextPool.getDamageText(gunner.getDmgText(),450,200);
+            if(this.player.isCritical()){
+                // criText
+                criTextPool.getDamageText(this.gunner.getDmgText(),448,200);
+            }
+            else {
+                // normalText
+                dmgTextPool.getDamageText(this.gunner.getDmgText(), 450, 200);
+            }
         }
     }
 
@@ -242,13 +276,16 @@ public class GameWorld {
     public void playerHeal(){
         Party p = player.getParty();
         Hero h = p.getHeroList().get(0);
+        int x = 0;
         for(int i = 1; i<p.getHeroList().size();i++){
             if( (calPerHP(h) < calPerHP( p.getHeroList().get(i) ) ) && p.getHeroList().get(i).isAlive() ){
                 h = p.getHeroList().get(i);
             }
         }
-        if(h.isAlive())
+        if(h.isAlive()){
             player.heal(h);
+            healTextPool.getDamageText(Integer.toString(player.getHealPoint()),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
+        }
     }
 
     public void nextEnemy(){
@@ -293,10 +330,10 @@ public class GameWorld {
 
     public void saveGame(){
         player.saveData();
-//        currentEnemy.saveData();
+        currentEnemy.saveData();
         warrior.saveData();
-//        mage.saveData();
-//        gunner.saveData();
+        mage.saveData();
+        gunner.saveData();
     }
 
     public Player getPlayer() {

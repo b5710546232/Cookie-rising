@@ -19,7 +19,11 @@ public class GunnerAliveState implements State{
     public void action(Hittable target) {
         if(target.isAlive()) {
             h.setAnimation(Assets.anim_gunner_atk);
-            target.takeDamage(h.getAttackPoint());
+            if (h.isCritical()){
+                target.takeDamage(h.getAttackPoint()*2);
+            }else {
+                target.takeDamage(h.getAttackPoint());
+            }
         }
     }
 
@@ -33,6 +37,7 @@ public class GunnerAliveState implements State{
             h.setWaitForSpawn(true);
             h.setHealthPoint(0);
             //h.setAnimation(Assets.anim_enemy01_die);
+            h.setAnimation(Assets.anim_gunner_faint);
             changeState();
         }
 

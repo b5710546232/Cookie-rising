@@ -12,7 +12,7 @@ import com.group12.cookiesrising.Listener.AttackButtonListener;
 import com.group12.cookiesrising.Listener.CriticalButtonListener;
 import com.group12.cookiesrising.Listener.HealButtonListener;
 import com.group12.cookiesrising.Listener.HeroButtonListener;
-import com.group12.cookiesrising.Listener.ObserverListener;
+import com.group12.cookiesrising.Listener.ObservableListener;
 import com.group12.cookiesrising.gameworld.GameWorld;
 import com.group12.cookiesrising.gameworld.GameWorldRenderer;
 import com.group12.cookiesrising.util.Assets;
@@ -52,7 +52,6 @@ public class GamePlayScreen extends ScreenAdapter {
     public void pause() {
         super.pause();
         world.saveGame();
-
     }
 
     private void testInput() {
@@ -85,12 +84,12 @@ public class GamePlayScreen extends ScreenAdapter {
         initButton();
     }
     private void initButton(){
-        ObserverListener atkLis = new AttackButtonListener();
-        ObserverListener healLis = new HealButtonListener();
-        ObserverListener criLis = new CriticalButtonListener();
-        ObserverListener hero1Lis = new HeroButtonListener(0);
-        ObserverListener hero2Lis = new HeroButtonListener(1);
-        ObserverListener hero3Lis = new HeroButtonListener(2);
+        ObservableListener atkLis = new AttackButtonListener();
+        ObservableListener healLis = new HealButtonListener();
+        ObservableListener criLis = new CriticalButtonListener();
+        ObservableListener hero1Lis = new HeroButtonListener(0);
+        ObservableListener hero2Lis = new HeroButtonListener(1);
+        ObservableListener hero3Lis = new HeroButtonListener(2);
         atkLis.addObserver(world.getPlayer());
         healLis.addObserver(world.getPlayer());
         criLis.addObserver(world.getPlayer());

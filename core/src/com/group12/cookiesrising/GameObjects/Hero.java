@@ -12,6 +12,7 @@ import com.group12.cookiesrising.Hittable;
 import com.group12.cookiesrising.State.State;
 import com.group12.cookiesrising.Upgradable;
 import com.group12.cookiesrising.util.Assets;
+import com.group12.cookiesrising.util.RandomGenerator;
 
 public abstract class Hero extends AbstractGameObject implements Hittable,Health,Upgradable {
 
@@ -89,7 +90,9 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
     protected double criticalRate;
     protected boolean isAlive;
     protected int level;
-
+    private final int CRI_RATE_MIN = 1;
+    private final int CRI_RATE_MAX = 100;
+    private RandomGenerator rng;
     public Hero(int x, int y) {
         super(x, y);
         this.init();
@@ -97,6 +100,12 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
         this.maxhealthPoint = 10D;
         waitForSpawn = false;
         speed = 5;
+        rng = new RandomGenerator(CRI_RATE_MIN,CRI_RATE_MAX);
+    }
+    public boolean isCritical(){
+        rng.random();
+        if(criticalRate>=rng.getValue()) return true;
+        return false;
     }
 
     public void setWaitForSpawn(boolean waitForSpawn) {
@@ -176,7 +185,7 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
 
     public String getDmgText() {
         Gdx.app.log(getClass().getName(),getAttackPoint()+"");
-        return Double.toString(getAttackPoint());
+        return Integer.toString((int)Math.floor(getAttackPoint()));
     }
     public void saveData(){
      // do save data.

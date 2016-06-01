@@ -9,11 +9,11 @@ import java.util.Observable;
 /**
  * Created by YukiReii on 28/5/2559.
  */
-public class ObserverListener extends Observable{
+public class ObservableListener extends Observable{
     public final String TAG = this.getClass().getName();
     private ClickListener clickListener;
     private String messege;
-    public ObserverListener(final String messege){
+    public ObservableListener(final String messege){
         this.messege = messege;
         clickListener = new ClickListener(){
             @Override
