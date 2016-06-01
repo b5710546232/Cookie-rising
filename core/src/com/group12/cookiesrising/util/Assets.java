@@ -179,7 +179,7 @@ public class Assets implements Disposable{
         enemy03_reg_idle[2] = enemy03_sheet_textureRegions.get(2);
         enemy03_reg_idle[3] = enemy03_sheet_textureRegions.get(1);
         TextureRegion[] enemy03_reg_atk= new TextureRegion[1];
-        enemy03_reg_atk[0] = enemy02_sheet_textureRegions.get(3);
+        enemy03_reg_atk[0] = enemy03_sheet_textureRegions.get(3);
 
 
         TextureRegion[] enemy03_reg_hitted = new TextureRegion[2];
@@ -187,9 +187,9 @@ public class Assets implements Disposable{
         enemy03_reg_hitted[1] = enemy03_sheet_textureRegions.get(5);
 
         TextureRegion[] enemy03_reg_die = new TextureRegion[3];
-        enemy03_reg_die[0] = enemy02_sheet_textureRegions.get(4);
-        enemy03_reg_die[1] = enemy02_sheet_textureRegions.get(6);
-        enemy03_reg_die[2] = enemy02_sheet_textureRegions.get(7);
+        enemy03_reg_die[0] = enemy03_sheet_textureRegions.get(4);
+        enemy03_reg_die[1] = enemy03_sheet_textureRegions.get(6);
+        enemy03_reg_die[2] = enemy03_sheet_textureRegions.get(7);
 //
         anim_enemy03_idle = new Animation(0.2f,enemy03_reg_idle);
         anim_enemy03_idle.setPlayMode(Animation.PlayMode.LOOP);
