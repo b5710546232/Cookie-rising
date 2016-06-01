@@ -30,12 +30,25 @@ public class Assets implements Disposable{
     public static Texture hero_sheet;
     public static Texture hp_bg,hp_knob;
     public static Texture enemy01_sheet;
-    private static Texture button_sheet;
+
+    public static TextureRegionDrawable button_atk_up;
+    public static TextureRegionDrawable button_atk_down;
+    public static TextureRegionDrawable button_cri_up;
+    public static TextureRegionDrawable button_cri_down;
+    public static TextureRegionDrawable button_heal_up;
+    public static TextureRegionDrawable button_heal_down;
+    public static TextureRegionDrawable button_h1_up;
+    public static TextureRegionDrawable button_h1_down;
+    public static TextureRegionDrawable button_h2_up;
+    public static TextureRegionDrawable button_h2_down;
+    public static TextureRegionDrawable button_h3_up;
+    public static TextureRegionDrawable button_h3_down;
+//    private static Texture button_sheet;
     public static TextureRegion atk,cri,heal,h1b,h2b,h3b;
     public static Array<TextureRegion> hero_sheet_textureRegions;
     public static Array<TextureRegion> enemy01_sheet_textureRegions;
-    public static Array<TextureRegion> button_sheet_textureRegions;
-    public static Array<TextureRegionDrawable> button_sheet_drawable;
+//    public static Array<TextureRegion> button_sheet_textureRegions;
+//    public static Array<TextureRegionDrawable> button_sheet_drawable;
 
     public static Animation anim_warrior_idle;
     public static Animation anim_warrior_atk;
@@ -93,22 +106,26 @@ public class Assets implements Disposable{
     }
 
     private void loadButton() {
-        int size = 80;
-        int col = 6;
-        int row = 2;
-        int num = 12;
-        button_sheet = new Texture(Gdx.files.internal("button_sheet.png"));
-        button_sheet_textureRegions = createTextureRegionsArray(size,row,col,num,button_sheet);
-        button_sheet_drawable = createTextureRegionDrawableArray(button_sheet_textureRegions);
+
+        button_atk_up = createTextureRegionDrawable(new Texture(Gdx.files.internal("atk_button.png")));
+        button_atk_down =createTextureRegionDrawable(new Texture(Gdx.files.internal("atk_button_down.png")));
+        button_cri_up = createTextureRegionDrawable(new Texture(Gdx.files.internal("cri_button.png")));
+        button_cri_down = createTextureRegionDrawable(new Texture(Gdx.files.internal("cri_button_down.png")));
+        button_heal_up = createTextureRegionDrawable(new Texture(Gdx.files.internal("heal_button.png")));
+        button_heal_down = createTextureRegionDrawable(new Texture(Gdx.files.internal("heal_button_down.png")));;
+        button_h1_up = createTextureRegionDrawable(new Texture(Gdx.files.internal("hero01_button.png")));
+        button_h1_down = createTextureRegionDrawable(new Texture(Gdx.files.internal("hero01_button_down.png")));
+        button_h2_up = createTextureRegionDrawable(new Texture(Gdx.files.internal("hero02_button.png")));
+        button_h2_down = createTextureRegionDrawable(new Texture(Gdx.files.internal("hero02_button_down.png")));
+        button_h3_up = createTextureRegionDrawable(new Texture(Gdx.files.internal("hero03_button.png")));
+        button_h3_down = createTextureRegionDrawable(new Texture(Gdx.files.internal("hero03_button_down.png")));
 
     }
 
-    private Array<TextureRegionDrawable> createTextureRegionDrawableArray(Array<TextureRegion> list) {
-        Array<TextureRegionDrawable> listdrawble = new Array<TextureRegionDrawable>();
-        for(TextureRegion t : list){
-            listdrawble.add(new TextureRegionDrawable(t));
-        }
-        return  listdrawble;
+    private TextureRegionDrawable createTextureRegionDrawable(Texture t) {
+        TextureRegion tr = new TextureRegion(t);
+        TextureRegionDrawable td = new TextureRegionDrawable(tr);
+        return td;
     }
 
     private void loadEnemy() {
