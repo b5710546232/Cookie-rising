@@ -66,6 +66,9 @@ public class Assets implements Disposable{
     public static Animation anim_enemy01_die;
 
     public static Sound hitted_sound;
+    public static Sound mon_die_sound;
+    public static Sound click_sound;
+    public static Sound heal_sound;
 
     private Assets() {}
 
@@ -103,6 +106,9 @@ public class Assets implements Disposable{
 
     private void loadSoundFX() {
         hitted_sound = Gdx.audio.newSound(Gdx.files.internal("sfx/Hit_Hurt11.wav"));
+        mon_die_sound = Gdx.audio.newSound(Gdx.files.internal("sfx/Explosion11.wav"));
+        click_sound = Gdx.audio.newSound(Gdx.files.internal("sfx/Powerup19.wav"));
+        heal_sound = Gdx.audio.newSound(Gdx.files.internal("sfx/Powerup26.wav"));
     }
 
     private void loadButton() {

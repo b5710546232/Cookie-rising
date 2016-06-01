@@ -28,10 +28,12 @@ public class AliveState implements State {
         e.hitted();
         e.setAnimation(Assets.anim_enemy01_hitted);
         Gdx.app.log(e.TAG,"current hp = "+e.healthPoint);
+        Assets.hitted_sound.play(1.0f);
         if(e.healthPoint<=0){
             e.healthPoint = 0;
             Gdx.app.log(e.TAG,"monster die");
             e.setAnimation(Assets.anim_enemy01_die);
+            Assets.mon_die_sound.play(1.0f);
             changeState();
         }
     }

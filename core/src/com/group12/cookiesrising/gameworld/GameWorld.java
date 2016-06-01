@@ -261,7 +261,6 @@ public class GameWorld {
         if(currentEnemy != null &&currentEnemy.isAlive() && !lock) {
             lock = true;
             this.player.attack(currentEnemy);
-            Assets.hitted_sound.play(1.0f);
             if(this.player.isCritical()){
                 // criText
                 criTextPool.getDamageText(this.player.getDamageText(),448,200);
@@ -286,6 +285,7 @@ public class GameWorld {
         }
         if(h.isAlive()){
             player.heal(h);
+            Assets.heal_sound.play(1.0f);
             healTextPool.getDamageText(Integer.toString(player.getHealPoint()),Math.round(h.getPosition().x),Math.round(h.getPosition().y));
         }
     }

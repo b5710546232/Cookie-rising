@@ -21,6 +21,7 @@ public class MageAliveState implements State{
         if(target.isAlive()) {
             h.setAnimation(Assets.anim_mage_heal);
             target.takeDamage(-h.getAttackPoint());
+            Assets.heal_sound.play(1.0f);
         }
     }
 

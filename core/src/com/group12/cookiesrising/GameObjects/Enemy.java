@@ -90,6 +90,7 @@ public class Enemy extends AbstractGameObject implements Health,Hittable {
     }
 
     public void takeDamage(double dmg){
+
         currentState.takeDamage(dmg);
     }
 
