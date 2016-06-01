@@ -49,6 +49,7 @@ public class Gunner extends Hero {
         setMaxhealthPoint(getMaxhealthPoint()+3);
         if(isAlive())
             setHealthPoint(getHealthPoint()+1);
+        if (healthPoint>maxhealthPoint) setHealthPoint(maxhealthPoint);
         setSpeed(getSpeed()*0.95f);
         //setSpeed(0.05f);
         if (getSpeed()<=0.15f) setSpeed(0.15f);
