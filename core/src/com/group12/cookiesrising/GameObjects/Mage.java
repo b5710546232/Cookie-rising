@@ -20,7 +20,7 @@ public class Mage extends Hero {
         setAliveState(new MageAliveState(this));
         setDeathState(new HeroDeathState(this));
         setAttackPoint(1.0);
-        setSpeed(7.5F);
+        setSpeed(5F);
         currentState = getAliveState();
         loadData();
     }
@@ -41,7 +41,7 @@ public class Mage extends Hero {
 
     @Override
     public void upgradeAtk() {
-        setMaxhealthPoint(getMaxhealthPoint()+1);
+        setMaxhealthPoint(getMaxhealthPoint()+Math.ceil(level/7f));
         if(isAlive())
             setHealthPoint(getHealthPoint()+1);
         setAttackPoint(getAttackPoint()+Math.ceil(level/3f));
@@ -90,6 +90,8 @@ public class Mage extends Hero {
         } else{
             maxhealthPoint = 10;
         }
+        healthPoint = maxhealthPoint;
+
 //        if(SaveManager.loadDataValue("mage",Mage.class)==null)return;
 //        Mage temp = SaveManager.loadDataValue("mage",Mage.class);
 //        level = temp.getLevel();

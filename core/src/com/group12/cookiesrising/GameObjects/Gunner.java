@@ -91,6 +91,7 @@ public class Gunner extends Hero {
         } else{
             maxhealthPoint = 10;
         }
+        healthPoint = maxhealthPoint;
 //        if(SaveManager.loadDataValue("gunner",Warrior.class)==null)return;
 //        Warrior temp = SaveManager.loadDataValue("gunner",Mage.class);
 //        level = temp.getLevel();
