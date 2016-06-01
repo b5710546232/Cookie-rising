@@ -1,6 +1,7 @@
 package com.group12.cookiesrising.util;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -51,6 +52,8 @@ public class Assets implements Disposable{
     public static Animation anim_enemy01_hitted;
     public static Animation anim_enemy01_die;
 
+    public static Sound hitted_sound;
+
     private Assets() {}
 
     /**
@@ -70,6 +73,7 @@ public class Assets implements Disposable{
         loadHero();
         loadEnemy();
         loadButton();
+        loadSoundFX();
         hero = new Texture(Gdx.files.internal("hero.png"));
         mon = new Texture(Gdx.files.internal("mon.png"));
         bg = new Texture(Gdx.files.internal("bg.png"));
@@ -82,6 +86,10 @@ public class Assets implements Disposable{
         h1b = new TextureRegion(new Texture(Gdx.files.internal("hero01_button.png")));
         h2b = new TextureRegion(new Texture(Gdx.files.internal("hero02_button.png")));
         h3b = new TextureRegion(new Texture(Gdx.files.internal("hero03_button.png")));
+    }
+
+    private void loadSoundFX() {
+        hitted_sound = Gdx.audio.newSound(Gdx.files.internal("sfx/Hit_Hurt11.wav"));
     }
 
     private void loadButton() {
@@ -257,6 +265,7 @@ public class Assets implements Disposable{
 
     @Override
     public void dispose() {
+        hitted_sound.dispose();
         hero_sheet.dispose();
         enemy01_sheet.dispose();
         bg.dispose();

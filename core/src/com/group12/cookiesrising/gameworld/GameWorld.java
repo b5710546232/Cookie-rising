@@ -25,6 +25,7 @@ import com.group12.cookiesrising.gametext.HeroLevelText;
 import com.group12.cookiesrising.gametext.StatusText;
 import com.group12.cookiesrising.gametext.TextPool;
 import com.group12.cookiesrising.gametext.UpgradeCostText;
+import com.group12.cookiesrising.util.Assets;
 
 /**
  * Created by nattapat on 5/6/2016 AD.
@@ -260,6 +261,7 @@ public class GameWorld {
         if(currentEnemy != null &&currentEnemy.isAlive() && !lock) {
             lock = true;
             this.player.attack(currentEnemy);
+            Assets.hitted_sound.play(1.0f);
             if(this.player.isCritical()){
                 // criText
                 criTextPool.getDamageText(this.player.getDamageText(),448,200);
