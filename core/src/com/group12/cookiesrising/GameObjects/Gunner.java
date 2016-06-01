@@ -51,7 +51,7 @@ public class Gunner extends Hero {
             setHealthPoint(getHealthPoint()+1);
         setSpeed(getSpeed()*0.95f);
         //setSpeed(0.05f);
-        if (getSpeed()<=0.05f) setSpeed(0.05f);
+        if (getSpeed()<=0.15f) setSpeed(0.15f);
     }
 
     @Override
