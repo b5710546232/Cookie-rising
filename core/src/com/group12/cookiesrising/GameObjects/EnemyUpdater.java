@@ -19,6 +19,7 @@ public class EnemyUpdater {
             e.setAttackPoint(e.getAttackPoint()+0.1);
             //e.setAttackPoint(2);
             e.setSpeed(e.getSpeed()*0.97f);
+            if (e.getSpeed()<0.1f) e.setSpeed(0.1f);
             currentCycle =0;
         }
         currentCycle++;

@@ -185,7 +185,11 @@ public abstract class Hero extends AbstractGameObject implements Hittable,Health
 
     public String getDmgText() {
         Gdx.app.log(getClass().getName(),getAttackPoint()+"");
-        return Integer.toString((int)Math.floor(getAttackPoint()));
+        if (isCritical()){
+            return Integer.toString((int)Math.floor(getAttackPoint()*2));
+        }else {
+            return Integer.toString((int)Math.floor(getAttackPoint()));
+        }
     }
     public void saveData(){
      // do save data.
